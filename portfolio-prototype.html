@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jinah-yeom.github.io — 구조 프로토타입</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root {
+  --color-red-100: #fbd7d7;
+  --color-red-200: #f9b9b9;
+  --color-red-300: #f79d9d;
+  --color-red-400: #f26e6e;
+  --color-red-500: #ec4444;
+  --color-red-600: #d92d2d;
+  --color-red-700: #b32424;
+  --color-red-800: #8e1c1c;
+  --color-red-900: #661414;
+  --color-red-050: #fdeeee;
+  --color-yellow-100: #fff0cc;
+  --color-yellow-200: #ffe199;
+  --color-yellow-300: #ffd166;
+  --color-yellow-400: #ffc133;
+  --color-yellow-500: #f2b300;
+  --color-yellow-600: #d99e00;
+  --color-yellow-700: #ad7d00;
+  --color-yellow-800: #825d00;
+  --color-yellow-900: #553d00;
+  --color-yellow-050: #fff9eb;
+  --color-green-100: #cdeae2;
+  --color-green-200: #9bd4c4;
+  --color-green-300: #6bbea7;
+  --color-green-400: #3ba88a;
+  --color-green-500: #159072;
+  --color-green-600: #117b61;
+  --color-green-700: #075e50;
+  --color-green-800: #0b5140;
+  --color-green-900: #083b30;
+  --color-green-050: #ebf7f4;
+  --color-cyan-100: #cbe9f0;
+  --color-cyan-200: #97d3e0;
+  --color-cyan-300: #63bdd0;
+  --color-cyan-400: #2fa7c0;
+  --color-cyan-500: #0c8faa;
+  --color-cyan-600: #0a7a91;
+  --color-cyan-700: #086578;
+  --color-cyan-800: #065160;
+  --color-cyan-900: #043c47;
+  --color-cyan-050: #e9f6f9;
+  --color-blue-100: #c5d9fc;
+  --color-blue-200: #9ec0fa;
+  --color-blue-300: #8ab3f9;
+  --color-blue-400: #508df7;
+  --color-blue-500: #1e6ef5;
+  --color-blue-600: #0b5dea;
+  --color-blue-700: #094dc3;
+  --color-blue-800: #073e9c;
+  --color-blue-900: #062e75;
+  --color-blue-050: #ecf2fe;
+  --color-magenta-100: #f2d4f9;
+  --color-magenta-200: #e4a9f2;
+  --color-magenta-300: #d67eec;
+  --color-magenta-400: #c953e6;
+  --color-magenta-500: #b737d4;
+  --color-magenta-600: #982cb1;
+  --color-magenta-700: #7a238f;
+  --color-magenta-800: #611b71;
+  --color-magenta-900: #491353;
+  --color-magenta-050: #faeefc;
+  --color-purple-100: #e4d7ff;
+  --color-purple-200: #c9b0ff;
+  --color-purple-300: #ae89ff;
+  --color-purple-400: #9362ff;
+  --color-purple-500: #7b45f2;
+  --color-purple-600: #6739cc;
+  --color-purple-700: #542ea6;
+  --color-purple-800: #442686;
+  --color-purple-900: #341e66;
+  --color-purple-050: #f5f0ff;
+  --color-gray-100: #f0f0f5;
+  --color-gray-200: #e8e8ee;
+  --color-gray-300: #e1e1e8;
+  --color-gray-400: #cdced6;
+  --color-gray-500: #8c8f9f;
+  --color-gray-600: #6c6e7e;
+  --color-gray-700: #525463;
+  --color-gray-800: #3e404c;
+  --color-gray-900: #2b2d36;
+  --color-gray-950: #252730;
+  --color-gray-000: #ffffff;
+  --color-gray-050: #f7f7fa;
+  --color-black-alpha-100: rgba(0, 0, 0, 0);
+  --color-black-alpha-150: rgba(0, 0, 0, 0.01);
+  --color-black-alpha-200: rgba(0, 0, 0, 0.02);
+  --color-black-alpha-250: rgba(0, 0, 0, 0.03);
+  --color-black-alpha-300: rgba(0, 0, 0, 0.05);
+  --color-black-alpha-350: rgba(0, 0, 0, 0.06);
+  --color-black-alpha-400: rgba(0, 0, 0, 0.08);
+  --color-black-alpha-450: rgba(0, 0, 0, 0.11);
+  --color-black-alpha-500: rgba(0, 0, 0, 0.17);
+  --color-black-alpha-550: rgba(0, 0, 0, 0.2);
+  --color-black-alpha-600: rgba(0, 0, 0, 0.28);
+  --color-black-alpha-650: rgba(0, 0, 0, 0.46);
+  --color-black-alpha-700: rgba(0, 0, 0, 0.62);
+  --color-black-alpha-800: rgba(0, 0, 0, 0.71);
+  --color-black-alpha-900: rgba(0, 0, 0, 0.81);
+  --color-black-alpha-1000: rgba(0, 0, 0, 0.9);
+  --color-base-white: #ffffff;
+  --color-base-black: #000000;
+  --color-orange-100: #ffe0cc;
+  --color-orange-200: #ffc199;
+  --color-orange-300: #ffa366;
+  --color-orange-400: #ff8533;
+  --color-orange-500: #f56b14;
+  --color-orange-600: #e55f0e;
+  --color-orange-700: #b74c0b;
+  --color-orange-800: #8a3909;
+  --color-orange-900: #5c2606;
+  --color-orange-050: #fff4eb;
+  --color-divider-normal: rgba(112, 115, 124, 0.22);
+  --color-divider-neutral: rgba(112, 115, 124, 0.16);
+  --color-divider-alternative: rgba(112, 115, 124, 0.08);
+  --color-divider-strong: rgba(112, 115, 124, 0.52);
+  --color-label-neutral: rgba(46, 47, 51, 0.88);
+  --color-label-alternative: rgba(55, 56, 60, 0.61);
+  --color-label-assistive: rgba(55, 56, 60, 0.28);
+  --color-label-disabled: rgba(55, 56, 60, 0.16);
+  --font-family-font-sans-default: Pretendard;
+  --font-family-font-sans-th: Noto Sans Thai;
+  --font-family-font-sans-latin-ext: Noto Sans;
+  --font-family-font-sans-cyrillic: Pretendard Std;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --font-size-100: 16px;
+  --font-size-200: 18px;
+  --font-size-300: 20px;
+  --font-size-350: 22px;
+  --font-size-400: 24px;
+  --font-size-450: 28px;
+  --font-size-500: 32px;
+  --font-size-550: 36px;
+  --font-size-600: 38px;
+  --font-size-650: 40px;
+  --font-size-700: 48px;
+  --font-size-800: 64px;
+  --font-size-900: 80px;
+  --font-size-025: 10px;
+  --font-size-050: 12px;
+  --font-size-075: 14px;
+  --font-line-height-100: 26px;
+  --font-line-height-200: 30px;
+  --font-line-height-300: 32px;
+  --font-line-height-400: 34px;
+  --font-line-height-500: 38px;
+  --font-line-height-600: 44px;
+  --font-line-height-700: 48px;
+  --font-line-height-800: 52px;
+  --font-line-height-900: 56px;
+  --font-line-height-1000: 62px;
+  --font-line-height-1100: 84px;
+  --font-line-height-1200: 104px;
+  --font-line-height-025: 14px;
+  --font-line-height-075: 24px;
+  --font-line-height-050: 20px;
+  --font-line-height-035: 16px;
+  --font-letter-spacing-display: -0.4px;
+  --font-letter-spacing-heading-lg: -0.4px;
+  --font-letter-spacing-heading-md: -0.3px;
+  --font-letter-spacing-subtitle: -0.1px;
+  --font-letter-spacing-body: -0.1px;
+  --font-letter-spacing-none: 0px;
+  --font-letter-spacing-heading-sm: -0.2px;
+  --font-letter-spacing-heading-xs: -0.1px;
+  --motion-easing-standard: ease;
+  --motion-easing-out: ease-out;
+  --motion-easing-in: ease-in;
+  --motion-easing-emphasized: ease-in-out;
+  --motion-duration-d1: 50px;
+  --motion-duration-d2: 100px;
+  --motion-duration-d3: 150px;
+  --motion-duration-d4: 200px;
+  --motion-duration-d5: 250px;
+  --motion-duration-d6: 300px;
+  --dimension-100: 8px;
+  --dimension-150: 12px;
+  --dimension-175: 14px;
+  --dimension-200: 16px;
+  --dimension-225: 18px;
+  --dimension-250: 20px;
+  --dimension-300: 24px;
+  --dimension-400: 32px;
+  --dimension-450: 36px;
+  --dimension-500: 40px;
+  --dimension-600: 48px;
+  --dimension-700: 56px;
+  --dimension-800: 64px;
+  --dimension-025: 2px;
+  --dimension-050: 4px;
+  --dimension-075: 6px;
+  --radius-100: 4px;
+  --radius-200: 6px;
+  --radius-300: 8px;
+  --radius-400: 12px;
+  --radius-500: 16px;
+  --radius-600: 20px;
+  --radius-700: 24px;
+  --radius-800: 32px;
+  --radius-900: 40px;
+  --radius-000: 0px;
+  --radius-050: 2px;
+  --space-100: 8px;
+  --space-125: 10px;
+  --space-150: 12px;
+  --space-175: 14px;
+  --space-200: 16px;
+  --space-225: 18px;
+  --space-250: 20px;
+  --space-300: 24px;
+  --space-400: 32px;
+  --space-500: 40px;
+  --space-600: 48px;
+  --space-700: 56px;
+  --space-800: 64px;
+  --space-900: 72px;
+  --space-000: 0px;
+  --space-025: 2px;
+  --space-075: 6px;
+  --space-050: 4px;
+  --shadows-2xs-x: 0px;
+  --shadows-2xs-y: 1px;
+  --shadows-2xs-blur: 0px;
+  --shadows-2xs-spread: 0px;
+  --shadows-xs-x: 0px;
+  --shadows-xs-y: 1px;
+  --shadows-xs-blur: 2px;
+  --shadows-xs-spread: 0px;
+  --shadows-sm-shadow-1-x: 0px;
+  --shadows-sm-shadow-1-y: 1px;
+  --shadows-sm-shadow-1-blur: 3px;
+  --shadows-sm-shadow-1-spread: 0px;
+  --shadows-sm-shadow-2-x: 0px;
+  --shadows-sm-shadow-2-y: 1px;
+  --shadows-sm-shadow-2-blur: 2px;
+  --shadows-sm-shadow-2-spread: -1px;
+  --shadows-md-shadow-1-x: 0px;
+  --shadows-md-shadow-1-y: 4px;
+  --shadows-md-shadow-1-blur: 6px;
+  --shadows-md-shadow-1-spread: -1px;
+  --shadows-md-shadow-2-x: 0px;
+  --shadows-md-shadow-2-y: 2px;
+  --shadows-md-shadow-2-blur: 4px;
+  --shadows-md-shadow-2-spread: -2px;
+  --shadows-lg-shadow-1-x: 0px;
+  --shadows-lg-shadow-1-y: 10px;
+  --shadows-lg-shadow-1-blur: 15px;
+  --shadows-lg-shadow-1-spread: -3px;
+  --shadows-lg-shadow-2-x: 0px;
+  --shadows-lg-shadow-2-y: 4px;
+  --shadows-lg-shadow-2-blur: 6px;
+  --shadows-lg-shadow-2-spread: -4px;
+  --shadows-xl-shadow-1-x: 0px;
+  --shadows-xl-shadow-1-y: 20px;
+  --shadows-xl-shadow-1-blur: 25px;
+  --shadows-xl-shadow-1-spread: -5px;
+  --shadows-xl-shadow-2-x: 0px;
+  --shadows-xl-shadow-2-y: 8px;
+  --shadows-xl-shadow-2-blur: 10px;
+  --shadows-xl-shadow-2-spread: -6px;
+  --shadows-2xl-x: 0px;
+  --shadows-2xl-y: 25px;
+  --shadows-2xl-blur: 50px;
+  --shadows-2xl-spread: -12px;
+  --gap-layout-header-breadcrumb: 0px;
+  --color-background-normal: var(--color-gray-000);
+  --color-background-alternative: var(--color-gray-050);
+  --color-background-normal-inverse: var(--color-gray-950);
+  --color-background-overlay: var(--color-black-alpha-800);
+  --color-foreground-success: var(--color-green-600);
+  --color-foreground-danger: var(--color-red-600);
+  --color-foreground-warning: var(--color-yellow-600);
+  --color-foreground-secondary: var(--color-gray-800);
+  --color-foreground-success-on-transparent: var(--color-green-700);
+  --color-foreground-danger-on-transparent: var(--color-red-700);
+  --color-foreground-warning-on-transparent: var(--color-yellow-700);
+  --color-foreground-secondary-on-transparent: var(--color-gray-900);
+  --color-foreground-success-on-background: var(--color-green-500);
+  --color-foreground-warning-on-background: var(--color-yellow-500);
+  --color-foreground-danger-on-background: var(--color-red-500);
+  --color-foreground-hint: var(--color-gray-600);
+  --color-foreground-hint-on-transparent: var(--color-gray-700);
+  --color-foreground-contrast: var(--color-gray-800);
+  --color-foreground-contrast-on-transparent: var(--color-gray-900);
+  --color-foreground-alternative: var(--color-gray-700);
+  --color-foreground-normal: var(--color-gray-950);
+  --color-foreground-light: var(--color-base-white);
+  --color-foreground-disabled: var(--color-gray-100);
+  --color-border-primary-subtle: var(--color-blue-100);
+  --color-border-primary: var(--color-blue-500);
+  --color-border-success-subtle: var(--color-green-100);
+  --color-border-secondary: var(--color-gray-400);
+  --color-border-danger-subtle: var(--color-red-100);
+  --color-border-danger: var(--color-red-600);
+  --color-border-warning-subtle: var(--color-yellow-100);
+  --color-border-warning: var(--color-yellow-600);
+  --color-border-success: var(--color-green-600);
+  --color-border-normal: var(--color-gray-300);
+  --color-border-disabled: var(--color-gray-200);
+  --color-border-contrast: var(--color-gray-950);
+  --color-theme-dependent-primary: var(--color-blue-500);
+  --color-theme-dependent-foreground-primary-on-transparent: var(--color-blue-700);
+  --color-theme-dependent-foreground-primary: var(--color-blue-600);
+  --color-theme-dependent-foreground-primary-on-background: var(--color-blue-500);
+  --color-theme-contrast: var(--color-gray-800);
+  --color-theme-success: var(--color-green-600);
+  --color-theme-warning: var(--color-orange-600);
+  --color-theme-danger: var(--color-red-600);
+  --color-theme-hint: var(--color-gray-600);
+  --color-theme-secondary: var(--color-gray-200);
+  --color-label-normal: var(--color-gray-950);
+  --color-label-strong: var(--color-base-black);
+  --color-label-inverse: var(--color-base-white);
+  --shadows-2xs-color: var(--color-black-alpha-100);
+  --shadows-xs-color: var(--color-black-alpha-100);
+  --shadows-sm-color: var(--color-black-alpha-450);
+  --shadows-md-color: var(--color-black-alpha-450);
+  --shadows-lg-color: var(--color-black-alpha-450);
+  --shadows-xl-color: var(--color-black-alpha-450);
+  --shadows-2xl-color: var(--color-black-alpha-400);
+  --font-size-display-display-1: var(--font-size-800);
+  --font-size-display-display-2: var(--font-size-700);
+  --font-size-display-display-3: var(--font-size-550);
+  --font-size-heading-heading-1: var(--font-size-650);
+  --font-size-heading-heading-2: var(--font-size-500);
+  --font-size-heading-heading-3: var(--font-size-400);
+  --font-size-heading-heading-4: var(--font-size-300);
+  --font-size-heading-heading-5: var(--font-size-200);
+  --font-size-heading-heading-6: var(--font-size-100);
+  --font-size-body-body-1: var(--font-size-300);
+  --font-size-body-body-2: var(--font-size-200);
+  --font-size-body-body-3: var(--font-size-100);
+  --font-size-body-body-4: var(--font-size-075);
+  --font-size-label-label-1: var(--font-size-100);
+  --font-size-label-label-2: var(--font-size-075);
+  --font-size-label-label-3: var(--font-size-050);
+  --font-size-label-label-4: var(--font-size-075);
+  --font-size-label-label-5: var(--font-size-050);
+  --font-size-navigation-nav-title-medium: var(--font-size-400);
+  --font-size-navigation-nav-title-small: var(--font-size-300);
+  --font-size-navigation-nav-depth1-bold: var(--font-size-200);
+  --font-size-navigation-nav-depth1-medium: var(--font-size-200);
+  --font-size-navigation-nav-depth2-bold: var(--font-size-100);
+  --font-size-navigation-nav-depth2-medium: var(--font-size-100);
+}
+</style>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-family-font-sans-default), -apple-system, sans-serif;
+  background: var(--color-background-normal);
+  color: var(--color-label-normal);
+  letter-spacing: var(--font-letter-spacing-body);
+}
+
+/* ── 프로토타입 컨트롤 바 (사이트 아님) ── */
+.proto-bar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: var(--space-150);
+  padding: var(--space-100) var(--space-300);
+  background: var(--color-background-normal-inverse);
+  color: var(--color-label-inverse);
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+}
+.proto-bar strong { font-weight: var(--font-weight-600); }
+.proto-bar .url {
+  padding: var(--space-025) var(--space-100);
+  background: var(--color-black-alpha-600);
+  border-radius: var(--radius-100);
+  font-weight: var(--font-weight-500);
+  color: var(--color-gray-300);
+}
+
+/* ── 사이트 헤더 ── */
+header.site {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  max-width: 1120px; margin: 0 auto;
+  padding: var(--space-250) var(--space-300);
+}
+.contact-link {
+  justify-self: end;
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  font-weight: var(--font-weight-500);
+  letter-spacing: 0.06em;
+  color: var(--color-label-assistive);
+  cursor: pointer;
+}
+.contact-link:hover { color: var(--color-label-normal); }
+.logo {
+  font-size: var(--font-size-100);
+  font-weight: var(--font-weight-700);
+  line-height: var(--font-line-height-075);
+  letter-spacing: var(--font-letter-spacing-heading-xs);
+  cursor: pointer;
+}
+.logo span { color: var(--color-theme-dependent-foreground-primary); }
+nav.gnb { display: flex; gap: var(--space-050); }
+.gnb { gap: var(--space-300); }
+.gnb button {
+  border: none; background: transparent; cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  font-weight: var(--font-weight-500);
+  letter-spacing: 0.06em;
+  color: var(--color-label-assistive);
+  padding: var(--space-050) 0;
+}
+.gnb button:hover { color: var(--color-label-normal); }
+.gnb button.active {
+  color: var(--color-label-normal);
+  font-weight: var(--font-weight-700);
+  border-bottom: 2px solid var(--color-border-contrast);
+}
+
+main { max-width: 960px; margin: 0 auto; padding: var(--space-400) var(--space-300) var(--space-900); }
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── 공통 타이포 ── */
+.eyebrow {
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  font-weight: var(--font-weight-600);
+  color: var(--color-label-assistive);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-100);
+}
+h1.display {
+  font-size: var(--font-size-550);
+  line-height: var(--font-line-height-600);
+  font-weight: var(--font-weight-800);
+  letter-spacing: var(--font-letter-spacing-display);
+  margin-bottom: var(--space-200);
+}
+.lede {
+  font-size: var(--font-size-200);
+  line-height: var(--font-line-height-200);
+  font-weight: var(--font-weight-400);
+  color: var(--color-label-alternative);
+  max-width: 620px;
+}
+h2.section {
+  font-size: var(--font-size-300);
+  line-height: var(--font-line-height-300);
+  font-weight: var(--font-weight-700);
+  letter-spacing: var(--font-letter-spacing-heading-sm);
+  margin-bottom: var(--space-200);
+}
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-top: var(--space-700);
+}
+.section-head a {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-alternative);
+  text-decoration: none; font-weight: var(--font-weight-500);
+  cursor: pointer;
+}
+.section-head a:hover { color: var(--color-label-normal); text-decoration: underline; }
+
+/* ── 홈: 대표 프로젝트 카드 ── */
+.feature-card {
+  border: 1px solid var(--color-divider-neutral);
+  border-radius: var(--radius-500);
+  overflow: hidden; cursor: pointer;
+  transition: box-shadow 0.2s var(--motion-easing-standard);
+}
+.feature-card:hover {
+  box-shadow: var(--shadows-lg-shadow-1-x) var(--shadows-lg-shadow-1-y) var(--shadows-lg-shadow-1-blur) var(--shadows-lg-shadow-1-spread) var(--shadows-lg-color);
+}
+.feature-thumb {
+  height: 220px;
+  background: var(--color-gray-950);
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--space-100);
+  padding: var(--space-300);
+}
+.swatch { width: 40px; height: 40px; border-radius: var(--radius-300); }
+.feature-body { padding: var(--space-300); }
+.feature-body h3 {
+  font-size: var(--font-size-300);
+  line-height: var(--font-line-height-300);
+  font-weight: var(--font-weight-700);
+  margin-bottom: var(--space-075);
+}
+.feature-body p {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-alternative);
+  margin-bottom: var(--space-200);
+}
+.tags { display: flex; gap: var(--space-075); flex-wrap: wrap; }
+.tag {
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  font-weight: var(--font-weight-500);
+  color: var(--color-label-alternative);
+  background: var(--color-background-alternative);
+  border-radius: var(--radius-900);
+  padding: var(--space-025) var(--space-125);
+}
+
+/* ── 글 리스트 ── */
+.post-list { display: flex; flex-direction: column; }
+.post-item {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-300);
+  padding: var(--space-250) 0;
+  border-bottom: 1px solid var(--color-divider-alternative);
+  cursor: pointer;
+}
+.post-item:hover .post-title { text-decoration: underline; }
+.post-title {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-075);
+  font-weight: var(--font-weight-600);
+}
+.post-desc {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-alternative);
+  margin-top: var(--space-050);
+}
+.post-date {
+  flex-shrink: 0;
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  color: var(--color-label-assistive);
+  font-weight: var(--font-weight-500);
+}
+
+/* ── 홈: 중앙 히어로 + 빅 카드 ── */
+.hero-center { text-align: center; padding: var(--space-400) 0 var(--space-600); }
+.avatar {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--color-gray-950); color: var(--color-label-inverse);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: var(--font-size-400);
+  font-weight: var(--font-weight-800);
+  margin-bottom: var(--space-250);
+}
+.hero-name {
+  font-size: var(--font-size-500);
+  line-height: var(--font-line-height-500);
+  font-weight: var(--font-weight-800);
+  letter-spacing: var(--font-letter-spacing-display);
+  margin-bottom: var(--space-150);
+}
+.hero-tag {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-100);
+  color: var(--color-label-alternative);
+}
+.big-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-300); margin-bottom: var(--space-300); }
+.big-card { cursor: pointer; }
+.big-thumb {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-500);
+  background: var(--color-background-alternative);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--space-150);
+  transition: background 0.2s var(--motion-easing-standard);
+}
+.big-card:hover .big-thumb { background: var(--color-gray-100); }
+.big-card:hover .big-name { text-decoration: underline; }
+.ramp.lg { gap: var(--space-075); }
+.ramp.lg span { width: 36px; height: 36px; border-radius: var(--radius-300); }
+.plug-glyph { font-size: var(--font-size-700); color: var(--color-gray-400); }
+.thumb-word {
+  font-size: var(--font-size-300);
+  font-weight: var(--font-weight-700);
+  color: var(--color-gray-400);
+  letter-spacing: var(--font-letter-spacing-heading-md);
+}
+.big-name {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-075);
+  font-weight: var(--font-weight-700);
+}
+.big-tags {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-assistive);
+  margin-top: var(--space-025);
+}
+
+/* ── garri식 히어로 ── */
+.hero-garri {
+  min-height: 62vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.statement {
+  font-size: var(--font-size-550);
+  line-height: var(--font-line-height-600);
+  font-weight: var(--font-weight-500);
+  letter-spacing: var(--font-letter-spacing-display);
+  text-align: left;
+}
+.corner {
+  position: fixed; bottom: var(--space-250); z-index: 50;
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  font-weight: var(--font-weight-500);
+  letter-spacing: 0.06em;
+  color: var(--color-label-assistive);
+  pointer-events: none;
+}
+.corner.bl { left: var(--space-300); }
+.corner.br { right: var(--space-300); }
+
+/* ── 홈 하단 국영문 2단 소개 ── */
+.bio-cols {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--space-600);
+  padding: var(--space-700) 0;
+  border-top: 1px solid var(--color-divider-alternative);
+}
+.bio-cols p {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-100);
+  color: var(--color-label-neutral);
+}
+
+/* ── About: Jay Kim 구성 ── */
+.ab-section { padding: var(--space-600) 0; }
+.ab-section + .ab-section { border-top: 1px solid var(--color-divider-alternative); }
+.ab-cat {
+  font-size: var(--font-size-300);
+  line-height: var(--font-line-height-300);
+  font-weight: var(--font-weight-800);
+  letter-spacing: var(--font-letter-spacing-heading-md);
+  margin-bottom: var(--space-500);
+}
+.ab-item { margin-bottom: var(--space-600); }
+.ab-item:last-child { margin-bottom: 0; }
+.ab-title {
+  font-size: var(--font-size-200);
+  line-height: var(--font-line-height-200);
+  font-weight: var(--font-weight-700);
+  margin-bottom: var(--space-250);
+}
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--space-600);
+}
+.two-col p {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-neutral);
+  margin-bottom: var(--space-150);
+}
+.ab-list {
+  margin: var(--space-150) 0 0 var(--space-200);
+  display: flex; flex-direction: column; gap: var(--space-100);
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-alternative);
+}
+
+/* ── garri식 워크 섹션 (좌 설명 / 우 이미지) ── */
+.work-section {
+  display: grid; grid-template-columns: 300px 1fr;
+  gap: var(--space-600);
+  padding: var(--space-700) 0;
+  border-top: 1px solid var(--color-divider-alternative);
+  cursor: pointer;
+}
+.work-section:hover .ws-title { text-decoration: underline; }
+.ws-title {
+  font-size: var(--font-size-200);
+  line-height: var(--font-line-height-200);
+  font-weight: var(--font-weight-700);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-250);
+}
+.ws-text p {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-neutral);
+  margin-bottom: var(--space-150);
+}
+.ws-meta { margin-top: var(--space-400); }
+.ws-row {
+  display: grid; grid-template-columns: 72px 1fr;
+  gap: var(--space-200);
+  padding: var(--space-150) 0;
+  border-top: 1px solid var(--color-divider-alternative);
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+}
+.ws-label { color: var(--color-label-assistive); }
+.ws-link { text-decoration: underline; text-underline-offset: 3px; }
+.ws-visual { display: flex; gap: var(--space-250); align-items: stretch; }
+.shot {
+  border-radius: var(--radius-500);
+  background: var(--color-background-alternative);
+  display: flex; align-items: center; justify-content: center;
+  flex: 1;
+}
+.shot.tall { aspect-ratio: 3 / 4; }
+.shot.wide { aspect-ratio: 16 / 10; }
+.shot.dark { background: var(--color-gray-950); }
+.shot.light { border: 1px solid var(--color-divider-alternative); }
+.shot-word {
+  font-size: var(--font-size-400);
+  font-weight: var(--font-weight-700);
+  color: var(--color-gray-400);
+  letter-spacing: var(--font-letter-spacing-heading-md);
+}
+.shot-word.sm { font-size: var(--font-size-300); }
+
+/* ── FAB + 챗 패널 ── */
+.fab {
+  position: fixed; right: var(--space-300); bottom: var(--space-300); z-index: 200;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--color-gray-950); color: var(--color-label-inverse);
+  border: none; cursor: pointer;
+  font-size: var(--font-size-300);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadows-lg-shadow-1-x) var(--shadows-lg-shadow-1-y) var(--shadows-lg-shadow-1-blur) var(--shadows-lg-shadow-1-spread) var(--shadows-lg-color);
+  transition: transform 0.2s var(--motion-easing-out);
+}
+.fab:hover { transform: scale(1.06); }
+.chat-panel {
+  position: fixed; right: var(--space-300); bottom: calc(56px + var(--space-500)); z-index: 200;
+  width: 360px; max-width: calc(100vw - var(--space-600));
+  height: 520px; max-height: 70vh;
+  background: var(--color-gray-950); color: var(--color-gray-100);
+  border-radius: var(--radius-600);
+  display: none; flex-direction: column;
+  box-shadow: var(--shadows-xl-shadow-1-x) var(--shadows-xl-shadow-1-y) var(--shadows-xl-shadow-1-blur) var(--shadows-xl-shadow-1-spread) var(--shadows-xl-color);
+  overflow: hidden;
+}
+.chat-panel.open { display: flex; }
+.chat-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-200) var(--space-250);
+  font-size: var(--font-size-075);
+  font-weight: var(--font-weight-500);
+  color: var(--color-gray-500);
+}
+.chat-close { background: none; border: none; color: var(--color-gray-400); font-size: var(--font-size-200); cursor: pointer; line-height: 1; }
+.chat-body { flex: 1; overflow-y: auto; padding: var(--space-100) var(--space-250); display: flex; flex-direction: column; gap: var(--space-150); }
+.msg {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  max-width: 85%;
+}
+.msg.bot { align-self: flex-start; color: var(--color-gray-100); }
+.msg.user {
+  align-self: flex-end;
+  background: var(--color-black-alpha-650);
+  border: 1px solid var(--color-black-alpha-550);
+  color: var(--color-gray-200);
+  padding: var(--space-075) var(--space-200);
+  border-radius: var(--radius-900);
+}
+.chips { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-100); padding: var(--space-100) 0; }
+.chip-q {
+  font-family: inherit;
+  font-size: var(--font-size-075);
+  background: transparent; color: var(--color-gray-200);
+  border: 1px solid var(--color-gray-700);
+  border-radius: var(--radius-900);
+  padding: var(--space-075) var(--space-200);
+  cursor: pointer;
+}
+.chip-q:hover { background: var(--color-black-alpha-650); }
+.chat-input-row {
+  display: flex; align-items: center; gap: var(--space-100);
+  padding: var(--space-200) var(--space-250);
+}
+.chat-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-family: inherit;
+  font-size: var(--font-size-075);
+  color: var(--color-gray-100);
+}
+.chat-input::placeholder { color: var(--color-gray-600); }
+.chat-send {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--color-gray-100); color: var(--color-gray-950);
+  border: none; cursor: pointer;
+  font-size: var(--font-size-100);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── (구) 카테고리 구성 ── */
+.mark {
+  font-size: var(--font-size-700);
+  line-height: var(--font-line-height-700);
+  font-weight: var(--font-weight-800);
+  letter-spacing: var(--font-letter-spacing-display);
+  margin-bottom: var(--space-500);
+}
+.principles { max-width: 620px; display: flex; flex-direction: column; gap: var(--space-200); margin-bottom: var(--space-500); }
+.principles p {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-alternative);
+}
+.bio { max-width: 680px; padding-top: var(--space-400); border-top: 1px solid var(--color-divider-alternative); }
+.bio p {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-100);
+  color: var(--color-label-neutral);
+}
+.cat-section { margin-top: var(--space-700); }
+.cat-title {
+  font-size: var(--font-size-200);
+  line-height: var(--font-line-height-200);
+  font-weight: var(--font-weight-700);
+  letter-spacing: var(--font-letter-spacing-heading-sm);
+  margin-bottom: var(--space-250);
+}
+.cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-300) var(--space-250); }
+.proj-card { cursor: pointer; }
+.proj-thumb {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-300);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--font-size-075);
+  font-weight: var(--font-weight-600);
+  margin-bottom: var(--space-150);
+  transition: opacity 0.2s var(--motion-easing-standard);
+}
+.proj-card:hover .proj-thumb { opacity: 0.85; }
+.proj-card:hover .proj-name { text-decoration: underline; }
+.pt-dark { background: var(--color-gray-950); color: var(--color-gray-400); }
+.pt-mid { background: var(--color-gray-200); color: var(--color-label-alternative); }
+.pt-light { background: var(--color-background-alternative); color: var(--color-label-alternative); border: 1px solid var(--color-divider-alternative); }
+.ramp { display: flex; gap: var(--space-050); }
+.ramp span { width: 24px; height: 24px; border-radius: var(--radius-100); display: block; }
+.proj-name {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-075);
+  font-weight: var(--font-weight-600);
+}
+.tbu {
+  font-size: var(--font-size-050);
+  font-weight: var(--font-weight-500);
+  color: var(--color-label-assistive);
+  margin-left: var(--space-050);
+}
+.proj-tags {
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  color: var(--color-label-assistive);
+  margin-top: var(--space-025);
+}
+
+/* ── (구) /work 그리드 ── */
+.work-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--space-300);
+  margin-top: var(--space-300);
+}
+.work-card {
+  border: 1px solid var(--color-divider-neutral);
+  border-radius: var(--radius-400);
+  overflow: hidden; cursor: pointer;
+  transition: box-shadow 0.2s var(--motion-easing-standard);
+}
+.work-card:hover {
+  box-shadow: var(--shadows-md-shadow-1-x) var(--shadows-md-shadow-1-y) var(--shadows-md-shadow-1-blur) var(--shadows-md-shadow-1-spread) var(--shadows-md-color);
+}
+.work-thumb {
+  height: 150px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--font-size-075);
+  font-weight: var(--font-weight-600);
+}
+.work-thumb.t1 { background: var(--color-gray-950); color: var(--color-gray-400); }
+.work-thumb.t2 { background: var(--color-gray-100); color: var(--color-label-alternative); }
+.work-thumb.t3 { background: var(--color-background-alternative); color: var(--color-label-alternative); border-bottom: 1px solid var(--color-divider-alternative); }
+.work-body { padding: var(--space-250); }
+.work-body h3 {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-075);
+  font-weight: var(--font-weight-700);
+  margin-bottom: var(--space-050);
+}
+.work-body p {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  color: var(--color-label-alternative);
+}
+
+/* ── /work/kds 문서형 상세 ── */
+.doc-layout {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: var(--space-500);
+}
+.doc-side {
+  position: sticky; top: 80px; align-self: start;
+  display: flex; flex-direction: column; gap: var(--space-025);
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+}
+.doc-side .side-label {
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  font-weight: var(--font-weight-600);
+  color: var(--color-label-assistive);
+  margin: var(--space-200) 0 var(--space-075);
+}
+.doc-side a {
+  color: var(--color-label-alternative);
+  text-decoration: none;
+  padding: var(--space-050) var(--space-125);
+  border-radius: var(--radius-200);
+  cursor: pointer;
+}
+.doc-side a:hover { background: var(--color-background-alternative); }
+.doc-side a.current {
+  color: var(--color-label-normal);
+  font-weight: var(--font-weight-600);
+  background: var(--color-gray-100);
+}
+.infobox {
+  border: 1px solid var(--color-divider-neutral);
+  border-radius: var(--radius-400);
+  padding: var(--space-250);
+  margin: var(--space-300) 0;
+  display: grid; grid-template-columns: 96px 1fr;
+  row-gap: var(--space-100); column-gap: var(--space-200);
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+}
+.infobox dt { color: var(--color-label-assistive); font-weight: var(--font-weight-500); }
+.infobox dd { color: var(--color-label-normal); font-weight: var(--font-weight-500); }
+.doc-content h1 {
+  font-size: var(--font-size-500);
+  line-height: var(--font-line-height-500);
+  font-weight: var(--font-weight-800);
+  letter-spacing: var(--font-letter-spacing-heading-lg);
+  margin-bottom: var(--space-150);
+}
+.doc-content h2 {
+  font-size: var(--font-size-200);
+  line-height: var(--font-line-height-200);
+  font-weight: var(--font-weight-700);
+  margin: var(--space-500) 0 var(--space-150);
+  padding-top: var(--space-300);
+  border-top: 1px solid var(--color-divider-alternative);
+}
+.doc-content p {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-100);
+  color: var(--color-label-neutral);
+  margin-bottom: var(--space-150);
+}
+.pipeline {
+  display: flex; align-items: center; gap: var(--space-100);
+  margin: var(--space-250) 0;
+  flex-wrap: wrap;
+}
+.pipe-node {
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  font-weight: var(--font-weight-600);
+  padding: var(--space-075) var(--space-150);
+  border-radius: var(--radius-300);
+  background: var(--color-background-alternative);
+  border: 1px solid var(--color-divider-neutral);
+}
+.pipe-node.hl {
+  background: var(--color-gray-950);
+  border-color: var(--color-border-contrast);
+  color: var(--color-label-inverse);
+}
+.pipe-arrow { color: var(--color-label-assistive); font-size: var(--font-size-075); }
+
+/* ── about ── */
+.about-block { max-width: 620px; }
+.about-block p {
+  font-size: var(--font-size-100);
+  line-height: var(--font-line-height-100);
+  color: var(--color-label-neutral);
+  margin-bottom: var(--space-200);
+}
+.contact-row { display: flex; gap: var(--space-150); margin-top: var(--space-300); }
+.contact-chip {
+  font-size: var(--font-size-075);
+  line-height: var(--font-line-height-050);
+  font-weight: var(--font-weight-500);
+  padding: var(--space-075) var(--space-200);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--radius-900);
+  cursor: pointer;
+}
+.contact-chip:hover { background: var(--color-background-alternative); }
+
+footer.site {
+  max-width: 960px; margin: 0 auto;
+  padding: var(--space-400) var(--space-300);
+  border-top: 1px solid var(--color-divider-alternative);
+  font-size: var(--font-size-050);
+  line-height: var(--font-line-height-035);
+  color: var(--color-label-assistive);
+}
+
+@media (max-width: 720px) {
+  .doc-layout { grid-template-columns: 1fr; }
+  .doc-side { position: static; flex-direction: row; flex-wrap: wrap; }
+  .work-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: 1fr 1fr; }
+  .big-grid { grid-template-columns: 1fr; }
+  .work-section { grid-template-columns: 1fr; gap: var(--space-300); }
+  .two-col, .bio-cols { grid-template-columns: 1fr; gap: var(--space-300); }
+  .statement { font-size: var(--font-size-400); line-height: var(--font-line-height-400); }
+  .corner { display: none; }
+  header.site { grid-template-columns: 1fr; gap: var(--space-100); justify-items: start; }
+  .contact-link { justify-self: start; }
+  .chat-panel { right: var(--space-150); }
+  h1.display { font-size: var(--font-size-450); line-height: var(--font-line-height-500); }
+}
+</style>
+</head>
+<body>
+
+<div class="proto-bar">
+  <strong>PROTOTYPE</strong>
+  <span>jinah-yeom.github.io 구조 시각화 — 상단 메뉴로 페이지 전환</span>
+  <span class="url" id="urlbar">jinah-yeom.github.io/</span>
+</div>
+
+<header class="site">
+  <div class="logo" onclick="go('home')">JINAH YEOM</div>
+  <nav class="gnb">
+    <button data-page="home" class="active" onclick="go('home')">WORK</button>
+    <button data-page="about" onclick="go('about')">ABOUT</button>
+    <button data-page="blog" onclick="go('blog')">BLOG</button>
+  </nav>
+  <div class="contact-link" onclick="go('about')">CONTACT</div>
+</header>
+
+<main>
+
+<!-- ═══════════ 홈 (중앙 프로필 + 빅 프로젝트 카드) ═══════════ -->
+<section class="page active" id="page-home">
+
+  <div class="hero-garri">
+    <p class="statement">디자인 시스템을 설계하고<br>코드로 직접 완성하는<br>디자이너-개발자입니다</p>
+  </div>
+
+  <div class="corner bl">SEOUL</div>
+  <div class="corner br">©2026</div>
+
+  <div class="work-section" onclick="go('kds')">
+    <div class="ws-text">
+      <h2 class="ws-title">KEEPER DESIGN SYSTEM</h2>
+      <p>B2B 어드민 제품의 0→1 디자인 시스템을 혼자 설계하고 구현했습니다.</p>
+      <p>Token Studio에서 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인을 구축하고, Figma Code Connect로 디자인과 코드를 1:1로 연동했습니다.</p>
+      <div class="ws-meta">
+        <div class="ws-row"><span class="ws-label">Years</span><span>2025 – 2026</span></div>
+        <div class="ws-row"><span class="ws-label">Role</span><span>Designer · Developer (1인)</span></div>
+        <div class="ws-row"><span class="ws-label">Scope</span><span>Design Tokens, Components,<br>Docs, AI Workflow</span></div>
+        <div class="ws-row"><span class="ws-label">Link</span><span class="ws-link">Case study ↗</span></div>
+      </div>
+    </div>
+    <div class="ws-visual">
+      <div class="shot tall">
+        <div class="ramp lg">
+          <span style="background: var(--color-gray-000); border: 1px solid var(--color-divider-normal)"></span><span style="background: var(--color-gray-200)"></span><span style="background: var(--color-gray-400)"></span><span style="background: var(--color-gray-600)"></span><span style="background: var(--color-gray-800)"></span>
+        </div>
+      </div>
+      <div class="shot tall dark"><span class="shot-word">Components</span></div>
+    </div>
+  </div>
+
+  <div class="work-section">
+    <div class="ws-text">
+      <h2 class="ws-title">SHEETS TO VARIABLES</h2>
+      <p>Google Sheets의 언어팩·토큰 데이터를 Figma Variables로 동기화하는 플러그인을 만들었습니다.</p>
+      <p>Apps Script로 시트 변경을 감지해 Slack으로 알리고, 플러그인에서 한 번에 반영합니다. 수작업 복사를 없애 디자인-데이터 불일치를 구조적으로 제거했습니다.</p>
+      <div class="ws-meta">
+        <div class="ws-row"><span class="ws-label">Years</span><span>2026</span></div>
+        <div class="ws-row"><span class="ws-label">Role</span><span>Design · Development</span></div>
+        <div class="ws-row"><span class="ws-label">Scope</span><span>Figma Plugin, Apps Script,<br>Slack Integration</span></div>
+      </div>
+    </div>
+    <div class="ws-visual">
+      <div class="shot wide"><span class="shot-word">⇄</span></div>
+    </div>
+  </div>
+
+  <div class="work-section" onclick="go('kds')">
+    <div class="ws-text">
+      <h2 class="ws-title">KDS DOCUMENTATION</h2>
+      <p>시스템의 규칙이 찾아지고 읽히도록, Foundations부터 컴포넌트 가이드까지 담은 문서 사이트를 만들었습니다.</p>
+      <p>모든 예시는 실제 토큰과 컴포넌트로 렌더링되어 문서와 구현이 어긋날 수 없는 구조입니다.</p>
+      <div class="ws-meta">
+        <div class="ws-row"><span class="ws-label">Years</span><span>2026</span></div>
+        <div class="ws-row"><span class="ws-label">Role</span><span>Design · Development</span></div>
+        <div class="ws-row"><span class="ws-label">Scope</span><span>Docs Site, Foundations,<br>Component Guidelines</span></div>
+        <div class="ws-row"><span class="ws-label">Link</span><span class="ws-link">Live site ↗</span></div>
+      </div>
+    </div>
+    <div class="ws-visual">
+      <div class="shot wide light"><span class="shot-word sm">Docs</span></div>
+    </div>
+  </div>
+
+  <div class="work-section">
+    <div class="ws-text">
+      <h2 class="ws-title">DESIGN REVIEW AGENT</h2>
+      <p>토큰 정합성 검사와 컴포넌트 생성 절차를 AI 스킬로 만들어, 리뷰와 반복 작업을 자동화했습니다.</p>
+      <p>하드코딩된 색상·간격 값을 잡아내고 Figma 스펙과 코드의 어긋남을 리포트합니다.</p>
+      <div class="ws-meta">
+        <div class="ws-row"><span class="ws-label">Years</span><span>2026</span></div>
+        <div class="ws-row"><span class="ws-label">Role</span><span>Workflow Design</span></div>
+        <div class="ws-row"><span class="ws-label">Scope</span><span>Claude Skills, Figma API,<br>Token Validation</span></div>
+      </div>
+    </div>
+    <div class="ws-visual">
+      <div class="shot wide dark"><span class="shot-word">✓</span></div>
+    </div>
+  </div>
+
+  <div class="bio-cols">
+    <p>디자인과 개발의 경계에서 일하는 디자이너-개발자입니다. B2B 어드민 제품의 디자인 시스템을 0부터 설계하고 직접 구현했습니다. Token Studio에서 시작해 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인을 구축했고, Figma Code Connect로 디자인과 코드가 1:1로 대응되는 구조를 만들었습니다. 컴포넌트 라이브러리와 문서 사이트, 그리고 반복 작업을 자동화하는 AI 워크플로까지 — 시스템의 설계와 구현, 운영을 한 사람의 손으로 완결했습니다.</p>
+    <p>I am a designer-developer working at the boundary between design and code. I built a design system for a B2B admin product from zero: a token pipeline running from Token Studio through Style Dictionary to CSS variables, a 1:1 design-to-code mapping via Figma Code Connect, a component library with a documentation site, and AI workflows that automate repetitive checks. I designed, implemented, and operated the whole system single-handedly.</p>
+  </div>
+
+</section>
+
+<!-- ═══════════ /work/kds 상세 ═══════════ -->
+<section class="page" id="page-kds">
+  <div class="doc-layout">
+    <aside class="doc-side">
+      <a class="current">개요</a>
+      <div class="side-label">SYSTEM</div>
+      <a>토큰 파이프라인</a>
+      <a>컴포넌트 원칙</a>
+      <a>Figma ↔ 코드 연동</a>
+      <div class="side-label">PROCESS</div>
+      <a>AI 워크플로</a>
+      <a>문서화</a>
+      <a>회고</a>
+    </aside>
+    <article class="doc-content">
+      <p class="eyebrow">WORK / KEEPER DESIGN SYSTEM</p>
+      <h1>Keeper Design System</h1>
+      <p>B2B 어드민 제품의 0→1 디자인 시스템을 디자이너 겸 개발자로서 혼자 설계하고 구축한 프로젝트입니다.</p>
+
+      <dl class="infobox">
+        <dt>기간</dt><dd>2025 — 2026</dd>
+        <dt>역할</dt><dd>Design · Development (1인)</dd>
+        <dt>스택</dt><dd>Next.js · Tailwind v4 · Token Studio</dd>
+        <dt>산출물</dt><dd>토큰 300+ · 컴포넌트 12 · 문서 사이트</dd>
+      </dl>
+
+      <h2>토큰 파이프라인</h2>
+      <p>모든 스타일 값은 단일 소스에서 자동 생성됩니다. 하드코딩된 색상·간격·폰트 값이 0인 것을 스크립트로 검증합니다.</p>
+      <div class="pipeline">
+        <span class="pipe-node">Token Studio</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-node">Style Dictionary</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-node hl">tokens.css</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-node">Components</span>
+      </div>
+
+      <h2>Figma ↔ 코드 1:1 연동</h2>
+      <p>Code Connect로 Figma 컴포넌트와 코드 컴포넌트를 매핑해, variant·size·state 명칭이 디자인과 코드에서 완전히 일치합니다.</p>
+
+      <h2>AI 워크플로</h2>
+      <p>토큰 정합성 검사, 컴포넌트 생성 절차를 Claude 스킬로 만들어 반복 작업을 자동화했습니다. 이 사이트의 스타일도 KDS 토큰으로 렌더링됩니다.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════ Blog ═══════════ -->
+<section class="page" id="page-blog">
+  <p class="eyebrow">BLOG</p>
+  <h1 class="display">기술 블로그</h1>
+  <p class="lede">디자인 시스템을 만들며 배운 것들 — 과정, 실패, 판단의 기록.</p>
+
+  <div class="post-list" style="margin-top: var(--space-400)">
+    <div class="post-item">
+      <div>
+        <div class="post-title">Style Dictionary 커스텀 transform 삽질기</div>
+        <div class="post-desc">font-size에만 rem 변환이 필요했던 이유와 해결 과정</div>
+      </div>
+      <span class="post-date">2026.07</span>
+    </div>
+    <div class="post-item">
+      <div>
+        <div class="post-title">Figma Code Connect 도입기</div>
+        <div class="post-desc">디자인과 코드가 1:1로 대응되는 시스템 만들기</div>
+      </div>
+      <span class="post-date">2026.06</span>
+    </div>
+    <div class="post-item">
+      <div>
+        <div class="post-title">i18n 키를 섣불리 합치면 안 되는 이유</div>
+        <div class="post-desc">텍스트가 같다고 의미가 같은 건 아니다</div>
+      </div>
+      <span class="post-date">2026.05</span>
+    </div>
+    <div class="post-item">
+      <div>
+        <div class="post-title">디자이너가 컴포넌트 API를 설계할 때</div>
+        <div class="post-desc">Figma boolean이 ReactNode slot이 되기까지</div>
+      </div>
+      <span class="post-date">2026.04</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ About ═══════════ -->
+<section class="page" id="page-about">
+
+  <div class="ab-section">
+    <h2 class="ab-cat">How I Think</h2>
+
+    <div class="ab-item">
+      <h3 class="ab-title">토큰은 단일 소스다</h3>
+      <div class="two-col">
+        <p>색상과 간격, 서체가 하나의 출처에서 생성될 때 디자인과 코드는 같은 언어로 말하게 됩니다. 저는 하드코딩된 스타일 값을 시스템의 부채로 봅니다. 값 하나를 고치기 위해 파일 수십 개를 뒤지는 비용은 결국 일관성의 붕괴로 이어지기 때문입니다. 그래서 모든 스타일이 토큰을 참조하도록 파이프라인을 설계하고, 스크립트로 위반을 잡아내는 구조를 만듭니다.</p>
+        <p>When color, spacing, and type are generated from a single source, design and code speak the same language. I treat hardcoded style values as system debt — the cost of hunting through dozens of files to change one value eventually collapses consistency. So I design pipelines where every style references a token, and build scripts that catch violations automatically.</p>
+      </div>
+    </div>
+
+    <div class="ab-item">
+      <h3 class="ab-title">좋은 컴포넌트는 앱의 사정을 모른다</h3>
+      <div class="two-col">
+        <p>컴포넌트가 자신이 어디에 쓰이는지 알기 시작하면 재사용성은 끝납니다. 콜백을 쏘고 슬롯을 열어둘 뿐, 앱의 로직을 소유하지 않는 것 — 이것이 제가 컴포넌트 API를 설계할 때 지키는 원칙입니다. Figma의 boolean prop이 코드에서 ReactNode 슬롯이 되는 이유도 같습니다. 호출하는 쪽이 내용을 주입하고, 컴포넌트는 구조만 책임집니다.</p>
+        <p>The moment a component knows where it is used, reusability ends. It should fire callbacks and expose slots without owning app logic — the principle I hold when designing component APIs. It is also why a Figma boolean becomes a ReactNode slot in code: callers inject content, and the component is responsible only for structure.</p>
+      </div>
+    </div>
+
+    <div class="ab-item">
+      <h3 class="ab-title">같은 텍스트가 같은 의미는 아니다</h3>
+      <div class="two-col">
+        <p>i18n 키를 정리하며 배운 것입니다. 표시되는 문자열이 같다고 섣불리 키를 합치면, 한쪽만 바뀌어야 하는 순간 결합 비용이 돌아옵니다. 눈에 보이는 중복보다 맥락의 차이를 먼저 봐야 합니다. 이 감각은 토큰 네이밍과 컴포넌트 분리 판단에도 똑같이 적용됩니다.</p>
+        <p>A lesson from governing i18n keys: merging keys just because the visible strings match brings coupling costs back the moment one instance needs to diverge. Context matters more than visible duplication — a sense that applies equally to token naming and component boundaries.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ab-section">
+    <h2 class="ab-cat">How I Work</h2>
+
+    <div class="ab-item">
+      <h3 class="ab-title">스카우트 먼저, 코드는 나중에</h3>
+      <div class="two-col">
+        <p>구현 전에 반드시 Figma 스펙과 기존 코드를 먼저 읽습니다. 발견한 것을 보고하고, 방향을 확인받은 뒤, 작은 단위의 diff로 나눠 진행합니다. API 스펙 확인 → 구조 스캔 → 텍스트 추출 → 갭 리포트 → 수정으로 이어지는 검증 파이프라인을 만들어 핸드오프 전에 어긋남을 잡습니다.</p>
+        <p>Before writing code, I read the Figma spec and the existing codebase first. I report findings, confirm direction, then proceed in small reviewable diffs. A validation pipeline — spec check, structure scan, text extraction, gap report, fix — catches mismatches before handoff.</p>
+      </div>
+    </div>
+
+    <div class="ab-item">
+      <h3 class="ab-title">도구를 만드는 것도 디자인이다</h3>
+      <div class="two-col">
+        <p>반복되는 확인 작업은 사람이 아니라 구조가 해야 한다고 믿습니다. 토큰 정합성 검사 스크립트, 시트-피그마 동기화 플러그인, 컴포넌트 생성 스킬 같은 도구를 직접 만들어 팀의 실수 가능성을 줄였습니다. 도구가 규칙을 지켜주면 사람은 판단에 집중할 수 있습니다.</p>
+        <p>Repetitive verification belongs to structure, not people. I build the tools myself — token-compliance scripts, a Sheets-to-Figma sync plugin, component-generation skills — so that rules are enforced by tooling and people can focus on judgment.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ab-section">
+    <h2 class="ab-cat">Strengths</h2>
+    <div class="ab-item">
+      <h3 class="ab-title">설계부터 배포까지, 한 사람의 손으로</h3>
+      <div class="two-col">
+        <div>
+          <p>디자인 시스템의 전 과정을 혼자 완결할 수 있습니다. Figma에서의 토큰 설계와 컴포넌트 스펙, Next.js 구현, 문서화, 배포 파이프라인까지 다른 손을 거치지 않습니다.</p>
+          <ul class="ab-list">
+            <li>0→1 디자인 시스템 구축 — 토큰 300+, 컴포넌트 12종</li>
+            <li>Token Studio → Style Dictionary → CSS 변수 파이프라인 설계</li>
+            <li>Figma Code Connect로 디자인-코드 1:1 매핑 운영</li>
+            <li>AI 워크플로 구축 — 토큰 검사·컴포넌트 생성 자동화</li>
+          </ul>
+        </div>
+        <div>
+          <p>I can complete the entire design-system lifecycle alone — token architecture and component specs in Figma, implementation in Next.js, documentation, and the deployment pipeline, without handing off to anyone.</p>
+          <ul class="ab-list">
+            <li>Built a 0→1 design system — 300+ tokens, 12 components</li>
+            <li>Designed the Token Studio → Style Dictionary → CSS pipeline</li>
+            <li>Operated 1:1 design-to-code mapping via Figma Code Connect</li>
+            <li>Automated token checks and component generation with AI workflows</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip">GitHub</span>
+      <span class="contact-chip">LinkedIn</span>
+      <span class="contact-chip">Email</span>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<button class="fab" id="fab" onclick="toggleChat()" aria-label="챗봇 열기">✦</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head">
+    <span>jina_copy.hmn</span>
+    <button class="chat-close" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">안녕하세요! 지나의 버추얼 카피예요.<br>지나와 지나의 작업에 대해 무엇이든 물어보세요.</div>
+    <div class="chips" id="chips">
+      <button class="chip-q" onclick="ask('role')">어떤 일을 하시나요?</button>
+      <button class="chip-q" onclick="ask('kds')">KDS는 어떤 프로젝트인가요?</button>
+      <button class="chip-q" onclick="ask('stack')">주로 쓰는 스택은?</button>
+      <button class="chip-q" onclick="ask('contact')">연락하려면 어떻게 하나요?</button>
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" placeholder="메시지를 입력하세요..." onkeydown="if(event.key==='Enter')sendFree()">
+    <button class="chat-send" onclick="sendFree()">↑</button>
+  </div>
+</div>
+
+<footer class="site">© 2026 Jinah Yeom · Built with KDS tokens</footer>
+
+<script>
+const urls = {
+  home: 'jinah-yeom.github.io/',
+  kds:  'jinah-yeom.github.io/work/kds',
+  blog: 'jinah-yeom.github.io/blog',
+  about:'jinah-yeom.github.io/about',
+};
+function go(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.gnb button').forEach(b => {
+    b.classList.toggle('active', b.dataset.page === page || (page === 'kds' && b.dataset.page === 'home'));
+  });
+  document.getElementById('urlbar').textContent = urls[page];
+  window.scrollTo(0, 0);
+}
+
+// ── 챗봇 (프로토타입: 준비된 답변) ──
+const answers = {
+  role: ["어떤 일을 하시나요?", "디자인과 개발을 함께하는 디자이너-개발자예요. 디자인 시스템을 Figma에서 설계하고, Next.js로 직접 구현하고, 문서화까지 운영합니다."],
+  kds: ["KDS는 어떤 프로젝트인가요?", "B2B 어드민 제품을 위한 0→1 디자인 시스템이에요. 토큰 파이프라인(Token Studio → Style Dictionary), 컴포넌트 12개, Figma Code Connect 연동, 문서 사이트까지 혼자 만들었어요. 홈의 카드를 눌러 자세히 볼 수 있어요."],
+  stack: ["주로 쓰는 스택은?", "Next.js, Tailwind CSS, TypeScript, shadcn/ui 기반이고, 토큰은 Token Studio와 Style Dictionary로 관리해요. Figma API와 Claude 스킬로 워크플로 자동화도 합니다."],
+  contact: ["연락하려면 어떻게 하나요?", "About 페이지의 GitHub / LinkedIn / Email 링크로 연락 주세요!"],
+};
+function toggleChat() {
+  document.getElementById('chatPanel').classList.toggle('open');
+}
+function addMsg(text, who) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  div.innerHTML = text;
+  document.getElementById('chatBody').appendChild(div);
+  document.getElementById('chatBody').scrollTop = 1e6;
+}
+function ask(key) {
+  const [q, a] = answers[key];
+  addMsg(q, 'user');
+  setTimeout(() => addMsg(a, 'bot'), 350);
+}
+function sendFree() {
+  const input = document.getElementById('chatInput');
+  if (!input.value.trim()) return;
+  addMsg(input.value, 'user');
+  input.value = '';
+  setTimeout(() => addMsg('프로토타입이라 지금은 추천 질문에만 답할 수 있어요. 실제 버전에서는 무엇이든 물어볼 수 있게 될 거예요!', 'bot'), 350);
+}
+</script>
+</body>
+</html>
