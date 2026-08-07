@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-
-const FOCUSABLE = 'a[href], button:not([disabled])';
+import { useRef } from "react";
+import CloseIcon from "@/components/ui/CloseIcon";
+import { useDialog } from "@/lib/hooks/use-dialog";
 
 export interface MobileMenuItem {
   label: string;
@@ -22,14 +22,6 @@ export interface MobileMenuProps {
   /** aria-controls 로 참조되는 id */
   id?: string;
 }
-
-/*
- * × 를 글자가 아니라 막대 두 개로 그린다.
- * 글리프는 폰트마다 실제 렌더 크기가 제각각이라 토큰으로 크기를 못 잡는다.
- * 헤더 햄버거와 같은 굵기(--dimension-025), 같은 44×44 히트박스를 쓴다.
- */
-const CLOSE_BAR =
-  "absolute block w-[var(--dimension-300)] [height:var(--dimension-025)] bg-[var(--color-label-normal)]";
 
 const ITEM_BASE =
   "w-fit text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-display)]";
@@ -50,57 +42,14 @@ export default function MobileMenu({
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  /* 열린 동안 배경 스크롤 잠금 — 원래 overflow 값을 복원한다 */
-  useEffect(() => {
-    if (!open) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
-  }, [open]);
-
-  /* 열 때 닫기 버튼으로 포커스를 옮기고, 닫을 때 열었던 요소(햄버거)로 되돌린다 */
-  useEffect(() => {
-    if (!open) return;
-    const opener = document.activeElement as HTMLElement | null;
-    closeButtonRef.current?.focus();
-    return () => opener?.focus();
-  }, [open]);
-
-  useEffect(() => {
-    if (!open) return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-        return;
-      }
-      if (event.key !== "Tab") return;
-
-      /* 포커스 트랩 — Tab 이 오버레이 밖으로 나가면 반대쪽 끝으로 되돌린다 */
-      const overlay = overlayRef.current;
-      if (!overlay) return;
-      const focusable = overlay.querySelectorAll<HTMLElement>(FOCUSABLE);
-      if (focusable.length === 0) return;
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      const active = document.activeElement;
-      const outside = !overlay.contains(active);
-
-      if (event.shiftKey && (outside || active === first)) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && (outside || active === last)) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, onClose]);
+  /* ESC 닫기 · 포커스 트랩 · 초기 포커스 · 배경 스크롤 잠금 — 챗 패널과 같은 규칙 */
+  useDialog({
+    open,
+    onClose,
+    containerRef: overlayRef,
+    initialFocusRef: closeButtonRef,
+    lockScroll: true,
+  });
 
   return (
     <div
@@ -113,7 +62,7 @@ export default function MobileMenu({
        * 닫힘 상태는 invisible — display:none 과 달리 페이드가 가능하면서
        * 포커스 순서에서는 빠진다. 720px 이상에서는 아예 렌더 대상에서 제외.
        */
-      className={`fixed inset-0 z-100 flex flex-col bg-[var(--color-background-normal)] transition-[opacity,visibility] duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] min-[720px]:hidden ${
+      className={`fixed inset-0 z-[var(--site-z-menu)] flex flex-col bg-[var(--color-background-normal)] transition-[opacity,visibility] duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] min-[720px]:hidden ${
         open ? "visible opacity-100" : "invisible opacity-0"
       }`}
       aria-hidden={!open}
@@ -126,10 +75,9 @@ export default function MobileMenu({
           aria-label="메뉴 닫기"
           tabIndex={open ? undefined : -1}
           onClick={onClose}
-          className="relative flex h-[var(--site-tap-target)] w-[var(--site-tap-target)] items-center justify-center"
+          className="relative flex h-[var(--site-tap-target)] w-[var(--site-tap-target)] items-center justify-center text-[var(--color-label-normal)]"
         >
-          <span className={`${CLOSE_BAR} rotate-45`} />
-          <span className={`${CLOSE_BAR} -rotate-45`} />
+          <CloseIcon />
         </button>
       </div>
 

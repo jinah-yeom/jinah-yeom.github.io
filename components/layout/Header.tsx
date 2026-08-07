@@ -97,7 +97,7 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
        * 보더 폭을 껐다 켜면 1px 만큼 레이아웃이 튄다.
        */}
       <header
-        className={`sticky top-0 z-40 h-[var(--site-header-height)] border-b bg-[var(--color-background-normal)] transition-colors duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] ${
+        className={`sticky top-0 z-[var(--site-z-header)] h-[var(--site-header-height)] border-b bg-[var(--color-background-normal)] transition-colors duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] ${
           scrolled
             ? "border-[var(--color-divider-alternative)]"
             : "border-[var(--color-black-alpha-100)]"
