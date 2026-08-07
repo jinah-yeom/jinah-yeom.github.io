@@ -63,6 +63,14 @@
   }
 }
 
+/* 스크롤은 되지만 스크롤바는 그리지 않는다 — 실제로 넘치는 요소에 걸어야 한다 */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

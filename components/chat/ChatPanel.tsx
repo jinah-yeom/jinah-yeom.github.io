@@ -272,7 +272,8 @@ export default function ChatPanel({
         open ? "visible opacity-100" : "invisible opacity-0"
       }`}
     >
-      <div className="flex items-center justify-between px-[var(--space-250)] py-[var(--space-200)] text-[length:var(--font-size-075)] text-[var(--color-gray-500)] [font-weight:var(--font-weight-500)]">
+      {/* 헤더·입력창은 shrink-0 으로 고정하고, 남는 높이는 메시지 영역이 가져간다 */}
+      <div className="flex shrink-0 items-center justify-between px-[var(--space-250)] py-[var(--space-200)] text-[length:var(--font-size-075)] text-[var(--color-gray-500)] [font-weight:var(--font-weight-500)]">
         <span>{title}</span>
         <button
           type="button"
@@ -287,7 +288,12 @@ export default function ChatPanel({
 
       <div
         ref={bodyRef}
-        className="flex flex-1 flex-col gap-[var(--space-150)] overflow-y-auto px-[var(--space-250)] py-[var(--space-100)]"
+        /*
+         * min-h-0 이 핵심 — flex 아이템의 min-height 기본값은 auto 라
+         * 없으면 이 영역이 콘텐츠 높이 아래로 줄지 못하고 패널 밖으로 넘친다.
+         * 그러면 overflow-y-auto 가 발동하지 않고 스크롤이 바깥으로 새어나간다.
+         */
+        className="no-scrollbar flex min-h-0 flex-1 flex-col gap-[var(--space-150)] overflow-y-auto px-[var(--space-250)] py-[var(--space-100)]"
       >
         {entries.map((entry) =>
           entry.kind === "chips" ? (
@@ -362,7 +368,7 @@ export default function ChatPanel({
           event.preventDefault();
           void send(draft);
         }}
-        className="flex items-center gap-[var(--space-100)] px-[var(--space-250)] py-[var(--space-200)]"
+        className="flex shrink-0 items-center gap-[var(--space-100)] px-[var(--space-250)] py-[var(--space-200)]"
       >
         <input
           ref={inputRef}
