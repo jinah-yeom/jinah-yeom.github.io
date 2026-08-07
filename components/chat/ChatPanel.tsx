@@ -31,6 +31,19 @@ const INITIAL_ENTRIES: ChatEntry[] = [
   { id: 1, kind: "chips" },
 ];
 
+interface ChatState {
+  /** 리셋될 때마다 올라간다 — 지난 대화의 뒤늦은 답변을 걸러내는 기준 */
+  session: number;
+  entries: ChatEntry[];
+  pending: boolean;
+}
+
+const INITIAL_CHAT: ChatState = {
+  session: 0,
+  entries: INITIAL_ENTRIES,
+  pending: false,
+};
+
 export interface ChatPanelProps {
   open?: boolean;
   onClose?: () => void;
@@ -71,9 +84,29 @@ export default function ChatPanel({
   const bodyRef = useRef<HTMLDivElement>(null);
   const lastIdRef = useRef(INITIAL_ENTRIES.length - 1);
 
-  const [entries, setEntries] = useState<ChatEntry[]>(INITIAL_ENTRIES);
+  /*
+   * 세션·대화·대기 상태를 한 덩어리로 둔다.
+   * 답변을 기다리는 사이 패널이 닫혔다 열리면 세션이 올라가는데,
+   * 세션을 같은 상태에 두어야 updater 안에서 순수하게 비교하고 버릴 수 있다.
+   */
+  const [chat, setChat] = useState<ChatState>(INITIAL_CHAT);
   const [draft, setDraft] = useState("");
-  const [pending, setPending] = useState(false);
+
+  const [openedWith, setOpenedWith] = useState(open);
+  if (open !== openedWith) {
+    setOpenedWith(open);
+    /*
+     * 리셋 시점은 "닫을 때" 가 아니라 "열 때" 다.
+     * 닫는 순간 비우면 페이드아웃 200ms 동안 내용이 사라지는 게 그대로 보인다.
+     * 열 때 비우면 보이는 결과는 같으면서(항상 첫 인사 + 칩) 그 깜빡임이 없다.
+     */
+    if (open) {
+      setChat((prev) => ({ ...INITIAL_CHAT, session: prev.session + 1 }));
+      setDraft("");
+    }
+  }
+
+  const { entries, pending } = chat;
 
   useDialog({
     open,
@@ -95,29 +128,53 @@ export default function ChatPanel({
     const text = question.trim();
     if (text.length === 0 || pending) return;
 
+    /* 이 질문이 속한 세션. 답변이 돌아왔을 때 아직 같은 대화인지 판단하는 기준 */
+    const sentIn = chat.session;
     const userId = nextId();
+
     setDraft("");
-    setPending(true);
-    setEntries((prev) => [
-      ...prev,
-      { id: userId, kind: "text", role: "user", text },
-    ]);
+    setChat((prev) =>
+      prev.session !== sentIn
+        ? prev
+        : {
+            ...prev,
+            entries: [
+              ...prev.entries,
+              { id: userId, kind: "text", role: "user", text },
+            ],
+            pending: true,
+          }
+    );
 
     try {
       const reply = await answer(text);
       const botId = nextId();
-      setEntries((prev) => [
-        ...prev,
-        {
-          id: botId,
-          kind: "text",
-          role: "bot",
-          text: reply,
-          showRestart: true,
-        },
-      ]);
+      /* 기다리는 사이 패널이 닫혔다 열렸으면 이 답변은 지난 대화의 것이라 버린다 */
+      setChat((prev) =>
+        prev.session !== sentIn
+          ? prev
+          : {
+              ...prev,
+              entries: [
+                ...prev.entries,
+                {
+                  id: botId,
+                  kind: "text",
+                  role: "bot",
+                  text: reply,
+                  showRestart: true,
+                },
+              ],
+              pending: false,
+            }
+      );
     } finally {
-      setPending(false);
+      /* answer() 가 던진 경우에도 대기 상태가 남지 않게 한다 */
+      setChat((prev) =>
+        prev.session !== sentIn || !prev.pending
+          ? prev
+          : { ...prev, pending: false }
+      );
     }
   };
 
@@ -127,11 +184,14 @@ export default function ChatPanel({
 
     const greetingId = nextId();
     const chipsId = nextId();
-    setEntries((prev) => [
+    setChat((prev) => ({
       ...prev,
-      { id: greetingId, kind: "text", role: "bot", text: GREETING },
-      { id: chipsId, kind: "chips" },
-    ]);
+      entries: [
+        ...prev.entries,
+        { id: greetingId, kind: "text", role: "bot", text: GREETING },
+        { id: chipsId, kind: "chips" },
+      ],
+    }));
   };
 
   return (
