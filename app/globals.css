@@ -29,6 +29,9 @@
   --site-work-meta-label-width: 72px;
   --site-doc-nav-width: 200px;
   --site-infobox-term-width: 96px;
+  --site-lede-width: 620px;
+  /* KDS 토큰셋에 모노스페이스 패밀리가 없다 — 코드 블록용으로만 쓴다 */
+  --site-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /*
    * 헤더 높이는 내용에 맡기지 않고 고정한다.
