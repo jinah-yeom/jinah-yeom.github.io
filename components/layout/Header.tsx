@@ -18,7 +18,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "BLOG", href: "/blog", matches: ["/blog"] },
 ];
 
-const CONTACT_HREF = "/about";
+const CONTACT_HREF = "/about#contact";
 
 /*
  * 색상·굵기는 idle/active 중 한쪽에만 넣는다.

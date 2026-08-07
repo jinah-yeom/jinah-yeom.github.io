@@ -27,6 +27,8 @@
   --site-tap-target: 44px;
   --site-work-text-width: 300px;
   --site-work-meta-label-width: 72px;
+  --site-doc-nav-width: 200px;
+  --site-infobox-term-width: 96px;
 }
 
 html {
