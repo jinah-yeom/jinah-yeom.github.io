@@ -21,6 +21,21 @@ export const GREETING =
 export const FALLBACK_ANSWER =
   "아직은 준비된 주제 안에서만 답할 수 있어요.\n아래 추천 질문을 눌러보시거나, 작업·스택·연락처에 대해 물어봐 주세요!";
 
+/** 답변 뒤에 남은 질문을 다시 띄울 때 붙이는 한 줄 */
+export const FOLLOW_UP_LEAD = "다른 것도 궁금하신가요?";
+
+/** 준비된 질문을 모두 답한 뒤 질문 카드 대신 보여줄 한 줄 */
+export const NO_MORE_QUESTIONS = "궁금한 점은 직접 입력해주세요.";
+
+export interface ChatReply {
+  text: string;
+  /**
+   * 매칭된 주제 id. 이미 답한 질문을 다음 카드에서 빼는 데 쓴다.
+   * 자유 입력으로 들어와도 주제만 맞으면 채워지므로, 컴포넌트가 문구를 비교할 필요가 없다.
+   */
+  topicId?: string;
+}
+
 /** 봇이 즉답하면 기계적으로 느껴져서 두는 지연. LLM 으로 바꾸면 실제 지연이 이 자리를 대신한다. */
 const RESPONSE_DELAY_MS = 300;
 
@@ -88,7 +103,11 @@ function findTopic(question: string): Topic | undefined {
   );
 }
 
-export async function answer(question: string): Promise<string> {
+export async function answer(question: string): Promise<ChatReply> {
   await new Promise((resolve) => setTimeout(resolve, RESPONSE_DELAY_MS));
-  return findTopic(question)?.answer ?? FALLBACK_ANSWER;
+
+  const topic = findTopic(question);
+  return topic
+    ? { text: topic.answer, topicId: topic.id }
+    : { text: FALLBACK_ANSWER };
 }

@@ -1,11 +1,13 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CloseIcon from "@/components/ui/CloseIcon";
 import { useDialog } from "@/lib/hooks/use-dialog";
 import {
   answer,
+  FOLLOW_UP_LEAD,
   GREETING,
+  NO_MORE_QUESTIONS,
   SUGGESTED_QUESTIONS,
   type SuggestedQuestion,
 } from "@/lib/chatbot-data";
@@ -16,33 +18,60 @@ import {
  * 칩을 대화 밖 고정 영역에 두면 표현할 수 없다.
  */
 type ChatEntry =
+  | { id: number; kind: "text"; role: "user" | "bot"; text: string }
   | {
       id: number;
-      kind: "text";
-      role: "user" | "bot";
-      text: string;
-      /** 이 답변 아래에 "처음으로" 를 보일지 — 첫 인사말에는 붙이지 않는다 */
+      kind: "chips";
+      /** 버튼 위에 붙는 한 줄 — 첫 카드는 인사말이 바로 위에 있어 생략한다 */
+      lead?: string;
+      /** 이 카드가 만들어진 시점의 질문 목록. 나중에 답한 질문이 과거 카드에서 사라지지 않게 스냅샷으로 둔다 */
+      questions: SuggestedQuestion[];
+      /** 물어볼 질문이 남지 않았을 때만 "처음으로" 를 붙인다 */
       showRestart?: boolean;
-    }
-  | { id: number; kind: "chips" };
-
-const INITIAL_ENTRIES: ChatEntry[] = [
-  { id: 0, kind: "text", role: "bot", text: GREETING },
-  { id: 1, kind: "chips" },
-];
+    };
 
 interface ChatState {
   /** 리셋될 때마다 올라간다 — 지난 대화의 뒤늦은 답변을 걸러내는 기준 */
   session: number;
   entries: ChatEntry[];
   pending: boolean;
+  /** 이미 답한 주제 id — 다음 카드에서 제외한다 */
+  answered: string[];
 }
 
-const INITIAL_CHAT: ChatState = {
-  session: 0,
-  entries: INITIAL_ENTRIES,
-  pending: false,
-};
+const isQuestionCard = (entry: ChatEntry | undefined): boolean =>
+  entry?.kind === "chips" && entry.questions.length > 0;
+
+/** 마지막이 이미 질문 카드면 같은 것을 또 붙이지 않는다 */
+function appendCard(entries: ChatEntry[], card: ChatEntry): ChatEntry[] {
+  return isQuestionCard(entries[entries.length - 1])
+    ? entries
+    : [...entries, card];
+}
+
+/* 첫 상태 = 인사말 + 전체 질문 카드. 리셋과 "처음으로" 가 같은 모양을 쓴다 */
+function createIntro(
+  questions: SuggestedQuestion[],
+  greetingId: number,
+  cardId: number
+): ChatEntry[] {
+  return [
+    { id: greetingId, kind: "text", role: "bot", text: GREETING },
+    { id: cardId, kind: "chips", questions },
+  ];
+}
+
+function createInitialChat(questions: SuggestedQuestion[]): ChatState {
+  return {
+    session: 0,
+    entries: createIntro(questions, 0, 1),
+    pending: false,
+    answered: [],
+  };
+}
+
+/** createIntro 가 쓴 마지막 id */
+const INTRO_LAST_ID = 1;
 
 export interface ChatPanelProps {
   open?: boolean;
@@ -82,14 +111,16 @@ export default function ChatPanel({
   const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
-  const lastIdRef = useRef(INITIAL_ENTRIES.length - 1);
+  const lastIdRef = useRef(INTRO_LAST_ID);
 
   /*
    * 세션·대화·대기 상태를 한 덩어리로 둔다.
    * 답변을 기다리는 사이 패널이 닫혔다 열리면 세션이 올라가는데,
    * 세션을 같은 상태에 두어야 updater 안에서 순수하게 비교하고 버릴 수 있다.
    */
-  const [chat, setChat] = useState<ChatState>(INITIAL_CHAT);
+  const [chat, setChat] = useState<ChatState>(() =>
+    createInitialChat(questions)
+  );
   const [draft, setDraft] = useState("");
 
   const [openedWith, setOpenedWith] = useState(open);
@@ -101,7 +132,10 @@ export default function ChatPanel({
      * 열 때 비우면 보이는 결과는 같으면서(항상 첫 인사 + 칩) 그 깜빡임이 없다.
      */
     if (open) {
-      setChat((prev) => ({ ...INITIAL_CHAT, session: prev.session + 1 }));
+      setChat((prev) => ({
+        ...createInitialChat(questions),
+        session: prev.session + 1,
+      }));
       setDraft("");
     }
   }
@@ -149,25 +183,49 @@ export default function ChatPanel({
     try {
       const reply = await answer(text);
       const botId = nextId();
+      const cardId = nextId();
+
       /* 기다리는 사이 패널이 닫혔다 열렸으면 이 답변은 지난 대화의 것이라 버린다 */
-      setChat((prev) =>
-        prev.session !== sentIn
-          ? prev
-          : {
-              ...prev,
-              entries: [
-                ...prev.entries,
-                {
-                  id: botId,
-                  kind: "text",
-                  role: "bot",
-                  text: reply,
+      setChat((prev) => {
+        if (prev.session !== sentIn) return prev;
+
+        /* 방금 답한 주제를 더해, 아직 안 물어본 질문만 다음 카드에 남긴다 */
+        const answered = reply.topicId
+          ? [...prev.answered, reply.topicId]
+          : prev.answered;
+        const remaining = questions.filter(
+          (item) => !answered.includes(item.id)
+        );
+
+        const withReply: ChatEntry[] = [
+          ...prev.entries,
+          { id: botId, kind: "text", role: "bot", text: reply.text },
+        ];
+
+        return {
+          ...prev,
+          answered,
+          pending: false,
+          entries: appendCard(
+            withReply,
+            remaining.length > 0
+              ? {
+                  id: cardId,
+                  kind: "chips",
+                  lead: FOLLOW_UP_LEAD,
+                  questions: remaining,
+                }
+              : {
+                  /* 남은 질문이 없으면 카드 대신 한 줄 + 처음으로 */
+                  id: cardId,
+                  kind: "chips",
+                  lead: NO_MORE_QUESTIONS,
+                  questions: [],
                   showRestart: true,
-                },
-              ],
-              pending: false,
-            }
-      );
+                }
+          ),
+        };
+      });
     } finally {
       /* answer() 가 던진 경우에도 대기 상태가 남지 않게 한다 */
       setChat((prev) =>
@@ -178,18 +236,22 @@ export default function ChatPanel({
     }
   };
 
+  /*
+   * 처음으로 = 답한 기록을 지우고 인사말 + 전체 질문 카드를 다시 붙인다.
+   * 답변마다 질문 카드가 따라붙게 된 뒤로는, 물어볼 질문이 다 떨어졌을 때만
+   * 이 버튼이 노출되므로 실질적으로 "다시 처음부터" 전용이다.
+   */
   const restart = () => {
-    /* 맨 아래가 이미 칩 세트면 같은 것을 또 붙이지 않는다 */
-    if (pending || entries[entries.length - 1]?.kind === "chips") return;
+    if (pending || isQuestionCard(entries[entries.length - 1])) return;
 
     const greetingId = nextId();
-    const chipsId = nextId();
+    const cardId = nextId();
     setChat((prev) => ({
       ...prev,
+      answered: [],
       entries: [
         ...prev.entries,
-        { id: greetingId, kind: "text", role: "bot", text: GREETING },
-        { id: chipsId, kind: "chips" },
+        ...createIntro(questions, greetingId, cardId),
       ],
     }));
   };
@@ -231,30 +293,29 @@ export default function ChatPanel({
           entry.kind === "chips" ? (
             <div
               key={entry.id}
-              className="flex flex-col items-end gap-[var(--space-100)] py-[var(--space-100)]"
+              className="flex flex-col gap-[var(--space-150)]"
             >
-              {questions.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  disabled={pending}
-                  tabIndex={open ? undefined : -1}
-                  onClick={() => send(item.question)}
-                  className={CHIP}
-                >
-                  {item.question}
-                </button>
-              ))}
-            </div>
-          ) : (
-            <Fragment key={entry.id}>
-              <p
-                className={`${MESSAGE_BASE} ${
-                  entry.role === "bot" ? MESSAGE_BOT : MESSAGE_USER
-                }`}
-              >
-                {entry.text}
-              </p>
+              {entry.lead && (
+                <p className={`${MESSAGE_BASE} ${MESSAGE_BOT}`}>{entry.lead}</p>
+              )}
+
+              {entry.questions.length > 0 && (
+                <div className="flex flex-col items-end gap-[var(--space-100)] py-[var(--space-100)]">
+                  {entry.questions.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      disabled={pending}
+                      tabIndex={open ? undefined : -1}
+                      onClick={() => send(item.question)}
+                      className={CHIP}
+                    >
+                      {item.question}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {entry.showRestart && (
                 <button
                   type="button"
@@ -267,7 +328,16 @@ export default function ChatPanel({
                   {restartLabel}
                 </button>
               )}
-            </Fragment>
+            </div>
+          ) : (
+            <p
+              key={entry.id}
+              className={`${MESSAGE_BASE} ${
+                entry.role === "bot" ? MESSAGE_BOT : MESSAGE_USER
+              }`}
+            >
+              {entry.text}
+            </p>
           )
         )}
 
