@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
+const FOCUSABLE = 'a[href], button:not([disabled])';
 
 export interface MobileMenuItem {
   label: string;
@@ -45,6 +47,9 @@ export default function MobileMenu({
   items = [],
   id = "mobile-menu",
 }: MobileMenuProps) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
   /* 열린 동안 배경 스크롤 잠금 — 원래 overflow 값을 복원한다 */
   useEffect(() => {
     if (!open) return;
@@ -55,11 +60,44 @@ export default function MobileMenu({
     };
   }, [open]);
 
+  /* 열 때 닫기 버튼으로 포커스를 옮기고, 닫을 때 열었던 요소(햄버거)로 되돌린다 */
   useEffect(() => {
     if (!open) return;
+    const opener = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+    return () => opener?.focus();
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      /* 포커스 트랩 — Tab 이 오버레이 밖으로 나가면 반대쪽 끝으로 되돌린다 */
+      const overlay = overlayRef.current;
+      if (!overlay) return;
+      const focusable = overlay.querySelectorAll<HTMLElement>(FOCUSABLE);
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      const outside = !overlay.contains(active);
+
+      if (event.shiftKey && (outside || active === first)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (outside || active === last)) {
+        event.preventDefault();
+        first.focus();
+      }
     };
+
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
@@ -67,6 +105,10 @@ export default function MobileMenu({
   return (
     <div
       id={id}
+      ref={overlayRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="사이트 메뉴"
       /*
        * 닫힘 상태는 invisible — display:none 과 달리 페이드가 가능하면서
        * 포커스 순서에서는 빠진다. 720px 이상에서는 아예 렌더 대상에서 제외.
@@ -80,6 +122,7 @@ export default function MobileMenu({
       <div className="mx-auto flex w-full max-w-[var(--site-width-header)] items-center justify-end px-[var(--space-300)] py-[var(--space-250)]">
         <button
           type="button"
+          ref={closeButtonRef}
           aria-label="메뉴 닫기"
           tabIndex={open ? undefined : -1}
           onClick={onClose}
