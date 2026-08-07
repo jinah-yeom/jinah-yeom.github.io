@@ -21,6 +21,14 @@ export interface MobileMenuProps {
   id?: string;
 }
 
+/*
+ * × 를 글자가 아니라 막대 두 개로 그린다.
+ * 글리프는 폰트마다 실제 렌더 크기가 제각각이라 토큰으로 크기를 못 잡는다.
+ * 헤더 햄버거와 같은 굵기(--dimension-025), 같은 44×44 히트박스를 쓴다.
+ */
+const CLOSE_BAR =
+  "absolute block w-[var(--dimension-300)] [height:var(--dimension-025)] bg-[var(--color-label-normal)]";
+
 const ITEM_BASE =
   "w-fit text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-display)]";
 
@@ -68,15 +76,17 @@ export default function MobileMenu({
       }`}
       aria-hidden={!open}
     >
-      <div className="flex items-center justify-end px-[var(--space-300)] py-[var(--space-250)]">
+      {/* 헤더 햄버거 버튼과 같은 좌표에 오도록 폭·패딩·버튼 크기를 헤더와 동일하게 맞춘다 */}
+      <div className="mx-auto flex w-full max-w-[var(--site-width-header)] items-center justify-end px-[var(--space-300)] py-[var(--space-250)]">
         <button
           type="button"
           aria-label="메뉴 닫기"
           tabIndex={open ? undefined : -1}
           onClick={onClose}
-          className="flex h-[var(--dimension-400)] w-[var(--dimension-400)] items-center justify-center text-[length:var(--font-size-400)] leading-none text-[var(--color-label-normal)]"
+          className="relative flex h-[var(--site-tap-target)] w-[var(--site-tap-target)] items-center justify-center"
         >
-          ×
+          <span className={`${CLOSE_BAR} rotate-45`} />
+          <span className={`${CLOSE_BAR} -rotate-45`} />
         </button>
       </div>
 

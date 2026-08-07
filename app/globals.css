@@ -23,6 +23,8 @@
   --site-tracking-eyebrow: 0.08em;
   --site-tracking-work-title: 0.02em;
   --site-breakpoint-mobile: 720px;
+  /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
+  --site-tap-target: 44px;
 
   /*
    * KDS 의 --motion-duration-* 토큰은 값이 px 로 내려와 있어(예: --motion-duration-d4: 200px)

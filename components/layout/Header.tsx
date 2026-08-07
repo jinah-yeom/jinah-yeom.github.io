@@ -116,7 +116,8 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen(true)}
-          className="hidden justify-self-end max-[720px]:flex max-[720px]:h-[var(--dimension-400)] max-[720px]:w-[var(--dimension-400)] max-[720px]:flex-col max-[720px]:items-center max-[720px]:justify-center max-[720px]:gap-[var(--dimension-075)]"
+          /* 오버레이 닫기 버튼과 정확히 같은 좌표에 오도록 히트박스 크기를 동일하게 유지한다 */
+          className="hidden h-[var(--site-tap-target)] w-[var(--site-tap-target)] flex-col items-center justify-center gap-[var(--dimension-075)] justify-self-end max-[720px]:flex"
         >
           <span className={MENU_BAR} />
           <span className={MENU_BAR} />
