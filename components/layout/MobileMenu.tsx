@@ -113,7 +113,7 @@ export default function MobileMenu({
        * 닫힘 상태는 invisible — display:none 과 달리 페이드가 가능하면서
        * 포커스 순서에서는 빠진다. 720px 이상에서는 아예 렌더 대상에서 제외.
        */
-      className={`fixed inset-0 z-100 flex flex-col bg-[var(--color-background-normal)] transition-[opacity,visibility] duration-[var(--site-duration-d4)] ease-[var(--motion-easing-out)] min-[720px]:hidden ${
+      className={`fixed inset-0 z-100 flex flex-col bg-[var(--color-background-normal)] transition-[opacity,visibility] duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] min-[720px]:hidden ${
         open ? "visible opacity-100" : "invisible opacity-0"
       }`}
       aria-hidden={!open}
@@ -134,7 +134,7 @@ export default function MobileMenu({
       </div>
 
       <nav
-        className={`flex flex-col gap-[var(--space-300)] px-[var(--space-300)] pt-[var(--space-400)] transition-transform duration-[var(--site-duration-d4)] ease-[var(--motion-easing-out)] ${
+        className={`flex flex-col gap-[var(--space-300)] px-[var(--space-300)] pt-[var(--space-400)] transition-transform duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] ${
           open ? "translate-y-0" : "translate-y-[var(--space-250)]"
         }`}
       >

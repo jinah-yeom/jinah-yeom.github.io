@@ -1,7 +1,11 @@
 /*
- * Design tokens — Keeper Design System
- * portfolio-prototype.html 의 :root 블록을 그대로 옮긴 단일 소스.
+ * Design tokens — Keeper Design System (이 사이트용 포크)
+ * portfolio-prototype.html 의 :root 블록이 출처이며, 이 파일이 단일 소스다.
  * 이 파일 외의 어떤 곳에서도 HEX/rgb/px 를 직접 쓰지 않는다.
+ *
+ * 원본과 다른 부분:
+ * - --font-family-font-sans-default: 셀프호스팅한 "Pretendard Variable" 을 앞에 두고 폴백 추가
+ * - --motion-duration-d1~d6: 원본이 px 단위로 내려와 있어(예: 200px) ms 로 교정
  */
 
 :root {
@@ -178,12 +182,12 @@
   --motion-easing-out: ease-out;
   --motion-easing-in: ease-in;
   --motion-easing-emphasized: ease-in-out;
-  --motion-duration-d1: 50px;
-  --motion-duration-d2: 100px;
-  --motion-duration-d3: 150px;
-  --motion-duration-d4: 200px;
-  --motion-duration-d5: 250px;
-  --motion-duration-d6: 300px;
+  --motion-duration-d1: 50ms;
+  --motion-duration-d2: 100ms;
+  --motion-duration-d3: 150ms;
+  --motion-duration-d4: 200ms;
+  --motion-duration-d5: 250ms;
+  --motion-duration-d6: 300ms;
   --dimension-100: 8px;
   --dimension-150: 12px;
   --dimension-175: 14px;
