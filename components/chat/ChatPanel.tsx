@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import CloseIcon from "@/components/ui/CloseIcon";
 import { useDialog } from "@/lib/hooks/use-dialog";
 import {
@@ -10,11 +10,26 @@ import {
   type SuggestedQuestion,
 } from "@/lib/chatbot-data";
 
-interface ChatMessage {
-  id: number;
-  role: "user" | "bot";
-  text: string;
-}
+/*
+ * 추천 질문 칩도 대화의 한 항목이다.
+ * "처음으로" 가 인사말 + 칩 세트를 대화 맨 아래에 다시 붙이는 동작이라,
+ * 칩을 대화 밖 고정 영역에 두면 표현할 수 없다.
+ */
+type ChatEntry =
+  | {
+      id: number;
+      kind: "text";
+      role: "user" | "bot";
+      text: string;
+      /** 이 답변 아래에 "처음으로" 를 보일지 — 첫 인사말에는 붙이지 않는다 */
+      showRestart?: boolean;
+    }
+  | { id: number; kind: "chips" };
+
+const INITIAL_ENTRIES: ChatEntry[] = [
+  { id: 0, kind: "text", role: "bot", text: GREETING },
+  { id: 1, kind: "chips" },
+];
 
 export interface ChatPanelProps {
   open?: boolean;
@@ -24,6 +39,8 @@ export interface ChatPanelProps {
   /** 패널 헤더에 표시할 이름 */
   title?: string;
   questions?: SuggestedQuestion[];
+  /** 처음으로 버튼 문구 */
+  restartLabel?: string;
 }
 
 const MESSAGE_BASE =
@@ -34,52 +51,87 @@ const MESSAGE_BOT = "self-start text-[var(--color-gray-100)]";
 const MESSAGE_USER =
   "self-end rounded-[var(--radius-900)] border border-[var(--color-black-alpha-550)] bg-[var(--color-black-alpha-650)] px-[var(--space-200)] py-[var(--space-075)] text-[var(--color-gray-200)]";
 
+const CHIP =
+  "rounded-[var(--radius-900)] border border-[var(--color-gray-700)] px-[var(--space-200)] py-[var(--space-075)] text-[length:var(--font-size-075)] text-[var(--color-gray-200)] hover:bg-[var(--color-black-alpha-650)] disabled:opacity-50";
+
+/* 질문 칩과 구분되도록 더 작고 보더 없이 어두운 배경 */
+const RESTART_CHIP =
+  "self-center rounded-[var(--radius-900)] bg-[var(--color-black-alpha-650)] px-[var(--space-150)] py-[var(--space-050)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] [font-weight:var(--font-weight-500)] text-[var(--color-gray-300)] hover:bg-[var(--color-black-alpha-700)] disabled:opacity-50";
+
 export default function ChatPanel({
   open = false,
   onClose = () => {},
   id = "chat-panel",
   title = "jina_copy.hmn",
   questions = SUGGESTED_QUESTIONS,
+  restartLabel = "처음으로",
 }: ChatPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
-  const lastIdRef = useRef(0);
+  const lastIdRef = useRef(INITIAL_ENTRIES.length - 1);
 
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    { id: 0, role: "bot", text: GREETING },
-  ]);
+  const [entries, setEntries] = useState<ChatEntry[]>(INITIAL_ENTRIES);
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
 
-  useDialog({ open, onClose, containerRef: panelRef, initialFocusRef: inputRef });
+  useDialog({
+    open,
+    onClose,
+    containerRef: panelRef,
+    initialFocusRef: inputRef,
+  });
 
-  /* 새 메시지·타이핑 인디케이터가 붙으면 항상 최신이 보이게 */
+  /* 항목이 늘거나 인디케이터가 켜지면 항상 최신이 보이게 (포커스는 옮기지 않는다) */
   useEffect(() => {
     const body = bodyRef.current;
     if (body) body.scrollTop = body.scrollHeight;
-  }, [messages, pending, open]);
+  }, [entries, pending, open]);
+
+  /* id 발급은 setState 밖에서 — updater 는 순수해야 한다 */
+  const nextId = () => ++lastIdRef.current;
 
   const send = async (question: string) => {
     const text = question.trim();
     if (text.length === 0 || pending) return;
 
+    const userId = nextId();
     setDraft("");
     setPending(true);
-    setMessages((prev) => [
+    setEntries((prev) => [
       ...prev,
-      { id: ++lastIdRef.current, role: "user", text },
+      { id: userId, kind: "text", role: "user", text },
     ]);
 
     try {
       const reply = await answer(text);
-      setMessages((prev) => [
+      const botId = nextId();
+      setEntries((prev) => [
         ...prev,
-        { id: ++lastIdRef.current, role: "bot", text: reply },
+        {
+          id: botId,
+          kind: "text",
+          role: "bot",
+          text: reply,
+          showRestart: true,
+        },
       ]);
     } finally {
       setPending(false);
     }
+  };
+
+  const restart = () => {
+    /* 맨 아래가 이미 칩 세트면 같은 것을 또 붙이지 않는다 */
+    if (pending || entries[entries.length - 1]?.kind === "chips") return;
+
+    const greetingId = nextId();
+    const chipsId = nextId();
+    setEntries((prev) => [
+      ...prev,
+      { id: greetingId, kind: "text", role: "bot", text: GREETING },
+      { id: chipsId, kind: "chips" },
+    ]);
   };
 
   return (
@@ -115,16 +167,49 @@ export default function ChatPanel({
         ref={bodyRef}
         className="flex flex-1 flex-col gap-[var(--space-150)] overflow-y-auto px-[var(--space-250)] py-[var(--space-100)]"
       >
-        {messages.map((message) => (
-          <p
-            key={message.id}
-            className={`${MESSAGE_BASE} ${
-              message.role === "bot" ? MESSAGE_BOT : MESSAGE_USER
-            }`}
-          >
-            {message.text}
-          </p>
-        ))}
+        {entries.map((entry) =>
+          entry.kind === "chips" ? (
+            <div
+              key={entry.id}
+              className="flex flex-col items-end gap-[var(--space-100)] py-[var(--space-100)]"
+            >
+              {questions.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  disabled={pending}
+                  tabIndex={open ? undefined : -1}
+                  onClick={() => send(item.question)}
+                  className={CHIP}
+                >
+                  {item.question}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <Fragment key={entry.id}>
+              <p
+                className={`${MESSAGE_BASE} ${
+                  entry.role === "bot" ? MESSAGE_BOT : MESSAGE_USER
+                }`}
+              >
+                {entry.text}
+              </p>
+              {entry.showRestart && (
+                <button
+                  type="button"
+                  aria-label="첫 인사와 추천 질문 다시 보기"
+                  disabled={pending}
+                  tabIndex={open ? undefined : -1}
+                  onClick={restart}
+                  className={RESTART_CHIP}
+                >
+                  {restartLabel}
+                </button>
+              )}
+            </Fragment>
+          )
+        )}
 
         {pending && (
           <p
@@ -140,22 +225,6 @@ export default function ChatPanel({
             ))}
           </p>
         )}
-
-        {/* 칩은 대화 끝에 계속 남겨 다른 질문을 이어서 누를 수 있게 한다 */}
-        <div className="flex flex-col items-end gap-[var(--space-100)] py-[var(--space-100)]">
-          {questions.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              disabled={pending}
-              tabIndex={open ? undefined : -1}
-              onClick={() => send(item.question)}
-              className="rounded-[var(--radius-900)] border border-[var(--color-gray-700)] px-[var(--space-200)] py-[var(--space-075)] text-[length:var(--font-size-075)] text-[var(--color-gray-200)] hover:bg-[var(--color-black-alpha-650)] disabled:opacity-50"
-            >
-              {item.question}
-            </button>
-          ))}
-        </div>
       </div>
 
       <form
