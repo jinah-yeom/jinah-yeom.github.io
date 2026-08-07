@@ -35,7 +35,7 @@ export default function DocSideNav({
   return (
     <nav
       aria-label={ariaLabel}
-      className="sticky top-[var(--space-800)] flex flex-col gap-[var(--dimension-025)] self-start text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] max-[720px]:static max-[720px]:flex-row max-[720px]:flex-wrap"
+      className="sticky top-[var(--site-sticky-offset)] flex flex-col gap-[var(--dimension-025)] self-start text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] max-[720px]:static max-[720px]:flex-row max-[720px]:flex-wrap"
     >
       {groups.map((group, index) => (
         <div

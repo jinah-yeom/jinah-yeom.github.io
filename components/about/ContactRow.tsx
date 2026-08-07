@@ -22,7 +22,7 @@ export default function ContactRow({ links = [], id }: ContactRowProps) {
   return (
     <div
       id={id}
-      className="mt-[var(--space-300)] flex scroll-mt-[var(--space-800)] flex-wrap gap-[var(--space-150)]"
+      className="mt-[var(--space-300)] flex flex-wrap gap-[var(--space-150)]"
     >
       {links.map((link) =>
         link.href ? (

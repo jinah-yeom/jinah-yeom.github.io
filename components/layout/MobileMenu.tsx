@@ -118,8 +118,8 @@ export default function MobileMenu({
       }`}
       aria-hidden={!open}
     >
-      {/* 헤더 햄버거 버튼과 같은 좌표에 오도록 폭·패딩·버튼 크기를 헤더와 동일하게 맞춘다 */}
-      <div className="mx-auto flex w-full max-w-[var(--site-width-header)] items-center justify-end px-[var(--space-300)] py-[var(--space-250)]">
+      {/* 헤더 햄버거 버튼과 같은 좌표에 오도록 높이·폭·패딩·버튼 크기를 헤더와 동일하게 맞춘다 */}
+      <div className="mx-auto flex h-[var(--site-header-height)] w-full max-w-[var(--site-width-header)] items-center justify-end px-[var(--space-300)]">
         <button
           type="button"
           ref={closeButtonRef}

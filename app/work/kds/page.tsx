@@ -44,7 +44,7 @@ const PIPELINE_NODES: PipelineNode[] = [
 ];
 
 const HEADING =
-  "mt-[var(--space-500)] mb-[var(--space-150)] scroll-mt-[var(--space-800)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-300)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] [font-weight:var(--font-weight-700)]";
+  "mt-[var(--space-500)] mb-[var(--space-150)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-300)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] [font-weight:var(--font-weight-700)]";
 
 const BODY =
   "mb-[var(--space-150)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]";
@@ -61,7 +61,7 @@ export default function KdsPage() {
 
         <h1
           id="overview"
-          className="mb-[var(--space-150)] scroll-mt-[var(--space-800)] text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-heading-lg)] [font-weight:var(--font-weight-800)]"
+          className="mb-[var(--space-150)] text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-heading-lg)] [font-weight:var(--font-weight-800)]"
         >
           Keeper Design System
         </h1>
