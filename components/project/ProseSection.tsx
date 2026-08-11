@@ -7,6 +7,7 @@ export interface ProseSectionProps {
   /** 주장형 헤드라인 — 라벨이 아니라 문장 */
   headline?: string;
   paragraphs?: string[];
+  /* TODO: 이 섹션에도 영상이 필요해지면 SolutionBlock 처럼 media?: MediaItem[] 로 바꾼다 */
   image?: ImageSlotProps;
   /**
    * Problem·Solution 처럼 블록이 반복되는 섹션은 여기에 넣는다.

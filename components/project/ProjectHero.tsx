@@ -6,7 +6,10 @@ export interface ProjectHeroProps {
   title: string;
   /** 한 줄 정의 */
   lede?: string;
-  /** 대표 이미지 자리 */
+  /**
+   * 대표 이미지 자리.
+   * TODO: 대표 영상이 필요해지면 SolutionBlock 처럼 media?: MediaItem[] 로 바꾼다.
+   */
   image?: ImageSlotProps;
 }
 
