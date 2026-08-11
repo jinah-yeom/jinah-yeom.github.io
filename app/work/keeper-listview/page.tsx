@@ -138,8 +138,8 @@ export default function KeeperListviewPage() {
           ratio: "hero",
           src: "/images/work/keeper-listview-hero.png",
           alt: "개선된 Keeper 앱 화면 세 개. 왼쪽은 상단에 날짜 스트립과 마감임박순·체크아웃됨·업무·지점 필터 칩이 놓인 업무 리스트, 가운데는 월 단위 달력이 열린 날짜 선택 Bottom Sheet, 오른쪽은 지점·동·층을 체크박스로 좁히는 필터 Bottom Sheet.",
-          width: 7680,
-          height: 4320,
+          width: 1920,
+          height: 1080,
           priority: true,
         }}
       />
