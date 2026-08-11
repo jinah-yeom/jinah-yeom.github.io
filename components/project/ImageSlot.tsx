@@ -9,6 +9,8 @@ export interface ImageSlotProps extends SlotFrameProps {
   alt?: string;
   width?: number;
   height?: number;
+  /** 첫 화면에 보이는 이미지(히어로)에만 — 지연 로딩을 끄고 미리 불러온다 */
+  priority?: boolean;
 }
 
 export default function ImageSlot({
@@ -19,6 +21,7 @@ export default function ImageSlot({
   alt,
   width = 1600,
   height = 1000,
+  priority,
 }: ImageSlotProps) {
   return (
     <SlotFrame label={label} ratio={ratio} caption={caption}>
@@ -28,6 +31,7 @@ export default function ImageSlot({
           alt={alt ?? label}
           width={width}
           height={height}
+          priority={priority}
           className="h-full w-full object-cover"
         />
       )}
