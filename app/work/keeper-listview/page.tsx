@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import ApproachList, {
   type ApproachItem,
 } from "@/components/project/ApproachList";
-import ContactCta from "@/components/project/ContactCta";
 import ImpactStats, {
   type ImpactStat,
 } from "@/components/project/ImpactStats";
@@ -16,7 +15,6 @@ import ProseSection from "@/components/project/ProseSection";
 import SolutionBlock, {
   type SolutionBlockProps,
 } from "@/components/project/SolutionBlock";
-import type { ContactLink } from "@/components/about/ContactRow";
 
 export const metadata: Metadata = {
   title: "Keeper APP 리스트뷰 UX 개선",
@@ -76,13 +74,6 @@ const SOLUTIONS: SolutionBlockProps[] = [
     paragraphs: ["TODO: 해결 4 본문"],
     image: { label: "as-is/to-be — 카드 정보 구조", ratio: "wide" },
   },
-];
-
-// TODO: 이메일·이력서·LinkedIn 값이 정해지면 href 를 채운다 (About 과 같은 규칙)
-const CONTACT_LINKS: ContactLink[] = [
-  { label: "이메일" },
-  { label: "이력서 다운로드" },
-  { label: "LinkedIn" },
 ];
 
 export default function KeeperListviewPage() {
@@ -162,9 +153,6 @@ export default function KeeperListviewPage() {
 
       {/* 13. 이전/다음 프로젝트 — 앞뒤가 모두 없으면 렌더되지 않는다 */}
       <ProjectNav slug="keeper-listview" />
-
-      {/* 14. Contact CTA */}
-      <ContactCta links={CONTACT_LINKS} />
     </div>
   );
 }

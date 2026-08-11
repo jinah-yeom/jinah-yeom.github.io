@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import DocSideNav, { type DocNavGroup } from "@/components/work/DocSideNav";
 import InfoBox, { type InfoRow } from "@/components/work/InfoBox";
 import Pipeline, { type PipelineNode } from "@/components/work/Pipeline";
+import ProjectNav from "@/components/project/ProjectNav";
 
 export const metadata: Metadata = {
   title: "Keeper Design System",
@@ -51,53 +52,60 @@ const BODY =
 
 export default function KdsPage() {
   return (
-    <div className="grid grid-cols-[var(--site-doc-nav-width)_1fr] gap-[var(--space-500)] max-[720px]:grid-cols-1">
-      <DocSideNav groups={NAV_GROUPS} />
+    <>
+      <div className="grid grid-cols-[var(--site-doc-nav-width)_1fr] gap-[var(--space-500)] max-[720px]:grid-cols-1">
+        <DocSideNav groups={NAV_GROUPS} />
 
-      <article>
-        <p className="mb-[var(--space-100)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] tracking-[var(--site-tracking-eyebrow)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-600)]">
-          WORK / KEEPER DESIGN SYSTEM
-        </p>
+        <article>
+          <p className="mb-[var(--space-100)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] tracking-[var(--site-tracking-eyebrow)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-600)]">
+            WORK / KEEPER DESIGN SYSTEM
+          </p>
 
-        <h1
-          id="overview"
-          className="mb-[var(--space-150)] text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-heading-lg)] [font-weight:var(--font-weight-800)]"
-        >
-          Keeper Design System
-        </h1>
+          <h1
+            id="overview"
+            className="mb-[var(--space-150)] text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-heading-lg)] [font-weight:var(--font-weight-800)]"
+          >
+            Keeper Design System
+          </h1>
 
-        <p className={BODY}>
-          B2B 어드민 제품의 0→1 디자인 시스템을 디자이너 겸 개발자로서 혼자
-          설계하고 구축한 프로젝트입니다.
-        </p>
+          <p className={BODY}>
+            B2B 어드민 제품의 0→1 디자인 시스템을 디자이너 겸 개발자로서 혼자
+            설계하고 구축한 프로젝트입니다.
+          </p>
 
-        <InfoBox rows={INFO_ROWS} />
+          <InfoBox rows={INFO_ROWS} />
 
-        <h2 id="token-pipeline" className={HEADING}>
-          토큰 파이프라인
-        </h2>
-        <p className={BODY}>
-          모든 스타일 값은 단일 소스에서 자동 생성됩니다. 하드코딩된 색상·간격·폰트
-          값이 0인 것을 스크립트로 검증합니다.
-        </p>
-        <Pipeline nodes={PIPELINE_NODES} />
+          <h2 id="token-pipeline" className={HEADING}>
+            토큰 파이프라인
+          </h2>
+          <p className={BODY}>
+            모든 스타일 값은 단일 소스에서 자동 생성됩니다. 하드코딩된 색상·간격·폰트
+            값이 0인 것을 스크립트로 검증합니다.
+          </p>
+          <Pipeline nodes={PIPELINE_NODES} />
 
-        <h2 id="figma-code-connect" className={HEADING}>
-          Figma ↔ 코드 1:1 연동
-        </h2>
-        <p className={BODY}>
-          Code Connect로 Figma 컴포넌트와 코드 컴포넌트를 매핑해, variant·size·state
-          명칭이 디자인과 코드에서 완전히 일치합니다.
-        </p>
+          <h2 id="figma-code-connect" className={HEADING}>
+            Figma ↔ 코드 1:1 연동
+          </h2>
+          <p className={BODY}>
+            Code Connect로 Figma 컴포넌트와 코드 컴포넌트를 매핑해, variant·size·state
+            명칭이 디자인과 코드에서 완전히 일치합니다.
+          </p>
 
-        <h2 id="ai-workflow" className={HEADING}>
-          AI 워크플로
-        </h2>
-        <p className={BODY}>
-          토큰 정합성 검사, 컴포넌트 생성 절차를 Claude 스킬로 만들어 반복 작업을
-          자동화했습니다. 이 사이트의 스타일도 KDS 토큰으로 렌더링됩니다.
-        </p>
-      </article>
-    </div>
+          <h2 id="ai-workflow" className={HEADING}>
+            AI 워크플로
+          </h2>
+          <p className={BODY}>
+            토큰 정합성 검사, 컴포넌트 생성 절차를 Claude 스킬로 만들어 반복 작업을
+            자동화했습니다. 이 사이트의 스타일도 KDS 토큰으로 렌더링됩니다.
+          </p>
+        </article>
+      </div>
+
+      {/* 본문 레이아웃 밖 — 사이드 내비 그리드에 끼지 않게 그리드 뒤에 둔다 */}
+      <div className="mt-[var(--space-900)]">
+        <ProjectNav slug="kds" />
+      </div>
+    </>
   );
 }
