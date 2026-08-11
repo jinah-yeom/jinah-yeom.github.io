@@ -7,7 +7,56 @@ const STATEMENT = [
   "디자이너-개발자입니다",
 ];
 
+/* UX 케이스가 앞, 시스템 작업이 뒤 — lib/projects.ts 의 상세 페이지 순서와 같다 */
 const WORKS: WorkSectionProps[] = [
+  {
+    title: "KEEPER APP 리스트뷰 UX 개선",
+    href: "/work/keeper-listview",
+    paragraphs: [
+      "Keeper 리스트뷰의 탐색 구조를 전면 재설계했습니다. 기존 앱은 조건 기반 탐색 기능이 없고 카드 정보 구조가 일관되지 않아, 키퍼들의 업무 선택 효율이 크게 떨어진 상태였습니다.",
+      "필터도, 정렬도, 날짜 이동도 없는 리스트에서 키퍼가 할 수 있는 일은 스크롤뿐이었습니다.",
+    ],
+    meta: [
+      { label: "Years", value: "2025" },
+      { label: "Role", value: "정책 · PRD · UX/UI 설계" },
+      {
+        label: "Scope",
+        value: (
+          <>
+            Mobile App,
+            <br />
+            UX Redesign
+          </>
+        ),
+      },
+      {
+        label: "Link",
+        value: (
+          <span className="underline underline-offset-[var(--space-050)]">
+            Case study ↗
+          </span>
+        ),
+      },
+    ],
+    visuals: [
+      {
+        src: "/images/work/keeper-listview-date.svg",
+        alt: "날짜 선택 Bottom Sheet",
+        ratio: "tall",
+        tone: "light",
+        width: 600,
+        height: 800,
+      },
+      {
+        src: "/images/work/keeper-listview-card.svg",
+        alt: "재설계한 업무 카드",
+        ratio: "tall",
+        tone: "dark",
+        width: 600,
+        height: 800,
+      },
+    ],
+  },
   {
     title: "KEEPER DESIGN SYSTEM",
     href: "/work/kds",
