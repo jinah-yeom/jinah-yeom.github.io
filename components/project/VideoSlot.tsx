@@ -8,7 +8,18 @@ export interface VideoSlotProps extends SlotFrameProps {
   alt?: string;
   /** 첫 프레임 대신 보여줄 이미지. reduce 모션일 때 정지 화면으로도 쓰인다 */
   poster?: string;
+  /**
+   * 슬롯 비율과 영상 비율이 다를 때 처리.
+   * cover 는 꽉 채우고 잘라내며, contain 은 전체를 보이고 남는 자리를 배경으로 둔다.
+   * 폰 화면 녹화처럼 세로로 긴 영상은 contain 이어야 화면이 잘리지 않는다.
+   */
+  fit?: "cover" | "contain";
 }
+
+const FIT = {
+  cover: "object-cover",
+  contain: "object-contain",
+} as const;
 
 /* 이 컴포넌트와 SlotFrame 은 서버 컴포넌트로 두고, 재생 제어만 AutoplayVideo 로 넘긴다 */
 export default function VideoSlot({
@@ -18,6 +29,7 @@ export default function VideoSlot({
   src,
   alt,
   poster,
+  fit = "cover",
 }: VideoSlotProps) {
   return (
     <SlotFrame label={label} ratio={ratio} caption={caption}>
@@ -26,7 +38,7 @@ export default function VideoSlot({
           src={src}
           poster={poster}
           label={alt ?? label}
-          className="h-full w-full object-cover"
+          className={`h-full w-full ${FIT[fit]}`}
         />
       )}
     </SlotFrame>

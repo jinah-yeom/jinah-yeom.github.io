@@ -90,9 +90,14 @@ const SOLUTIONS: SolutionBlockProps[] = [
     ],
     media: [
       {
-        label: "as-is/to-be 비교 — 날짜 탐색",
+        kind: "video",
+        label: "날짜 선택 Bottom Sheet 흐름",
+        /* 1080×2826 세로 영상 — contain 이라야 폰 화면 전체가 잘리지 않고 들어간다 */
         ratio: "wide",
-        caption: "날짜 탐색 프로토타입 링크 (준비 중)",
+        fit: "contain",
+        src: "/videos/date-picker-flow.mp4",
+        alt: "업무 리스트 상단의 날짜 영역을 눌러 날짜 선택 Bottom Sheet를 열고, 달력에서 날짜를 고르면 해당 날짜의 업무 리스트로 바뀌는 화면 녹화.",
+        caption: "날짜를 고르는 행동이 곧 일정 계획이 되는 탐색 흐름",
       },
     ],
   },
