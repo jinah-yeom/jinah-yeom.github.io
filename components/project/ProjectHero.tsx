@@ -29,7 +29,7 @@ export default function ProjectHero({
       </h1>
 
       {lede && (
-        <p className="mt-[var(--space-200)] max-w-[var(--site-prose-width)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
+        <p className="mt-[var(--space-200)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
           {lede}
         </p>
       )}

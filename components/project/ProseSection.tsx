@@ -16,10 +16,10 @@ export interface ProseSectionProps {
 }
 
 export const PROSE_HEADLINE =
-  "mb-[var(--space-250)] max-w-[var(--site-prose-width)] text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]";
+  "mb-[var(--space-250)] text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]";
 
 export const PROSE_PARAGRAPH =
-  "mb-[var(--space-200)] max-w-[var(--site-prose-width)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)] last:mb-0";
+  "mb-[var(--space-200)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)] last:mb-0";
 
 export default function ProseSection({
   eyebrow,

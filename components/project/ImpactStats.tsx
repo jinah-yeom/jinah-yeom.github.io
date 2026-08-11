@@ -55,7 +55,7 @@ export default function ImpactStats({
       </dl>
 
       {caption && (
-        <p className="mt-[var(--space-400)] max-w-[var(--site-prose-width)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-assistive)]">
+        <p className="mt-[var(--space-400)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-assistive)]">
           {caption}
         </p>
       )}

@@ -32,7 +32,7 @@ export default function ApproachList({
         {items.map((item) => (
           <li
             key={item.lead}
-            className="max-w-[var(--site-prose-width)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]"
+            className="text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]"
           >
             <strong className="[font-weight:var(--font-weight-700)] text-[var(--color-label-normal)]">
               {item.lead}

@@ -30,8 +30,6 @@
   --site-doc-nav-width: 200px;
   --site-infobox-term-width: 96px;
   --site-lede-width: 620px;
-  /* 케이스 스터디 본문 읽기 폭 — 960px 전체 폭은 산문에 너무 넓다 */
-  --site-prose-width: 680px;
   --site-fab-size: 56px;
   --site-chat-width: 360px;
   --site-chat-height: 520px;
