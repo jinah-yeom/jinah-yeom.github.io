@@ -1,17 +1,18 @@
-import ImageSlot, { type ImageSlotProps } from "./ImageSlot";
+import MediaSlot, { type MediaItem } from "./MediaSlot";
 import { PROSE_HEADLINE, PROSE_PARAGRAPH } from "./ProseSection";
 
 export interface SolutionBlockProps {
   /** 결정을 드러내는 주장형 헤드라인 */
   headline: string;
   paragraphs?: string[];
-  image?: ImageSlotProps;
+  /** 이미지·영상을 섞어 여러 개 붙일 수 있다 */
+  media?: MediaItem[];
 }
 
 export default function SolutionBlock({
   headline,
   paragraphs = [],
-  image,
+  media = [],
 }: SolutionBlockProps) {
   return (
     <article>
@@ -21,7 +22,9 @@ export default function SolutionBlock({
           {paragraph}
         </p>
       ))}
-      {image && <ImageSlot {...image} />}
+      {media.map((item) => (
+        <MediaSlot key={item.label} {...item} />
+      ))}
     </article>
   );
 }
