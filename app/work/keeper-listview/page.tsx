@@ -7,7 +7,7 @@ import ImpactStats, {
   type ImpactStat,
 } from "@/components/project/ImpactStats";
 import MetaGrid, { type MetaItem } from "@/components/project/MetaGrid";
-import NextCase from "@/components/project/NextCase";
+import ProjectNav from "@/components/project/ProjectNav";
 import ProblemBlock, {
   type ProblemBlockProps,
 } from "@/components/project/ProblemBlock";
@@ -90,7 +90,6 @@ export default function KeeperListviewPage() {
     <div className="flex flex-col gap-[var(--space-900)]">
       {/* 1. Hero */}
       <ProjectHero
-        tags={["회사 프로젝트", "B2B", "UX 개선", "Mobile APP"]}
         eyebrow="Mobile APP UX Redesign"
         title="Keeper APP 리스트뷰 UX 개선"
         lede="TODO: 한 줄 정의"
@@ -161,12 +160,8 @@ export default function KeeperListviewPage() {
       {/* 12. Reflection */}
       <ProseSection eyebrow="REFLECTION" paragraphs={["TODO: Reflection 본문"]} />
 
-      {/* 13. Next Case — 아직 페이지가 없어 링크 없이 썸네일만 */}
-      <NextCase
-        title="Keeper Admin 소모품 구매 기능"
-        tagline="B2B Admin · 외부 서비스 연동"
-        thumbnail={{ label: "썸네일 — Keeper Admin 소모품 구매", ratio: "wide" }}
-      />
+      {/* 13. 이전/다음 프로젝트 — 앞뒤가 모두 없으면 렌더되지 않는다 */}
+      <ProjectNav slug="keeper-listview" />
 
       {/* 14. Contact CTA */}
       <ContactCta links={CONTACT_LINKS} />
