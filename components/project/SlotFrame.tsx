@@ -33,7 +33,7 @@ export default function SlotFrame({
   return (
     <figure className="my-[var(--space-400)]">
       <div
-        className={`flex items-center justify-center overflow-hidden rounded-[var(--radius-500)] border border-[var(--color-divider-alternative)] bg-[var(--color-background-alternative)] ${RATIO[ratio]}`}
+        className={`flex items-center justify-center overflow-hidden rounded-[var(--radius-500)] border border-[var(--color-divider-alternative)] bg-[var(--color-gray-100)] ${RATIO[ratio]}`}
       >
         {children ?? (
           <span className="px-[var(--space-300)] text-center text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-500)]">
