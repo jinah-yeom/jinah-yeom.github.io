@@ -96,6 +96,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
         ratio: "wide",
         fit: "contain",
         src: "/videos/date-picker-flow.mp4",
+        poster: "/videos/date-picker-flow-poster.jpg",
         alt: "업무 리스트 상단의 날짜 영역을 눌러 날짜 선택 Bottom Sheet를 열고, 달력에서 날짜를 고르면 해당 날짜의 업무 리스트로 바뀌는 화면 녹화.",
         caption: "날짜를 고르는 행동이 곧 일정 계획이 되는 탐색 흐름",
       },
@@ -106,8 +107,19 @@ const SOLUTIONS: SolutionBlockProps[] = [
     paragraphs: [
       "기존에는 모든 유형의 업무가 한 리스트에 섞여 있어, 특정 업무만 수행하는 키퍼도 전체를 훑어야 했습니다. 업무 필터를 Bottom Sheet의 칩 다중 선택으로 설계해, 자신이 수행하는 유형들 — 정규 숙박 청소와 재실청소처럼 — 을 한 번에 묶어 선택하고 적용하도록 했습니다. 조건을 고르는 동안 리스트가 바뀌지 않고 적용하기를 누른 시점에 한 번에 갱신되는 구조라, 여러 조건을 조합하는 중간 과정이 탐색을 방해하지 않습니다. 초기화 버튼으로 언제든 전체 리스트로 돌아갈 수 있고, 적용된 조건은 리스트 상단 칩에 남아 지금 보고 있는 리스트의 범위를 놓치지 않게 했습니다.",
     ],
-    /* TODO: task-filter-flow.mp4 가 들어오면 kind: "video" 로 연결 (세로 영상이면 fit: "contain") */
-    media: [{ label: "업무 필터 선택 플로우", ratio: "wide" }],
+    media: [
+      {
+        kind: "video",
+        label: "업무 필터 선택 플로우",
+        /* 세로 영상 — Solution 1 과 같은 프레임·맞춤 방식 */
+        ratio: "wide",
+        fit: "contain",
+        src: "/videos/task-filter-flow.mp4",
+        poster: "/videos/task-filter-flow-poster.jpg",
+        alt: "업무 필터 Bottom Sheet를 열어 수행할 업무 유형 칩을 여러 개 고르고, 적용하기를 누르면 해당 유형의 업무만 남도록 리스트가 갱신되는 화면 녹화.",
+        caption: "조건을 고르는 동안 리스트는 그대로, 적용하기를 누른 시점에 한 번에 갱신된다",
+      },
+    ],
   },
   {
     headline: "필터와 정렬이 하나의 탐색 흐름으로 이어지게 했다",
