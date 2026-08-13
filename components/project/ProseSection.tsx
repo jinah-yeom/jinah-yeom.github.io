@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import ImageSlot, { type ImageSlotProps } from "./ImageSlot";
+import MediaSlot, { type MediaItem } from "./MediaSlot";
 
 export interface ProseSectionProps {
   /** 섹션 라벨 (OVERVIEW / BACKGROUND / PROBLEM …) */
@@ -7,8 +7,8 @@ export interface ProseSectionProps {
   /** 주장형 헤드라인 — 라벨이 아니라 문장 */
   headline?: string;
   paragraphs?: string[];
-  /* TODO: 이 섹션에도 영상이 필요해지면 SolutionBlock 처럼 media?: MediaItem[] 로 바꾼다 */
-  image?: ImageSlotProps;
+  /** 이미지·영상을 섞어 여러 개 붙일 수 있다 (SolutionBlock 과 같은 방식) */
+  media?: MediaItem[];
   /**
    * Problem·Solution 처럼 블록이 반복되는 섹션은 여기에 넣는다.
    * 라벨만 있는 그룹 헤더로도 쓸 수 있게 자식 간 여백까지 이 컴포넌트가 잡는다.
@@ -26,7 +26,7 @@ export default function ProseSection({
   eyebrow,
   headline,
   paragraphs = [],
-  image,
+  media = [],
   children,
 }: ProseSectionProps) {
   return (
@@ -45,7 +45,9 @@ export default function ProseSection({
         </p>
       ))}
 
-      {image && <ImageSlot {...image} />}
+      {media.map((item) => (
+        <MediaSlot key={item.label} {...item} />
+      ))}
 
       {children && (
         <div className="flex flex-col gap-[var(--space-700)]">{children}</div>
