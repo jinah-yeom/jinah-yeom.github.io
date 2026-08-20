@@ -1,3 +1,5 @@
+import { PROSE_SUBHEADLINE } from "./ProseSection";
+
 export interface ApproachItem {
   /** 어느 축의 원칙인지 — 날짜 탐색 / 업무 필터 … */
   label: string;
@@ -24,7 +26,7 @@ export default function ApproachList({ items = [] }: ApproachListProps) {
             {item.label}
           </p>
 
-          <h3 className="mb-[var(--space-200)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]">
+          <h3 className={PROSE_SUBHEADLINE}>
             {item.title}
           </h3>
 

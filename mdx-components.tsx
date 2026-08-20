@@ -1,37 +1,39 @@
 import type { MDXComponents } from "mdx/types";
+import {
+  PROSE_HEADLINE,
+  PROSE_PARAGRAPH,
+  PROSE_STRONG,
+  PROSE_SUBHEADLINE,
+} from "@/components/project/ProseSection";
 
 /*
  * MDX 본문의 기본 태그 스타일.
  * 여기 정의한 스타일이 content/blog 의 모든 글에 적용된다.
+ *
+ * 본문 위계는 워크 상세와 같은 상수를 그대로 쓴다 — 같은 역할이면 같은 조합이어야
+ * 하고, 한쪽만 바뀌어 어긋나는 일이 없어야 한다. 여백처럼 MDX 흐름에만 필요한
+ * 값은 상수와 겹치지 않는 것만 덧붙인다.
  */
 const components: MDXComponents = {
   h2: (props) => (
     <h2
-      className="mt-[var(--space-500)] mb-[var(--space-150)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-300)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] [font-weight:var(--font-weight-700)]"
+      className={`mt-[var(--space-500)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-300)] ${PROSE_HEADLINE}`}
       {...props}
     />
   ),
   h3: (props) => (
-    <h3
-      className="mt-[var(--space-400)] mb-[var(--space-150)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] [font-weight:var(--font-weight-700)]"
-      {...props}
-    />
+    <h3 className={`mt-[var(--space-400)] ${PROSE_SUBHEADLINE}`} {...props} />
   ),
-  p: (props) => (
-    <p
-      className="mb-[var(--space-150)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]"
-      {...props}
-    />
-  ),
+  p: (props) => <p className={PROSE_PARAGRAPH} {...props} />,
   ul: (props) => (
     <ul
-      className="mb-[var(--space-150)] ml-[var(--space-250)] flex list-disc flex-col gap-[var(--space-100)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]"
+      className={`ml-[var(--space-250)] flex list-disc flex-col gap-[var(--space-100)] ${PROSE_PARAGRAPH}`}
       {...props}
     />
   ),
   ol: (props) => (
     <ol
-      className="mb-[var(--space-150)] ml-[var(--space-250)] flex list-decimal flex-col gap-[var(--space-100)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]"
+      className={`ml-[var(--space-250)] flex list-decimal flex-col gap-[var(--space-100)] ${PROSE_PARAGRAPH}`}
       {...props}
     />
   ),
@@ -41,9 +43,7 @@ const components: MDXComponents = {
       {...props}
     />
   ),
-  strong: (props) => (
-    <strong className="[font-weight:var(--font-weight-700)]" {...props} />
-  ),
+  strong: (props) => <strong className={PROSE_STRONG} {...props} />,
   blockquote: (props) => (
     <blockquote
       className="my-[var(--space-300)] border-l-[length:var(--dimension-025)] border-[var(--color-divider-normal)] pl-[var(--space-250)] text-[var(--color-label-alternative)]"
@@ -59,7 +59,7 @@ const components: MDXComponents = {
   /*
    * 본문 이미지. next/image 를 쓰지 않는다 — static export 라
    * images.unoptimized 이고, MDX 가 넘기는 건 크기 정보 없는 img 다.
-   * 캡션은 이미지 다음 문단의 이탤릭 텍스트가 맡는다.
+   * 설명은 앞뒤 본문이 하므로 캡션은 두지 않는다.
    */
   img: (props) => (
     // eslint-disable-next-line @next/next/no-img-element

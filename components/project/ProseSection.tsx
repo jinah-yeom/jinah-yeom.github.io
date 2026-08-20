@@ -19,8 +19,16 @@ export interface ProseSectionProps {
 export const PROSE_HEADLINE =
   "mb-[var(--space-250)] text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]";
 
+/** 섹션 헤드라인 아래 단계의 소제목 — Approach 카드 제목, 블로그 h3 */
+export const PROSE_SUBHEADLINE =
+  "mb-[var(--space-200)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]";
+
 export const PROSE_PARAGRAPH =
   "mb-[var(--space-200)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)] last:mb-0";
+
+/** 본문 속 볼드 — 굵기만이 아니라 색도 한 단계 올려 본문과 구분한다 */
+export const PROSE_STRONG =
+  "[font-weight:var(--font-weight-700)] text-[var(--color-label-normal)]";
 
 export default function ProseSection({
   eyebrow,
