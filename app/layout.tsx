@@ -4,13 +4,40 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ChatFab from "@/components/chat/ChatFab";
 
+const SITE_URL = "https://jinah-yeom.github.io";
+const DESCRIPTION =
+  "디자인 시스템을 설계하고 코드로 직접 완성하는 디자이너-개발자, 염지나의 포트폴리오와 기술 블로그.";
+
 export const metadata: Metadata = {
+  /*
+   * static export 라 요청 호스트를 알 수 없다 — metadataBase 가 없으면
+   * og:image 가 상대 경로로 나가서 크롤러가 이미지를 못 찾는다.
+   */
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Jinah Yeom",
+    default: "Jinah Yeom — Designer · Developer",
     template: "%s — Jinah Yeom",
   },
-  description:
-    "디자인 시스템을 설계하고 코드로 직접 완성하는 디자이너-개발자, 염지나의 포트폴리오와 기술 블로그.",
+  description: DESCRIPTION,
+  openGraph: {
+    title: "Jinah Yeom — Designer · Developer",
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Jinah Yeom",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jinah Yeom — 디자인 시스템을 설계하고 코드로 직접 완성하는 디자이너-개발자",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
