@@ -1,52 +1,48 @@
-import { PROSE_PARAGRAPH } from "./ProseSection";
-
 export interface ApproachItem {
-  /** 볼드 리드-인 — 원칙 한 문장 */
-  lead: string;
-  /** 리드에 이어지는 설명 */
-  body?: string;
+  /** 어느 축의 원칙인지 — 날짜 탐색 / 업무 필터 … */
+  label: string;
+  /** 원칙 한 문장 */
+  title: string;
+  /** 결정과 근거만. 과정 나열 금지 */
+  bullets?: string[];
 }
 
 export interface ApproachListProps {
-  /** 목록 앞에 오는 문단 */
-  intro?: string[];
   items?: ApproachItem[];
-  /** 목록 뒤에 오는 문단 */
-  outro?: string[];
 }
 
-export default function ApproachList({
-  intro = [],
-  items = [],
-  outro = [],
-}: ApproachListProps) {
+export default function ApproachList({ items = [] }: ApproachListProps) {
   return (
-    <>
-      {intro.map((paragraph) => (
-        <p key={paragraph} className={PROSE_PARAGRAPH}>
-          {paragraph}
-        </p>
-      ))}
+    /* 2×2 그리드 — Problem 3개 + 전체 공통 원칙 1개가 한눈에 대응된다 */
+    <ul className="grid grid-cols-2 gap-[var(--space-300)] max-[720px]:grid-cols-1">
+      {items.map((item) => (
+        <li
+          key={item.title}
+          className="rounded-[var(--radius-400)] bg-[var(--color-background-alternative)] p-[var(--space-300)]"
+        >
+          <p className="mb-[var(--space-100)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] tracking-[var(--site-tracking-eyebrow)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-600)]">
+            {item.label}
+          </p>
 
-      <ul className="my-[var(--space-400)] flex flex-col gap-[var(--space-300)]">
-        {items.map((item) => (
-          <li
-            key={item.lead}
-            className="text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]"
-          >
-            <strong className="[font-weight:var(--font-weight-700)] text-[var(--color-label-normal)]">
-              {item.lead}
-            </strong>
-            {item.body && ` ${item.body}`}
-          </li>
-        ))}
-      </ul>
+          <h3 className="mb-[var(--space-200)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]">
+            {item.title}
+          </h3>
 
-      {outro.map((paragraph) => (
-        <p key={paragraph} className={PROSE_PARAGRAPH}>
-          {paragraph}
-        </p>
+          <ul className="flex flex-col gap-[var(--space-100)]">
+            {item.bullets?.map((bullet) => (
+              <li
+                key={bullet}
+                className="flex gap-[var(--space-100)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-neutral)]"
+              >
+                <span aria-hidden className="text-[var(--color-label-assistive)]">
+                  ·
+                </span>
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </li>
       ))}
-    </>
+    </ul>
   );
 }
