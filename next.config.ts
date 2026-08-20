@@ -19,6 +19,12 @@ const withMDX = createMDX({
       /* GFM 표·취소선 — 이게 없으면 표가 파이프 문자 그대로 렌더된다 */
       ["remark-gfm", {}],
     ],
+    /*
+     * 언어를 지정한 펜스에만 hljs 클래스를 붙인다.
+     * detect:false 라야 언어 미지정 블록(플로우 다이어그램 등)이
+     * 엉뚱한 언어로 추정돼 색이 입혀지지 않는다.
+     */
+    rehypePlugins: [["rehype-highlight", { detect: false }]],
   },
 });
 

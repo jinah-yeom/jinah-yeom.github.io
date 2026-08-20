@@ -17,6 +17,7 @@
  * 컴포넌트에서는 이 변수들만 참조하고 리터럴 값을 쓰지 않는다.
  */
 :root {
+  /* 본문(--site-width-content 960px)보다 넓은 프레임 폭 — 헤더/본문 시작선 불일치는 의도된 2단 구조 */
   --site-width-header: 1120px;
   --site-width-content: 960px;
   --site-tracking-nav: 0.06em;
@@ -30,6 +31,18 @@
   --site-doc-nav-width: 200px;
   --site-infobox-term-width: 96px;
   --site-fab-size: 56px;
+  /*
+   * 코드 블록 신택스 색상 — 콘텐츠 가독성을 위한 유채색 예외.
+   * 사이트 나머지는 모노톤이지만 코드는 토큰 종류를 색으로 구분해야 읽힌다.
+   * GitHub 라이트 팔레트 기준. pre code 하위로만 적용된다.
+   * keyword 만 #d73a49 → #cf222e (Primer 최신값) 로 낮췄다 —
+   * 원래 값은 코드 배경 위에서 4.28:1 이라 본문 대비 기준 4.5:1 에 못 미쳤다.
+   */
+  --site-code-comment: #008000;
+  --site-code-keyword: #cf222e;
+  --site-code-string: #c41a16;
+  --site-code-number: #1c00cf;
+  --site-code-title: #6f42c1;
   --site-chat-width: 360px;
   --site-chat-height: 520px;
 
@@ -87,4 +100,41 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/*
+ * rehype-highlight 가 붙인 hljs 클래스 매핑.
+ * pre code 하위로 스코프해 블로그 코드 블록 밖에는 영향이 없다.
+ * 테마 CSS 를 통째로 들이지 않고 필요한 토큰만 색을 준다 — 나머지는 상속받아 단색으로 남는다.
+ */
+pre code .hljs-comment,
+pre code .hljs-quote {
+  color: var(--site-code-comment);
+}
+
+pre code .hljs-keyword,
+pre code .hljs-selector-tag,
+pre code .hljs-literal,
+pre code .hljs-built_in {
+  color: var(--site-code-keyword);
+}
+
+pre code .hljs-string,
+pre code .hljs-regexp,
+pre code .hljs-attr,
+pre code .hljs-template-variable {
+  color: var(--site-code-string);
+}
+
+pre code .hljs-number,
+pre code .hljs-symbol,
+pre code .hljs-meta {
+  color: var(--site-code-number);
+}
+
+pre code .hljs-title,
+pre code .hljs-class .hljs-title,
+pre code .hljs-section,
+pre code .hljs-attribute {
+  color: var(--site-code-title);
 }

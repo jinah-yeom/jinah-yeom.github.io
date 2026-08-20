@@ -58,7 +58,7 @@ const components: MDXComponents = {
   ),
   code: (props) => (
     <code
-      className="rounded-[var(--radius-100)] bg-[var(--color-background-alternative)] px-[var(--space-050)] font-[family-name:var(--site-font-mono)] text-[length:var(--font-size-075)]"
+      className="rounded-[var(--radius-100)] bg-[var(--color-gray-100)] px-[var(--space-050)] font-[family-name:var(--site-font-mono)] text-[length:var(--font-size-075)]"
       {...props}
     />
   ),
@@ -84,10 +84,13 @@ const components: MDXComponents = {
       {...props}
     />
   ),
-  /* pre 안의 code 는 인라인 코드 스타일(배경·패딩)을 걷어낸다 */
+  /*
+   * 라이트 코드 블록. 신택스 색은 globals.css 의 --site-code-* 가 hljs 클래스에 준다.
+   * pre 안의 code 는 인라인 코드 스타일(배경·패딩)을 걷어내 배경이 겹치지 않게 한다.
+   */
   pre: (props) => (
     <pre
-      className="my-[var(--space-300)] overflow-x-auto rounded-[var(--radius-400)] bg-[var(--color-gray-950)] p-[var(--space-250)] font-[family-name:var(--site-font-mono)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-gray-100)] [&_code]:bg-[var(--color-black-alpha-100)] [&_code]:p-0 [&_code]:text-[length:inherit]"
+      className="my-[var(--space-300)] overflow-x-auto rounded-[var(--radius-300)] border border-[var(--color-divider-alternative)] bg-[var(--color-background-alternative)] p-[var(--space-250)] font-[family-name:var(--site-font-mono)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-neutral)] [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-[length:inherit]"
       {...props}
     />
   ),
