@@ -29,7 +29,7 @@ export default async function BlogPostPage({
   const { default: Post } = await import(`@/content/blog/${slug}.mdx`);
 
   return (
-    <article className="max-w-[var(--site-lede-width)]">
+    <article>
       <p className="mb-[var(--space-100)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] tracking-[var(--site-tracking-eyebrow)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-600)]">
         BLOG
       </p>

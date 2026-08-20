@@ -20,7 +20,7 @@ export default function BlogPage() {
         기술 블로그
       </h1>
 
-      <p className="max-w-[620px] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
+      <p className="text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
         디자인 시스템을 만들며 배운 것들 — 과정, 실패, 판단의 기록.
       </p>
 
