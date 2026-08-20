@@ -76,14 +76,17 @@ const components: MDXComponents = {
     />
   ),
   /*
-   * 표는 좁은 화면에서 본문 폭을 밀어내지 않도록 자기 안에서만 가로 스크롤한다.
-   * wrapper 를 끼울 수 없어(MDX 가 table 을 그대로 넘긴다) block + overflow 로 처리한다.
+   * 스크롤은 래퍼가 맡고 표는 table 로 남긴다.
+   * table 자체에 display:block 을 주면 표 레이아웃이 풀려 w-full 이 먹지 않고
+   * 내용 폭만큼만 그려진다 — 그래서 감싸는 쪽에 overflow 를 건다.
    */
   table: (props) => (
-    <table
-      className="my-[var(--space-300)] block w-full overflow-x-auto border-collapse text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)]"
-      {...props}
-    />
+    <div className="my-[var(--space-300)] overflow-x-auto">
+      <table
+        className="w-full border-collapse text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)]"
+        {...props}
+      />
+    </div>
   ),
   th: (props) => (
     <th

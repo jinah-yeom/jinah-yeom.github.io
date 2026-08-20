@@ -6,11 +6,11 @@ date: "2026-06-10"
 
 ## 들어가며
 
+![](/images/blog/intro.webp)
+
 이 글은 코딩을 전공하지 않은 프로덕트 디자이너가 팀의 반복 작업을 줄이기 위해 Figma 플러그인을 직접 만든 경험을 담고 있다. 완벽한 코드를 작성한 이야기가 아니라, 문제를 정의하고 시도하고 실패하고 다시 고치는 과정의 기록이다.
 
 기술적으로 완벽하지 않더라도 팀의 실제 문제를 해결할 수 있다면 그것으로 충분하다고 생각했다. 비슷한 고민을 하는 디자이너에게 조금이라도 도움이 됐으면 한다.
-
----
 
 ## 문제 인식 — 왜 만들게 됐나
 
@@ -19,8 +19,6 @@ date: "2026-06-10"
 B2B SaaS 서비스의 디자인 시스템을 운영하면서 언어팩 관리는 늘 번거로운 작업이었다. 서비스에서 사용하는 모든 텍스트는 Google Sheets에서 key-value 형태로 관리되고 있었는데, 구조는 이렇다.
 
 ![A열 No., B열 key, C열 ko(한국어 value), D열 tags(날짜), E열 tags2(그룹 경로) 구조로 관리되는 언어팩](/images/blog/langpack-01.webp)
-
-*A열 No., B열 key, C열 ko(한국어 value), D열 tags(날짜), E열 tags2(그룹 경로) 구조로 관리되는 언어팩*
 
 개발 팀은 이 Sheets를 소스 오브 트루스로 사용해 코드에 언어팩을 반영한다. 문제는 디자인이었다. 언어팩이 변경될 때마다 디자이너가 Figma 파일을 열어 하나씩 텍스트를 수동으로 업데이트해야 했다.
 
@@ -52,26 +50,25 @@ Lokalise 같은 기존 플러그인도 있었다. 하지만 우리 팀의 언어
 
 결국 자체 플러그인을 만드는 방향으로 결론을 냈다.
 
----
-
 ## 목표 정의
 
 플러그인이 해결해야 할 문제를 명확히 정의했다. 범위를 너무 넓게 잡으면 완성하지 못할 것 같아서 핵심 기능에만 집중했다.
 
 **Must Have**
-1. Google Sheets 언어팩 데이터를 Figma Variables로 자동 등록
-2. 등록된 key/value 검색 기능
-3. 팀 내부 플러그인으로 배포 (팀원 누구나 사용 가능)
+
+- Google Sheets 언어팩 데이터를 Figma Variables로 자동 등록
+- 등록된 key/value 검색 기능
+- 팀 내부 플러그인으로 배포 (팀원 누구나 사용 가능)
 
 **Should Have**
-4. 텍스트 레이어에 Variable을 일괄 바인딩
-5. 언어팩 변경 시 Slack으로 알림
+
+- 텍스트 레이어에 Variable을 일괄 바인딩
+- 언어팩 변경 시 Slack으로 알림
 
 **Won't Have (이번 버전에서는)**
+
 - 실시간 자동 동기화 (Figma Plugin API 제약으로 불가)
 - app_lokalise, server_lokalise 지원 (데이터 준비 후 추가 예정)
-
----
 
 ## 기술 선택
 
@@ -90,8 +87,6 @@ Lokalise 같은 기존 플러그인도 있었다. 하지만 우리 팀의 언어
 | 데이터 중간 레이어 | Google Apps Script | CORS 해결, 무료 |
 | 알림 | Slack Incoming Webhook | 사내 커뮤니케이션 도구 |
 | 코드 관리 | 사내 GitHub 레포 | 팀 접근 가능 |
-
----
 
 ## 아키텍처 설계
 
@@ -125,8 +120,6 @@ ui.html                    code.js
    |                          |
    |<-- postMessage(done) ----|
 ```
-
----
 
 ## 구현 상세
 
@@ -440,8 +433,6 @@ sendPendingChanges (1분마다 실행)
   → pendingChanges 삭제
 ```
 
----
-
 ## 예상치 못한 난관들
 
 ### PropertiesService 용량 초과
@@ -532,8 +523,6 @@ if (addedKeys.length > totalKeys * 0.5) {
 }
 ```
 
----
-
 ## 배포
 
 Figma Organization 플랜의 팀 플러그인 기능을 활용해 Private 플러그인으로 배포했다. 팀원들은 별도 파일 설치 없이 Figma Assets 패널에서 바로 플러그인을 찾아 실행할 수 있다.
@@ -541,10 +530,6 @@ Figma Organization 플랜의 팀 플러그인 기능을 활용해 Private 플러
 ![Figma Assets → Plugins & widgets → From 열한시 필터에서 Sheets to Variables 플러그인 확인 가능](/images/blog/langpack-11.webp)
 
 *Figma Assets → Plugins & widgets → From 열한시 필터에서 Sheets to Variables 플러그인 확인 가능*
-
-![[Chapter] Product Design 팀으로 배포된 Private 플러그인 상세 페이지. Version history에 업데이트 내역이 기록됨](/images/blog/langpack-12.webp)
-
-*[Chapter] Product Design 팀으로 배포된 Private 플러그인 상세 페이지. Version history에 업데이트 내역이 기록됨*
 
 코드는 사내 GitHub 레포의 `sheets-to-variables` 폴더에서 관리한다. 수정이 필요할 때는 main 브랜치에 push하고 Figma에서 Publish new version으로 재배포한다.
 
@@ -559,8 +544,6 @@ Figma → Development → Sheets to Variables
 팀원들에게 자동으로 최신 버전 반영
 ```
 
----
-
 ## 트러블슈팅 요약
 
 | 오류 | 원인 | 해결 방법 |
@@ -571,8 +554,6 @@ Figma → Development → Sheets to Variables
 | CacheService 6시간 만료 | Cache 특성상 만료 불가피 | PropertiesService로 전환 (영구 저장) |
 | sendPendingChanges 무한 재시도 | 삭제 실패 시 pendingChanges가 남아있음 | 성공 여부와 무관하게 무조건 삭제 |
 | 오탐 알림 (전체 key 추가) | 청크 저장 불완전으로 비교 오류 | 추가 key 50% 초과 시 초기화만 수행 |
-
----
 
 ## 결과
 
@@ -585,8 +566,6 @@ Figma → Development → Sheets to Variables
 | 개발-디자인 일치 | 불확실 | Figma Variables로 동기화 |
 | 텍스트 바인딩 | 개별 수동 연결 | Apply 탭으로 일괄 처리 |
 | 타 파일에서 사용 | 불가 | Library 연결 시 자동 감지 |
-
----
 
 ## 마치며
 
