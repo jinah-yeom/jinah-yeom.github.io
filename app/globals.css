@@ -38,7 +38,6 @@
    * 쌓임 순서는 한 곳에서만 정한다.
    * 모바일 메뉴가 열리면 FAB 까지 덮어야 하므로 메뉴가 가장 위다.
    */
-  --site-z-corner: 30;
   --site-z-header: 40;
   --site-z-chat: 90;
   --site-z-menu: 100;
