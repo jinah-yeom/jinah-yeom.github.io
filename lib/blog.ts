@@ -11,6 +11,8 @@ export interface PostMeta {
   description: string;
   /** ISO 날짜 문자열 (YYYY-MM-DD) */
   date: string;
+  /** frontmatter 의 draft: true — 목록·라우트 양쪽에서 빠진다 */
+  draft: boolean;
 }
 
 /*
@@ -55,10 +57,15 @@ function readPost(fileName: string): PostMeta {
     title: requireString(data.title, "title", fileName),
     description: requireString(data.description, "description", fileName),
     date,
+    draft: data.draft === true,
   };
 }
 
-/** 날짜 역순으로 정렬된 전체 글 목록. 빌드 타임에만 호출된다. */
+/**
+ * 날짜 역순으로 정렬된 공개 글 목록. 빌드 타임에만 호출된다.
+ * draft 는 여기서 걸러지므로 목록에도, generateStaticParams 에도 오르지 않는다
+ * — 파일은 남고 라우트만 사라진다.
+ */
 export function getAllPosts(): PostMeta[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
 
@@ -66,6 +73,7 @@ export function getAllPosts(): PostMeta[] {
     .readdirSync(BLOG_DIR)
     .filter((fileName) => fileName.endsWith(".mdx"))
     .map(readPost)
+    .filter((post) => !post.draft)
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 

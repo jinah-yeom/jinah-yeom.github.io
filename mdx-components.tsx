@@ -62,6 +62,28 @@ const components: MDXComponents = {
       {...props}
     />
   ),
+  /*
+   * 표는 좁은 화면에서 본문 폭을 밀어내지 않도록 자기 안에서만 가로 스크롤한다.
+   * wrapper 를 끼울 수 없어(MDX 가 table 을 그대로 넘긴다) block + overflow 로 처리한다.
+   */
+  table: (props) => (
+    <table
+      className="my-[var(--space-300)] block w-full overflow-x-auto border-collapse text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)]"
+      {...props}
+    />
+  ),
+  th: (props) => (
+    <th
+      className="border-b border-[var(--color-divider-normal)] px-[var(--space-150)] py-[var(--space-100)] text-left align-top whitespace-nowrap [font-weight:var(--font-weight-700)]"
+      {...props}
+    />
+  ),
+  td: (props) => (
+    <td
+      className="border-b border-[var(--color-divider-alternative)] px-[var(--space-150)] py-[var(--space-100)] text-left align-top text-[var(--color-label-neutral)]"
+      {...props}
+    />
+  ),
   /* pre 안의 code 는 인라인 코드 스타일(배경·패딩)을 걷어낸다 */
   pre: (props) => (
     <pre
