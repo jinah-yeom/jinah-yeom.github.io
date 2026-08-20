@@ -40,20 +40,13 @@ const WORKS: WorkSectionProps[] = [
     ],
     visuals: [
       {
-        src: "/images/work/keeper-listview-date.svg",
-        alt: "날짜 선택 Bottom Sheet",
-        ratio: "tall",
+        /* 상세 페이지 Hero 와 같은 이미지 — 목록과 상세가 같은 얼굴을 갖게 한다 */
+        src: "/images/work/keeper-listview-hero.png",
+        alt: "개선된 Keeper 앱 화면 세 개 — 업무 리스트, 날짜 선택 Bottom Sheet, 지점·동·층 필터 Bottom Sheet.",
+        ratio: "wide",
         tone: "light",
-        width: 600,
-        height: 800,
-      },
-      {
-        src: "/images/work/keeper-listview-card.svg",
-        alt: "재설계한 업무 카드",
-        ratio: "tall",
-        tone: "dark",
-        width: 600,
-        height: 800,
+        width: 1920,
+        height: 1080,
       },
     ],
   },
