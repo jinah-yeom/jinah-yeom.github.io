@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import ApproachList, {
   type ApproachItem,
 } from "@/components/project/ApproachList";
-import ImpactStats, {
-  type ImpactStat,
-} from "@/components/project/ImpactStats";
 import MetaGrid, { type MetaItem } from "@/components/project/MetaGrid";
 import ProjectNav from "@/components/project/ProjectNav";
 import ProblemBlock, {
@@ -35,11 +32,6 @@ const OVERVIEW = [
   "문제 구조를 재정의하는 것부터 시작했습니다. 사용자 행동 분석과 운영팀 요구를 바탕으로 필터·카드 정보 구조의 신규 정책을 수립하고, 날짜 선택에서 시작해 조건을 좁혀가는 탐색 구조를 설계했습니다. 이 프로젝트에서 정책 수립부터 PRD, 화면 설계, 스프린트 태스크 관리까지 출시의 전 과정을 혼자 맡았습니다.",
 ];
 
-const IMPACT: ImpactStat[] = [
-  { from: "82%", to: "36%", label: "탐색 시 스크롤 반복 경험" },
-  { from: "100%", to: "40%", label: "특이사항 확인 누락 경험" },
-];
-
 const BACKGROUND = [
   "Keeper는 공간 운영사와 현장 작업자(키퍼)를 연결하는 B2B 플랫폼입니다. 키퍼는 앱의 업무 리스트에서 청소·점검 업무를 직접 잡아 수행합니다. 어떤 업무를 잡을지 판단하는 기준은 명확합니다. 체크아웃 시간, 객실 상태, 야간 여부, 자신의 동선. 즉 리스트뷰는 단순한 목록이 아니라 키퍼의 하루 수입과 동선을 결정하는 의사결정 화면입니다.",
   "그런데 이 화면이 의사결정을 돕지 못하고 있었습니다. 잡기–예약–수행–완료로 이어지는 업무 흐름의 첫 단계가 가장 비효율적이었습니다.",
@@ -47,23 +39,9 @@ const BACKGROUND = [
 
 const PROBLEMS: ProblemBlockProps[] = [
   {
-    headline: "날짜 기준 탐색이 불가능해, 일정 계획을 세울 수 없다",
+    headline: "리스트가 키퍼의 판단을 돕지 못했다",
     paragraphs: [
-      "특정 날짜의 업무를 바로 찾을 방법이 없었습니다. \"모레는 업무가 많은가?\"라는 단순한 질문에 답하려면 리스트 전체를 두 번 훑어야 했습니다. 탐색 비용을 넘어, 키퍼가 자신의 일주일을 계획하지 못하게 만드는 구조적 문제였습니다.",
-    ],
-  },
-  {
-    headline: "조건으로 업무를 찾을 수 없어, 하루 수십 번 전체 리스트를 스크롤한다",
-    stat: { num: "82%", label: "탐색 시 스크롤 반복이 많다고 답한 키퍼" },
-    paragraphs: [
-      "키퍼는 체크아웃 시간·객실 상태·야간 여부로 업무를 고르지만, 기존 앱에는 필터가 없었습니다. 탐색이 길어질수록 좋은 조건의 업무는 다른 키퍼에게 먼저 넘어갑니다. 탐색 비용이 곧 기회 손실이었습니다.",
-    ],
-  },
-  {
-    headline: "판단에 필요한 정보가 카드 하단에 숨어 있다",
-    stat: { num: "100%", label: "특이사항 확인을 놓친 경험이 있다고 답한 키퍼" },
-    paragraphs: [
-      "빠르게 스크롤하는 탐색에서 하단 정보는 사실상 보이지 않는 정보입니다. 특이사항을 놓치면 현장에서 업무 범위가 달라지고 운영팀 CS로 이어집니다. 색상 강조도 실제 위험도와 무관해 판단을 돕지 못했습니다.",
+      "기존 앱에는 필터도, 날짜 이동도 없었습니다. 원하는 조건의 업무 하나를 찾기 위해 전체 리스트를 처음부터 끝까지 훑는 일이 하루에도 수십 번 반복됐고, 판단에 필요한 특이사항은 카드 하단에 숨어 있어 놓치기 일쑤였습니다. 탐색 비용이 곧 기회 손실이었고, 놓친 정보는 현장의 업무 범위 변화와 운영팀 CS로 이어졌습니다.",
     ],
   },
 ];
@@ -193,45 +171,46 @@ export default function KeeperListviewPage() {
       {/* 3. Overview */}
       <ProseSection eyebrow="OVERVIEW" paragraphs={OVERVIEW} />
 
-      {/* 4. Impact */}
-      <ImpactStats
-        stats={IMPACT}
-        caption="운영팀 파일럿 테스트 기준. 특이사항 인지율 상승과 판단 부담 감소 피드백 확인."
-      />
-
-      {/* 5. Background */}
+      {/* 4. Background */}
       <ProseSection
         eyebrow="BACKGROUND"
         headline="키퍼는 리스트에서 하루의 일을 고른다"
         paragraphs={BACKGROUND}
+        /* 원본 3840×2160 — 다른 대표 이미지와 같이 1920px 로 리사이즈해 넣었다 */
         media={[
           {
-            label: "기존 리스트뷰 — 필터·날짜 이동 없는 화면",
+            label: "기존 리스트뷰 화면",
             ratio: "wide",
+            src: "/images/work/keeper-listview-asis.png",
+            alt: "개선 전 Keeper 앱의 업무 리스트 화면. 상단에 지점·업무 칩 줄과 총 10건·필터 버튼, 12월 04일 날짜 표시가 있고, 그 아래로 업무 카드가 쌓여 있다. 카드마다 업무명과 시간이 놓인 제목 줄 전체가 파랑·초록·빨강 색 띠로 덮여 있고, 그 아래 지점·동·층·호수가 한 줄로, 맨 아래에 금액과 잡기 버튼이 놓인다. 특이사항이나 요청사항을 위쪽에서 확인할 수 있는 영역은 없다.",
+            width: 1920,
+            height: 1080,
+            caption:
+              "기존 리스트뷰 — 판단에 필요한 정보가 색 띠와 카드 하단에 흩어져 있던 화면",
           },
         ]}
       />
 
-      {/* 6. Problem */}
+      {/* 5. Problem */}
       <ProseSection eyebrow="PROBLEM">
         {PROBLEMS.map((problem) => (
           <ProblemBlock key={problem.headline} {...problem} />
         ))}
       </ProseSection>
 
-      {/* 7. Approach */}
+      {/* 6. Approach */}
       <ProseSection eyebrow="APPROACH">
         <ApproachList items={APPROACHES} />
       </ProseSection>
 
-      {/* 8. Solution */}
+      {/* 7. Solution */}
       <ProseSection eyebrow="SOLUTION">
         {SOLUTIONS.map((solution) => (
           <SolutionBlock key={solution.headline} {...solution} />
         ))}
       </ProseSection>
 
-      {/* 9. Interaction Detail */}
+      {/* 8. Interaction Detail */}
       <ProseSection
         eyebrow="INTERACTION DETAIL"
         headline="조건에 맞는 업무가 없을 때도 탐색이 끊기지 않는다"
@@ -240,7 +219,7 @@ export default function KeeperListviewPage() {
         ]}
       />
 
-      {/* 10. Collaboration */}
+      {/* 9. Collaboration */}
       <ProseSection
         eyebrow="COLLABORATION"
         headline="정책 문서와 화면 단위 PRD로 해석 차이를 없앴다"
@@ -270,7 +249,7 @@ export default function KeeperListviewPage() {
         ]}
       />
 
-      {/* 11. Outcome */}
+      {/* 10. Outcome */}
       <ProseSection
         eyebrow="OUTCOME"
         headline="탐색이 빨라지자 판단이 정확해졌다"
@@ -279,7 +258,7 @@ export default function KeeperListviewPage() {
         ]}
       />
 
-      {/* 12. Reflection */}
+      {/* 11. Reflection */}
       <ProseSection
         eyebrow="REFLECTION"
         paragraphs={[
@@ -288,7 +267,7 @@ export default function KeeperListviewPage() {
         ]}
       />
 
-      {/* 13. 이전/다음 프로젝트 */}
+      {/* 12. 이전/다음 프로젝트 */}
       <ProjectNav slug="keeper-listview" />
     </div>
   );
