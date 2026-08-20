@@ -21,7 +21,6 @@
 ## 공통 레이아웃
 - 헤더: 3분할 그리드 — 좌 `JINAH YEOM`(홈 링크) / 중앙 `WORK ABOUT BLOG` / 우 `CONTACT`
 - 활성 내비: 밑줄(border-bottom) 표시. hover는 색상 전환만
-- 코너 라벨: 좌하단 `SEOUL`, 우하단 `©2026` — fixed, 모바일에서 숨김
 - 링크 hover는 underline (색 변화 아님)
 
 ## 워크 섹션 (홈, 4개)
@@ -45,7 +44,7 @@
 - 답변 데이터는 `lib/chatbot-data.ts`로 분리 — 이후 LLM 프록시로 교체 가능한 인터페이스로 (async answer(question): string 형태)
 
 ## 컴포넌트 분리 가이드
-- `components/layout/Header.tsx`, `Footer.tsx`, `CornerLabels.tsx`
+- `components/layout/Header.tsx`, `Footer.tsx`
 - `components/home/Hero.tsx`, `WorkSection.tsx` (props: title, paragraphs, meta[], visual, href)
 - `components/blog/PostList.tsx`
 - `components/chat/ChatFab.tsx`, `ChatPanel.tsx`

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import CornerLabels from "@/components/layout/CornerLabels";
 import ChatFab from "@/components/chat/ChatFab";
 
 export const metadata: Metadata = {
@@ -23,7 +22,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
-        <CornerLabels />
         <ChatFab />
       </body>
     </html>
