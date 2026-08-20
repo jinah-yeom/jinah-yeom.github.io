@@ -34,6 +34,7 @@ Props는 interface, 콘텐츠는 페이지에서 데이터로 주입 (JSX 하드
 - 이미지 자리는 전부 `ImageSlot` 플레이스홀더 + 어떤 이미지가 들어갈지 캡션 텍스트로 표기 (예: "as-is/to-be — 날짜 탐색")
 - "프로토타입 링크", "컴포넌트 링크" 등 링크류는 TODO 주석 + 비활성 표시
 - **이미지 규격: 가로 최대 1920px, 가급적 WebP (없으면 PNG).** `next.config.ts`가 `images.unoptimized`(static export 필수)라 Next가 리사이즈·포맷 변환을 하지 않고 원본이 그대로 내려간다 — 넣기 전에 줄일 것. 리사이즈는 `sips --resampleWidth 1920 <파일> --out <파일>`. 히어로처럼 첫 화면에 보이는 이미지는 `ImageSlot`에 `priority` 지정
+- **영상 규격: ffmpeg h264, crf 28, faststart, 무음(`-an`), poster jpg 추출.** 자동재생 영상은 소리가 없어야 하고, faststart 라야 다운로드 완료 전에 첫 프레임이 뜬다. poster 는 `prefers-reduced-motion` 일 때 정지 화면으로도 쓰인다
 - Next Case: "Keeper Admin 소모품 구매 기능" — 아직 페이지 없으므로 링크 없이 썸네일 플레이스홀더만
 
 ## 홈 연결

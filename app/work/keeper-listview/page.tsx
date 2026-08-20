@@ -96,7 +96,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
       {
         kind: "video",
         label: "날짜 선택 Bottom Sheet 흐름",
-        /* 1080×2826 세로 영상 — contain 이라야 폰 화면 전체가 잘리지 않고 들어간다 */
+        /* 1080×2266 세로 영상 — contain 이라야 폰 화면 전체가 잘리지 않고 들어간다 */
         ratio: "wide",
         fit: "contain",
         src: "/videos/date-picker-flow.mp4",
