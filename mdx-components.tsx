@@ -56,6 +56,19 @@ const components: MDXComponents = {
       {...props}
     />
   ),
+  /*
+   * 본문 이미지. next/image 를 쓰지 않는다 — static export 라
+   * images.unoptimized 이고, MDX 가 넘기는 건 크기 정보 없는 img 다.
+   * 캡션은 이미지 다음 문단의 이탤릭 텍스트가 맡는다.
+   */
+  img: (props) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      className="my-[var(--space-300)] h-auto max-w-full rounded-[var(--radius-300)] border border-[var(--color-divider-alternative)]"
+      alt=""
+      {...props}
+    />
+  ),
   code: (props) => (
     <code
       className="rounded-[var(--radius-100)] bg-[var(--color-gray-100)] px-[var(--space-050)] font-[family-name:var(--site-font-mono)] text-[length:var(--font-size-075)]"
