@@ -95,7 +95,7 @@ const PIPELINE_NODES: PipelineNode[] = [
 const SOLUTION_1 = {
   headline: "색을 고르는 일이 값을 옮기는 일이 되지 않게 했다",
   paragraph:
-    "토큰은 Token Studio에서 설계하고, Style Dictionary가 CSS 변수로 빌드합니다. 생성된 tokens.css는 수동 편집이 금지된 산출물이라, 디자인 결정의 출처는 언제나 한 곳입니다. 색상·간격·서체·반경 등 346개의 CSS 변수가 이 파이프라인에서 생성되며, 컴포넌트는 var(--token) 참조만 허용됩니다. 하드코딩된 값은 리뷰가 아니라 스크립트 검증에서 걸리게 했습니다.",
+    "토큰은 Token Studio에서 설계하고, Style Dictionary가 CSS 변수로 빌드합니다. 생성된 tokens.css는 수동 편집이 금지된 산출물이라, 디자인 결정의 출처는 언제나 한 곳입니다. Figma Variables 322개(primitive 266 · semantic 56)가 이 파이프라인을 지나며, 그림자 같은 복합 토큰이 속성 단위로 풀려 346개의 CSS 변수로 빌드됩니다. 컴포넌트는 var(--token) 참조만 허용됩니다. 하드코딩된 값은 리뷰가 아니라 스크립트 검증에서 걸리게 했습니다.",
   /* 원본 16:9 — hero 프레임이라야 Figma 패널 좌우가 잘리지 않는다 */
   media: [
     {
@@ -202,16 +202,7 @@ export default function KdsPage() {
       <ProseSection eyebrow="OVERVIEW" paragraphs={OVERVIEW} />
 
       {/* 4. Background */}
-      <ProseSection
-        eyebrow="BACKGROUND"
-        paragraphs={BACKGROUND}
-        media={[
-          {
-            label: "as-is 화면들의 스타일 파편화 비교",
-            ratio: "wide",
-          },
-        ]}
-      />
+      <ProseSection eyebrow="BACKGROUND" paragraphs={BACKGROUND} />
 
       {/* 5. Problem */}
       <ProseSection eyebrow="PROBLEM" paragraphs={PROBLEM} />
@@ -256,10 +247,27 @@ export default function KdsPage() {
         paragraphs={[
           "혼자 만드는 시스템이어도 혼자 결정하지 않았습니다. 스펙 변경은 PR 리뷰를 거쳤고, 개발 리뷰어와의 논의가 컴포넌트 API의 경계를 다듬었습니다. Figma가 항상 진실이었습니다 — 코드와 Figma가 어긋나면 어느 쪽이 맞는지 먼저 확정하고 다른 쪽을 고쳤습니다.",
         ]}
+        /* 원본 1920×1183 — 16:10 에 거의 맞아 wide 프레임에서 거의 잘리지 않는다 */
         media={[
           {
-            label: "PR 리뷰 화면 — 마스킹 후",
+            label: "PR — TabsTrigger suffixIcon prop 추가",
             ratio: "wide",
+            src: "/images/work/kds-collab-pr-01.png",
+            alt: "GitHub Pull Request 화면. 제목은 \"feat: TabsTrigger suffixIcon prop 추가\" 이고 Merged 상태이며 리뷰어 한 명이 승인 표시를 남겼다. 본문이 요약·배경·변경·설계 결정·하위호환·관련 티켓으로 나뉘어 있고, 설계 결정 항목에는 Figma 의 boolean 이 아니라 ReactNode 슬롯으로 받는 이유, notification dot 앵커를 옮기지 않는 이유, 아이콘 크기를 20px 로 고정하고 sizeConfig 를 건드리지 않는 이유가 각각 한 줄로 적혀 있다.",
+            width: 1920,
+            height: 1183,
+            caption:
+              "결정과 근거를 PR 본문에 적어 두면 리뷰가 코드가 아니라 판단을 본다",
+          },
+          {
+            label: "PR — Chip 컴포넌트 Figma 스펙 반영",
+            ratio: "wide",
+            src: "/images/work/kds-collab-pr-04.png",
+            alt: "GitHub Pull Request 화면. 제목은 \"feat: Chip 컴포넌트 Figma 스펙 반영 및 오버레이 구조 개선\" 이고 Merged 상태다. 본문은 리팩터와 스펙 반영 두 커밋으로 나뉘어 있고, 스펙 반영 쪽에 size 별 paddingH·gap·icon 값을 as-is 와 to-be 두 열로 비교한 표가 --space-100(8) → --space-150(12) 처럼 토큰 이름과 픽셀 값을 함께 적어 놓았다. 아래에는 Outline border 색을 상태별로 비교한 표가 이어진다.",
+            width: 1920,
+            height: 1184,
+            caption:
+              "Figma 가 바뀌면 무엇이 어떤 토큰으로 바뀌는지 표로 옮겨 놓고 합의했다",
           },
         ]}
       />
