@@ -54,8 +54,8 @@ const WORKS: WorkSectionProps[] = [
     title: "KEEPER DESIGN SYSTEM",
     href: "/work/kds",
     paragraphs: [
-      "B2B 어드민 제품의 0→1 디자인 시스템을 혼자 설계하고 구현했습니다.",
-      "Token Studio에서 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인을 구축하고, Figma Code Connect로 디자인과 코드를 1:1로 연동했습니다.",
+      "MUI 라이브러리로 만들어져 있던 Keeper Admin을 자체 디자인 시스템으로 재구축했습니다.",
+      "shadcn/React 기반으로 33종 컴포넌트를 다시 설계·구현하고 전체 화면을 마이그레이션했으며, 토큰 파이프라인과 문서 사이트까지 시스템의 설계·구현·운영을 혼자 완결했습니다.",
     ],
     meta: [
       { label: "Years", value: "2025 – 2026" },
@@ -64,9 +64,9 @@ const WORKS: WorkSectionProps[] = [
         label: "Scope",
         value: (
           <>
-            Design Tokens, Components,
+            Design Tokens, 33 Components,
             <br />
-            Docs, AI Workflow
+            Migration, Docs
           </>
         ),
       },
@@ -95,46 +95,6 @@ const WORKS: WorkSectionProps[] = [
         tone: "dark",
         width: 600,
         height: 800,
-      },
-    ],
-  },
-  {
-    title: "KDS DOCUMENTATION",
-    paragraphs: [
-      "시스템의 규칙이 찾아지고 읽히도록, Foundations부터 컴포넌트 가이드까지 담은 문서 사이트를 만들었습니다.",
-      "모든 예시는 실제 토큰과 컴포넌트로 렌더링되어 문서와 구현이 어긋날 수 없는 구조입니다.",
-    ],
-    meta: [
-      { label: "Years", value: "2026" },
-      { label: "Role", value: "Design · Development" },
-      {
-        label: "Scope",
-        value: (
-          <>
-            Docs Site, Foundations,
-            <br />
-            Component Guidelines
-          </>
-        ),
-      },
-      // TODO: 실제 문서 사이트 URL 확정되면 링크로 연결
-      {
-        label: "Link",
-        value: (
-          <span className="underline underline-offset-[var(--space-050)]">
-            Live site ↗
-          </span>
-        ),
-      },
-    ],
-    visuals: [
-      {
-        src: "/images/work/kds-docs.svg",
-        alt: "KDS 문서 사이트",
-        ratio: "wide",
-        tone: "light",
-        width: 960,
-        height: 600,
       },
     ],
   },

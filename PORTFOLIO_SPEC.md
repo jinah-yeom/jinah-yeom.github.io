@@ -25,10 +25,12 @@
 
 ## 워크 섹션 (홈, 4개)
 좌 300px 텍스트 / 우 이미지, 순서:
-1. Keeper Design System → /work/kds 링크
-2. KDS Documentation
+1. Keeper APP 리스트뷰 UX 개선 → /work/keeper-listview 링크
+2. Keeper Design System → /work/kds 링크
 3. Sheets to Variables
 4. Design Review Agent
+
+KDS Documentation 은 별도 섹션이 아니라 KDS 케이스 스터디의 Solution 으로 들어간다 — 문서 사이트는 시스템의 일부이지 별개 작업이 아니다.
 
 각 섹션: 대문자 제목 → 문단 1–2개 → 메타 표(Years/Role/Scope/Link, 라벨-값 행 + 상단 보더). 텍스트는 프로토타입 문구 사용. 이미지는 `public/images/work/` 플레이스홀더로 두고 `<Image>` 자리만 잡을 것 (unoptimized).
 
