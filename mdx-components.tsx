@@ -5,6 +5,10 @@ import {
   PROSE_STRONG,
   PROSE_SUBHEADLINE,
 } from "@/components/project/ProseSection";
+import {
+  CODE_SURFACE,
+  CODE_TEXT,
+} from "@/components/project/SnippetBlock";
 
 /*
  * MDX 본문의 기본 태그 스타일.
@@ -106,7 +110,7 @@ const components: MDXComponents = {
    */
   pre: (props) => (
     <pre
-      className="my-[var(--space-300)] overflow-x-auto rounded-[var(--radius-300)] border border-[var(--color-divider-alternative)] bg-[var(--color-background-alternative)] p-[var(--space-250)] font-[family-name:var(--site-font-mono)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-neutral)] [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-[length:inherit]"
+      className={`my-[var(--space-300)] ${CODE_SURFACE} ${CODE_TEXT} [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-[length:inherit]`}
       {...props}
     />
   ),

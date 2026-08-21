@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Metadata } from "next";
 import ApproachList, {
   type ApproachItem,
@@ -13,6 +15,7 @@ import ProseSection, {
 import SolutionBlock, {
   type SolutionBlockProps,
 } from "@/components/project/SolutionBlock";
+import SnippetBlock from "@/components/project/SnippetBlock";
 import Pipeline, { type PipelineNode } from "@/components/work/Pipeline";
 
 const LEDE =
@@ -201,6 +204,21 @@ const SOLUTIONS: SolutionBlockProps[] = [
   },
 ];
 
+/*
+ * 스니펫은 빌드 타임에 파일에서 읽는다 — 페이지 코드에 옮겨 적지 않는다.
+ * 문서를 고치면 페이지가 따라 바뀌고, 원문과 화면이 어긋날 자리가 없다.
+ */
+function readSnippet(filename: string): string {
+  return fs
+    .readFileSync(path.join(process.cwd(), "content", "work", filename), "utf8")
+    .trimEnd();
+}
+
+const SNIPPETS = [
+  { filename: "preflight-prompt.md", content: readSnippet("preflight-prompt.md") },
+  { filename: "preflight-report.md", content: readSnippet("preflight-report.md") },
+];
+
 export default function KdsPage() {
   return (
     <div className="flex flex-col gap-[var(--space-900)]">
@@ -262,9 +280,20 @@ export default function KdsPage() {
         eyebrow="INTERACTION DETAIL"
         headline="AI 워크플로"
         paragraphs={[
-          "반복 검증은 사람이 아니라 구조가 하도록 도구를 만들었습니다. 토큰 정합성 검사 스킬은 하드코딩된 색상·간격 값을 잡아내고, 컴포넌트 생성 절차를 자동화해 새 컴포넌트가 규칙 위에서 시작하게 했습니다.",
+          "반복 검증은 사람이 아니라 구조가 하도록 도구를 만들었습니다. 토큰 정합성 검사 스킬은 하드코딩된 색상·간격 값을 잡아내고, 마이그레이션을 마친 화면은 핸드오프 전에 스킬로 정합성을 검사했습니다 — API 응답 필드와 화면 텍스트의 1:1 대조, 엣지 케이스 커버리지, 조건부 필드 존재 여부까지 검사 기준을 프롬프트에 명시하고, 결과를 수정 필수·협의·확인 완료로 분류해 받았습니다. 아래는 실제 사용한 프롬프트와 리포트의 발췌입니다.",
         ]}
-      />
+      >
+        {/*
+         * ProseSection 의 children 은 블록 사이를 space-700 으로 벌린다.
+         * 스니펫끼리는 미디어 슬롯과 같은 간격이어야 해서 한 겹으로 묶어,
+         * 사이 간격을 SnippetBlock 자신의 상하 마진이 정하게 한다.
+         */}
+        <div>
+          {SNIPPETS.map((snippet) => (
+            <SnippetBlock key={snippet.filename} {...snippet} />
+          ))}
+        </div>
+      </ProseSection>
 
       {/* 9. Collaboration */}
       <ProseSection
