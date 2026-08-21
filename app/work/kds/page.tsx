@@ -129,7 +129,27 @@ const SOLUTIONS: SolutionBlockProps[] = [
       "상태 표현도 규칙으로 분리했습니다. 선택됨은 배경 토큰으로, 인터랙션(hover·pressed)은 오버레이로 표현해 두 상태가 겹쳐도 충돌하지 않습니다. 시트에 담겨야 하는 컴포넌트는 container prop으로 자신의 크롬(배경·보더·반경·그림자)을 벗을 수 있어, 같은 컴포넌트가 독립 화면과 Bottom Sheet 양쪽에서 동작합니다.",
     ],
     media: [
-      { label: "컴포넌트 variant 세트 + container prop 전후 비교", ratio: "wide" },
+      {
+        label: "컴포넌트 전체 — 6개 카테고리 33종",
+        /* 원본 2.31 로 매우 넓다 — hero(16:9) 가 wide 보다 좌우를 덜 잘라낸다 */
+        ratio: "hero",
+        src: "/images/work/kds-components-overview.png",
+        alt: "Figma 캔버스에 컴포넌트가 이름표를 달고 격자로 늘어서 있다. 윗줄은 Button·Chip·Floating Action·Checkbox·Date Picker·Field·Radio·Switch·Select·Text Input·Textarea·Time Picker·ToggleGroup·Accordion·Avatar·Badge, 아랫줄은 Alert·Progress·Skeleton·Sonner·Spinner·Dialog·Tooltip·Menu·Popover·BottomSheet·Breadcrumb·Pagination·GNB·Sidebar·Navigation·Tab·Guideline 이다. 각 이름표 아래에는 그 컴포넌트의 가이드와 variant 시트가 여러 장씩 붙어 있다.",
+        width: 1920,
+        height: 832,
+        caption:
+          "Actions·Controls·Display·Feedback·Layout·Navigation 6개 카테고리에 33종 — 컴포넌트마다 같은 형식의 시트를 갖는다",
+      },
+      {
+        label: "Button 컴포넌트 — variant × state 매트릭스와 속성 패널",
+        ratio: "wide",
+        src: "/images/work/kds-button-variants.png",
+        alt: "Figma 에서 Button 원본 컴포넌트를 선택한 화면. 캔버스의 선택 영역 아래에 \"168 Variants\" 배지가 붙어 있고, 그 안에 variant 별 행과 상태별 열로 버튼이 채워져 있으며 아래쪽 절반은 같은 조합의 아이콘 전용 버튼이다. 우측 속성 패널에는 Variant(Brand Solid, Brand Outline, Neutral Solid …), Size(Small, Medium, Large), Icon Only(False, True), State(Enabled, Hover, Pressed, Disabled), Loading, Label, Prefix Icon 과 Suffix Icon 이 각각 별도 속성으로 나열돼 있고, 그 아래 Nested instances 로 Leading Icon·Trailing Icon·Interaction 이 있다.",
+        width: 1920,
+        height: 1243,
+        caption:
+          "버튼 하나가 variant·size·state 조합으로 168개 — 상태와 아이콘은 전부 속성으로 분리된다",
+      },
     ],
   },
   {
@@ -190,8 +210,13 @@ export default function KdsPage() {
         title="Keeper Design System"
         lede={LEDE}
         image={{
-          label: "대표 이미지 — 컴포넌트 세트 또는 토큰 팔레트",
+          label: "대표 이미지 — 토큰과 컴포넌트 매트릭스",
           ratio: "hero",
+          src: "/images/work/kds-hero.png",
+          alt: "왼쪽에 Semantic/themeDependent 표가 primary → blue-500 → #1E6EF5FF 처럼 이름·토큰·값 세 열로 놓여 있고, 그 아래 Primitive/blue 색상 램프와 blue-050 #ECF2FE 부터 이어지는 hex 목록이 있다. 오른쪽에는 Button 컴포넌트가 큰 매트릭스로 펼쳐져 파랑 솔리드·아웃라인·어두운 솔리드·회색·빨강 등 variant 가 행마다 바뀌고, 한 행 안에서 기본·호버·눌림·비활성 상태가 나란히 이어지며, 아래쪽에는 같은 조합의 아이콘 전용 버튼이 놓여 있다.",
+          width: 1920,
+          height: 1080,
+          priority: true,
         }}
       />
 
