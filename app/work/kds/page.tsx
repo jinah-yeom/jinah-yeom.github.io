@@ -96,10 +96,28 @@ const SOLUTION_1 = {
   headline: "색을 고르는 일이 값을 옮기는 일이 되지 않게 했다",
   paragraph:
     "토큰은 Token Studio에서 설계하고, Style Dictionary가 CSS 변수로 빌드합니다. 생성된 tokens.css는 수동 편집이 금지된 산출물이라, 디자인 결정의 출처는 언제나 한 곳입니다. 색상·간격·서체·반경 등 346개의 CSS 변수가 이 파이프라인에서 생성되며, 컴포넌트는 var(--token) 참조만 허용됩니다. 하드코딩된 값은 리뷰가 아니라 스크립트 검증에서 걸리게 했습니다.",
-  media: {
-    label: "Token Studio 와 생성된 tokens.css 화면",
-    ratio: "wide",
-  } satisfies MediaItem,
+  /* 원본 16:9 — hero 프레임이라야 Figma 패널 좌우가 잘리지 않는다 */
+  media: [
+    {
+      label: "Figma Variables — semantic 컬렉션",
+      ratio: "hero",
+      src: "/images/work/kds-var-semantic.png",
+      alt: "Figma Variables 패널의 semantic 컬렉션. 좌측에 primitive 266개, semantic 56개, admin_lokalise 1530개 컬렉션이 있고 semantic 아래 color 그룹이 themeDependent·theme·background·foreground·border·divider·label 로 나뉘어 있다. 우측 표에는 primary·secondary·success·warning·danger 같은 이름이 color/blue/500, color/green/600 처럼 primitive 값을 가리키고 있다.",
+      width: 1920,
+      height: 1056,
+      caption: "화면에서 고르는 것은 색이 아니라 primary·danger 같은 역할 이름이다",
+    },
+    {
+      label: "Figma Variables — primitive 컬렉션",
+      ratio: "hero",
+      src: "/images/work/kds-var-primitive.png",
+      alt: "Figma Variables 패널의 primitive 컬렉션. 좌측 그룹 목록에 color 110개, font 49개, dimension 16개, radius 12개, space 18개, motion 10개, shadows 51개가 있고, 우측 표에는 gray 000~950, red 050~900 같은 색상 스케일이 FFFFFF·F7F7FA 처럼 실제 hex 값으로 나열돼 있다.",
+      width: 1920,
+      height: 1060,
+      caption:
+        "역할 이름이 가리키는 원시 값 — 색상·서체·간격·모션까지 한 곳에서 정의된다",
+    },
+  ] satisfies MediaItem[],
 };
 
 /* TODO: 이미지가 준비되면 각 media 에 src·alt·width·height 를 채운다 */
@@ -120,7 +138,16 @@ const SOLUTIONS: SolutionBlockProps[] = [
       "Figma Code Connect로 디자인 컴포넌트와 코드 컴포넌트를 매핑해, Figma에서 컴포넌트를 선택하면 해당하는 실제 코드 스니펫이 보입니다. variant·size·state의 이름이 양쪽에서 완전히 같아, \"이 버튼의 그 상태\"를 설명하는 통역이 사라졌습니다. 개발자와 기획자는 디자인 목업이 아니라 스펙 그 자체에서 작업을 시작합니다.",
     ],
     media: [
-      { label: "Code Connect 연결 화면 — Figma Dev Mode 스니펫", ratio: "wide" },
+      {
+        label: "Code Connect 연결 화면 — Figma Dev Mode",
+        ratio: "hero",
+        src: "/images/work/kds-codeconnect-02.png",
+        alt: "Figma Dev Mode 에서 Button 컴포넌트를 선택한 화면. 가운데 다이얼로그 왼쪽에 파란 Label 버튼이, 오른쪽에 GitHub 저장소의 button.tsx 로 연결된 코드가 <Button variant=\"brand-solid\" size=\"medium\">Label</Button> 로 표시되고 상단에 Connected 배지가 붙어 있다. 우측 Inspect 패널의 Variant 는 Brand Solid, Size 는 Medium 으로 코드의 prop 값과 이름이 같다.",
+        width: 1920,
+        height: 1047,
+        caption:
+          "Figma 에서 고른 Brand Solid·Medium 이 코드의 variant·size prop 과 같은 이름으로 나온다",
+      },
     ],
   },
   {
@@ -128,8 +155,28 @@ const SOLUTIONS: SolutionBlockProps[] = [
     paragraphs: [
       "Foundations(색상·타이포·간격)부터 컴포넌트별 가이드까지 담은 문서 사이트를 만들었습니다. 문서의 모든 예시는 이미지가 아니라 실제 토큰과 컴포넌트로 렌더됩니다 — 토큰이 바뀌면 문서도 함께 바뀌므로, 문서와 구현이 어긋날 수 없는 구조입니다.",
     ],
+    /* 원본 3:2 — wide 프레임에서 위아래가 조금 잘리지만 본문은 온전히 남는다 */
     media: [
-      { label: "문서 사이트 Foundations · 컴포넌트 페이지", ratio: "wide" },
+      {
+        label: "문서 사이트 — Button Variant·Size",
+        ratio: "wide",
+        src: "/images/work/kds-docs-02.png",
+        alt: "문서 사이트의 Button 페이지 Variant 섹션. Brand Solid, Brand Outline, Neutral Solid, Neutral Outline, Neutral Weak, Critical Solid, Ghost 일곱 가지가 실제 버튼으로 렌더돼 있고 각각 옆에 언제 쓰는지 한 줄 설명이 붙어 있다. 아래 Size 섹션에는 Small 32px, Medium 40px, Large 48px 세 버튼이 나란히 놓여 있다.",
+        width: 1920,
+        height: 1293,
+        caption:
+          "일곱 가지 variant 를 이미지가 아니라 실제 컴포넌트로 렌더한다 — 토큰이 바뀌면 이 화면도 함께 바뀐다",
+      },
+      {
+        label: "문서 사이트 — Button Definition·Anatomy",
+        ratio: "wide",
+        src: "/images/work/kds-docs-01.png",
+        alt: "문서 사이트의 Button 페이지 상단. Definition 에 버튼의 정의가, Anatomy 에 Container·Leading Icon·Label·Trailing Icon 네 부분을 번호로 짚은 도해와 설명이 있고 그 아래 Properties 와 Variant 섹션이 이어진다. 좌측 사이드바에는 Actions·Controls·Display·Feedback 카테고리별 컴포넌트 목록이 있고 아직 문서화되지 않은 항목은 흐리게 표시돼 있다.",
+        width: 1920,
+        height: 1303,
+        caption:
+          "언제 쓰는지, 무엇으로 이루어졌는지까지 컴포넌트마다 같은 형식으로 적어 뒀다",
+      },
     ],
   },
 ];
@@ -184,7 +231,9 @@ export default function KdsPage() {
           <h3 className={PROSE_HEADLINE}>{SOLUTION_1.headline}</h3>
           <p className={PROSE_PARAGRAPH}>{SOLUTION_1.paragraph}</p>
           <Pipeline nodes={PIPELINE_NODES} />
-          <MediaSlot {...SOLUTION_1.media} />
+          {SOLUTION_1.media.map((item) => (
+            <MediaSlot key={item.label} {...item} />
+          ))}
         </article>
 
         {SOLUTIONS.map((solution) => (
