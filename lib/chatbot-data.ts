@@ -52,7 +52,7 @@ const TOPICS: Topic[] = [
     question: "KDS는 어떤 프로젝트인가요?",
     keywords: ["kds", "디자인시스템", "keeper", "designsystem", "토큰"],
     answer:
-      "B2B 어드민 제품을 위한 0→1 디자인 시스템이에요. 토큰 파이프라인(Token Studio → Style Dictionary), 컴포넌트 12개, Figma Code Connect 연동, 문서 사이트까지 혼자 만들었어요. 홈의 KEEPER DESIGN SYSTEM 섹션을 눌러 자세히 볼 수 있어요.",
+      "MUI 로 만들어져 있던 B2B 어드민 제품을 자체 디자인 시스템으로 재구축한 프로젝트예요. 토큰 파이프라인(Token Studio → Style Dictionary), CSS 변수 346개, 컴포넌트 33종, Figma Code Connect 연동, 문서 사이트까지 혼자 만들었어요. 홈의 KEEPER DESIGN SYSTEM 섹션을 눌러 자세히 볼 수 있어요.",
   },
   {
     id: "stack",

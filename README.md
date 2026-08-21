@@ -11,7 +11,7 @@
 | --- | --- |
 | 웹사이트 | **[jinah-yeom.github.io](https://jinah-yeom.github.io)** |
 | 대표 케이스 스터디 | [Keeper 리스트뷰 UX 개선](https://jinah-yeom.github.io/work/keeper-listview) — 정책·PRD·설계·스프린트 1인 완결 |
-| 디자인 시스템 | [Keeper Design System](https://jinah-yeom.github.io/work/kds) — 토큰 300+ · 컴포넌트 12종 · 0→1 |
+| 디자인 시스템 | [Keeper Design System](https://jinah-yeom.github.io/work/kds) — CSS 변수 346개 · 컴포넌트 33종 · MUI → 자체 시스템 재구축 |
 
 ---
 

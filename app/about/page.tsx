@@ -89,7 +89,7 @@ const STRENGTHS: AboutItem[] = [
         "디자인 시스템의 전 과정을 혼자 완결할 수 있습니다. Figma에서의 토큰 설계와 컴포넌트 스펙, Next.js 구현, 문서화, 배포 파이프라인까지 다른 손을 거치지 않습니다.",
       ],
       list: [
-        "0→1 디자인 시스템 구축 — 토큰 300+, 컴포넌트 12종",
+        "디자인 시스템 재구축 — CSS 변수 346개, 컴포넌트 33종",
         "Token Studio → Style Dictionary → CSS 변수 파이프라인 설계",
         "Figma Code Connect로 디자인-코드 1:1 매핑 운영",
         "AI 워크플로 구축 — 토큰 검사·컴포넌트 생성 자동화",
@@ -100,7 +100,7 @@ const STRENGTHS: AboutItem[] = [
         "I can complete the entire design-system lifecycle alone — token architecture and component specs in Figma, implementation in Next.js, documentation, and the deployment pipeline, without handing off to anyone.",
       ],
       list: [
-        "Built a 0→1 design system — 300+ tokens, 12 components",
+        "Rebuilt a product on an in-house design system — 346 CSS variables, 33 components",
         "Designed the Token Studio → Style Dictionary → CSS pipeline",
         "Operated 1:1 design-to-code mapping via Figma Code Connect",
         "Automated token checks and component generation with AI workflows",
