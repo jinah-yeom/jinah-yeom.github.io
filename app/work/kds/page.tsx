@@ -1,42 +1,90 @@
 import type { Metadata } from "next";
-import DocSideNav, { type DocNavGroup } from "@/components/work/DocSideNav";
-import InfoBox, { type InfoRow } from "@/components/work/InfoBox";
-import Pipeline, { type PipelineNode } from "@/components/work/Pipeline";
+import ApproachList, {
+  type ApproachItem,
+} from "@/components/project/ApproachList";
+import MediaSlot, { type MediaItem } from "@/components/project/MediaSlot";
+import MetaGrid, { type MetaItem } from "@/components/project/MetaGrid";
 import ProjectNav from "@/components/project/ProjectNav";
+import ProjectHero from "@/components/project/ProjectHero";
+import ProseSection, {
+  PROSE_HEADLINE,
+  PROSE_PARAGRAPH,
+} from "@/components/project/ProseSection";
+import SolutionBlock, {
+  type SolutionBlockProps,
+} from "@/components/project/SolutionBlock";
+import Pipeline, { type PipelineNode } from "@/components/work/Pipeline";
+
+const LEDE =
+  "MUI 기반 제품을 자체 디자인 시스템으로 재구축했습니다 — 토큰 설계부터 33종 컴포넌트, 화면 마이그레이션, 문서까지 한 사람의 손으로.";
 
 export const metadata: Metadata = {
   title: "Keeper Design System",
-  description:
-    "B2B 어드민 제품의 0→1 디자인 시스템을 디자이너 겸 개발자로서 혼자 설계하고 구축한 프로젝트.",
+  description: LEDE,
 };
 
-/*
- * 목차는 본문에 실제로 존재하는 섹션만 넣는다 — 죽은 앵커를 만들지 않기 위해서다.
- * TODO: 프로토타입에 있던 '컴포넌트 원칙' · '문서화' · '회고' 는 본문이 써지면 추가한다.
- * TODO: 스크롤 위치에 따라 current 를 옮기려면 클라이언트 스크롤스파이가 필요하다.
- */
-const NAV_GROUPS: DocNavGroup[] = [
-  { items: [{ label: "개요", href: "#overview", current: true }] },
+const META: MetaItem[] = [
+  { label: "Timeline", value: "2025 – 2026" },
+  { label: "Product", value: "Keeper Admin (Web · Mobile Web)" },
+  { label: "Team", value: "Designer 1 (개발 협업)" },
+  { label: "Role", value: "토큰 설계 · 컴포넌트 · 문서화 · Code Connect (100%)" },
+  { label: "Tools", value: "Figma, Token Studio, Style Dictionary, Next.js" },
+];
+
+const OVERVIEW = [
+  "MUI 라이브러리로 만들어져 있던 Keeper Admin을 자체 디자인 시스템으로 재구축했습니다. shadcn/React 기반으로 33종 컴포넌트를 다시 설계·구현하고 전체 화면을 마이그레이션했으며, Token Studio에서 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인과 규칙이 찾아지고 읽히도록 만든 문서 사이트까지 — 시스템의 설계와 구현, 운영을 혼자 완결했습니다.",
+  "목표는 \"디자이너와 개발자가 같은 언어로 말하는 상태\"였습니다. 색상 하나를 바꾸기 위해 파일 수십 개를 뒤지지 않아도 되고, Figma의 variant 이름이 코드의 prop 이름과 일치하며, 규칙이 문서에 있어 개발자가 묻기 전에 답을 찾을 수 있는 구조를 만들었습니다.",
+];
+
+const BACKGROUND = [
+  "KDS 이전의 Keeper Admin은 MUI 라이브러리 위에 만들어져 있었습니다. 빠르게 화면을 만들 수는 있었지만, 제품의 디자인 언어는 MUI의 기본값과 커스텀 오버라이드 사이 어딘가에 있었습니다. 커스터마이징은 오버라이드 위에 오버라이드를 쌓는 일이었고, 무엇보다 토큰 체계가 없어 디자인 결정이 코드 어디에 어떤 값으로 박혀 있는지 추적할 수 없었습니다.",
+  "자체 시스템으로의 재구축을 결정했습니다 — shadcn/React 기반으로 컴포넌트를 다시 만들고, 전체 화면을 새 시스템으로 마이그레이션하는 계획이었습니다.",
+];
+
+const PROBLEM = [
+  "스타일 값이 코드 곳곳에 하드코딩되어 있어 하나를 바꾸려면 전체를 뒤져야 했고, 그마저도 빠뜨린 곳이 남았습니다. 디자인과 코드가 컴포넌트를 서로 다른 이름으로 불러 스펙 전달마다 통역 비용이 발생했고, 재사용을 전제하지 않은 화면 단위 구현은 새 화면을 만들 때마다 비슷한 UI를 처음부터 다시 만들게 했습니다. 일관성의 붕괴는 디자인 부채가 아니라 매 스프린트의 실질 비용이었습니다.",
+];
+
+const APPROACHES: ApproachItem[] = [
   {
-    label: "SYSTEM",
-    items: [
-      { label: "토큰 파이프라인", href: "#token-pipeline" },
-      { label: "Figma ↔ 코드 연동", href: "#figma-code-connect" },
+    label: "토큰",
+    title: "모든 스타일 값의 단일 소스",
+    bullets: [
+      "Token Studio → Style Dictionary → CSS 변수 자동 빌드",
+      "하드코딩 값은 시스템의 부채로 규정",
+      "생성 파일은 수동 편집 금지",
     ],
   },
   {
-    label: "PROCESS",
-    items: [{ label: "AI 워크플로", href: "#ai-workflow" }],
+    label: "컴포넌트",
+    title: "앱의 사정을 모르는 컴포넌트",
+    bullets: [
+      "콜백과 슬롯만 노출, 앱 로직 비소유",
+      "Figma boolean → 코드 ReactNode slot",
+      "상태 표현은 배경과 오버레이로 분리",
+    ],
+  },
+  {
+    label: "연동",
+    title: "디자인과 코드의 1:1 대응",
+    bullets: [
+      "Figma Code Connect로 컴포넌트 매핑",
+      "variant/size/state 명칭 완전 일치",
+      "스펙 전달이 아니라 스펙 공유",
+    ],
+  },
+  {
+    label: "문서",
+    title: "찾을 수 있는 규칙만 지켜진다",
+    bullets: [
+      "Foundations부터 컴포넌트 가이드까지 문서화",
+      "모든 예시는 실제 토큰·컴포넌트로 렌더",
+      "문서와 구현이 어긋날 수 없는 구조",
+    ],
   },
 ];
 
-const INFO_ROWS: InfoRow[] = [
-  { term: "기간", description: "2025 — 2026" },
-  { term: "역할", description: "Design · Development (1인)" },
-  { term: "스택", description: "Next.js · Tailwind v4 · Token Studio" },
-  { term: "산출물", description: "토큰 300+ · 컴포넌트 12 · 문서 사이트" },
-];
-
+/* 이 사이트의 토큰도 같은 파이프라인을 거쳐 나온다 — tokens.css 가 그 결과물이다 */
 const PIPELINE_NODES: PipelineNode[] = [
   { label: "Token Studio" },
   { label: "Style Dictionary" },
@@ -44,68 +92,148 @@ const PIPELINE_NODES: PipelineNode[] = [
   { label: "Components" },
 ];
 
-const HEADING =
-  "mt-[var(--space-500)] mb-[var(--space-150)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-300)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] [font-weight:var(--font-weight-700)]";
+const SOLUTION_1 = {
+  headline: "색을 고르는 일이 값을 옮기는 일이 되지 않게 했다",
+  paragraph:
+    "토큰은 Token Studio에서 설계하고, Style Dictionary가 CSS 변수로 빌드합니다. 생성된 tokens.css는 수동 편집이 금지된 산출물이라, 디자인 결정의 출처는 언제나 한 곳입니다. 색상·간격·서체·반경 등 346개의 CSS 변수가 이 파이프라인에서 생성되며, 컴포넌트는 var(--token) 참조만 허용됩니다. 하드코딩된 값은 리뷰가 아니라 스크립트 검증에서 걸리게 했습니다.",
+  media: {
+    label: "Token Studio 와 생성된 tokens.css 화면",
+    ratio: "wide",
+  } satisfies MediaItem,
+};
 
-const BODY =
-  "mb-[var(--space-150)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)]";
+/* TODO: 이미지가 준비되면 각 media 에 src·alt·width·height 를 채운다 */
+const SOLUTIONS: SolutionBlockProps[] = [
+  {
+    headline: "컴포넌트가 앱을 알수록 재사용은 죽는다",
+    paragraphs: [
+      "Actions·Controls·Display·Feedback·Layout·Navigation 6개 카테고리, 33종의 컴포넌트를 하나의 원칙으로 설계했습니다 — 컴포넌트는 콜백을 쏘고 슬롯을 열어둘 뿐, 자신이 어디에 쓰이는지 소유하지 않습니다. Figma의 boolean prop은 코드에서 enum이 아니라 ReactNode slot이 됩니다. 호출하는 쪽이 내용을 주입하고 컴포넌트는 구조만 책임지는 경계를 지켰습니다.",
+      "상태 표현도 규칙으로 분리했습니다. 선택됨은 배경 토큰으로, 인터랙션(hover·pressed)은 오버레이로 표현해 두 상태가 겹쳐도 충돌하지 않습니다. 시트에 담겨야 하는 컴포넌트는 container prop으로 자신의 크롬(배경·보더·반경·그림자)을 벗을 수 있어, 같은 컴포넌트가 독립 화면과 Bottom Sheet 양쪽에서 동작합니다.",
+    ],
+    media: [
+      { label: "컴포넌트 variant 세트 + container prop 전후 비교", ratio: "wide" },
+    ],
+  },
+  {
+    headline: "스펙을 전달하지 않고 공유하게 했다",
+    paragraphs: [
+      "Figma Code Connect로 디자인 컴포넌트와 코드 컴포넌트를 매핑해, Figma에서 컴포넌트를 선택하면 해당하는 실제 코드 스니펫이 보입니다. variant·size·state의 이름이 양쪽에서 완전히 같아, \"이 버튼의 그 상태\"를 설명하는 통역이 사라졌습니다. 개발자와 기획자는 디자인 목업이 아니라 스펙 그 자체에서 작업을 시작합니다.",
+    ],
+    media: [
+      { label: "Code Connect 연결 화면 — Figma Dev Mode 스니펫", ratio: "wide" },
+    ],
+  },
+  {
+    headline: "규칙은 찾아지고 읽힐 때에만 지켜진다",
+    paragraphs: [
+      "Foundations(색상·타이포·간격)부터 컴포넌트별 가이드까지 담은 문서 사이트를 만들었습니다. 문서의 모든 예시는 이미지가 아니라 실제 토큰과 컴포넌트로 렌더됩니다 — 토큰이 바뀌면 문서도 함께 바뀌므로, 문서와 구현이 어긋날 수 없는 구조입니다.",
+    ],
+    media: [
+      { label: "문서 사이트 Foundations · 컴포넌트 페이지", ratio: "wide" },
+    ],
+  },
+];
 
 export default function KdsPage() {
   return (
-    <>
-      <div className="grid grid-cols-[var(--site-doc-nav-width)_1fr] gap-[var(--space-500)] max-[720px]:grid-cols-1">
-        <DocSideNav groups={NAV_GROUPS} />
+    <div className="flex flex-col gap-[var(--space-900)]">
+      {/* 1. Hero */}
+      <ProjectHero
+        eyebrow="KEEPER DESIGN SYSTEM"
+        title="Keeper Design System"
+        lede={LEDE}
+        image={{
+          label: "대표 이미지 — 컴포넌트 세트 또는 토큰 팔레트",
+          ratio: "hero",
+        }}
+      />
 
+      {/* 2. Meta Grid */}
+      <MetaGrid items={META} />
+
+      {/* 3. Overview */}
+      <ProseSection eyebrow="OVERVIEW" paragraphs={OVERVIEW} />
+
+      {/* 4. Background */}
+      <ProseSection
+        eyebrow="BACKGROUND"
+        paragraphs={BACKGROUND}
+        media={[
+          {
+            label: "as-is 화면들의 스타일 파편화 비교",
+            ratio: "wide",
+          },
+        ]}
+      />
+
+      {/* 5. Problem */}
+      <ProseSection eyebrow="PROBLEM" paragraphs={PROBLEM} />
+
+      {/* 6. Approach */}
+      <ProseSection eyebrow="APPROACH">
+        <ApproachList items={APPROACHES} />
+      </ProseSection>
+
+      {/* 7. Solution */}
+      <ProseSection eyebrow="SOLUTION">
+        {/*
+         * Solution 1 만 직접 조립한다 — 파이프라인 도식이 본문과 이미지 사이에
+         * 들어가야 해서 SolutionBlock 의 (본문 → 미디어) 순서로는 표현되지 않는다.
+         */}
         <article>
-          <p className="mb-[var(--space-100)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] tracking-[var(--site-tracking-eyebrow)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-600)]">
-            WORK / KEEPER DESIGN SYSTEM
-          </p>
-
-          <h1
-            id="overview"
-            className="mb-[var(--space-150)] text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-heading-lg)] [font-weight:var(--font-weight-800)]"
-          >
-            Keeper Design System
-          </h1>
-
-          <p className={BODY}>
-            B2B 어드민 제품의 0→1 디자인 시스템을 디자이너 겸 개발자로서 혼자
-            설계하고 구축한 프로젝트입니다.
-          </p>
-
-          <InfoBox rows={INFO_ROWS} />
-
-          <h2 id="token-pipeline" className={HEADING}>
-            토큰 파이프라인
-          </h2>
-          <p className={BODY}>
-            모든 스타일 값은 단일 소스에서 자동 생성됩니다. 하드코딩된 색상·간격·폰트
-            값이 0인 것을 스크립트로 검증합니다.
-          </p>
+          <h3 className={PROSE_HEADLINE}>{SOLUTION_1.headline}</h3>
+          <p className={PROSE_PARAGRAPH}>{SOLUTION_1.paragraph}</p>
           <Pipeline nodes={PIPELINE_NODES} />
-
-          <h2 id="figma-code-connect" className={HEADING}>
-            Figma ↔ 코드 1:1 연동
-          </h2>
-          <p className={BODY}>
-            Code Connect로 Figma 컴포넌트와 코드 컴포넌트를 매핑해, variant·size·state
-            명칭이 디자인과 코드에서 완전히 일치합니다.
-          </p>
-
-          <h2 id="ai-workflow" className={HEADING}>
-            AI 워크플로
-          </h2>
-          <p className={BODY}>
-            토큰 정합성 검사, 컴포넌트 생성 절차를 Claude 스킬로 만들어 반복 작업을
-            자동화했습니다. 이 사이트의 스타일도 KDS 토큰으로 렌더링됩니다.
-          </p>
+          <MediaSlot {...SOLUTION_1.media} />
         </article>
-      </div>
 
-      {/* 본문 레이아웃 밖 — 사이드 내비 그리드에 끼지 않게 그리드 뒤에 둔다 */}
-      <div className="mt-[var(--space-900)]">
-        <ProjectNav slug="kds" />
-      </div>
-    </>
+        {SOLUTIONS.map((solution) => (
+          <SolutionBlock key={solution.headline} {...solution} />
+        ))}
+      </ProseSection>
+
+      {/* 8. Interaction Detail */}
+      <ProseSection
+        eyebrow="INTERACTION DETAIL"
+        headline="AI 워크플로"
+        paragraphs={[
+          "반복 검증은 사람이 아니라 구조가 하도록 도구를 만들었습니다. 토큰 정합성 검사 스킬은 하드코딩된 색상·간격 값을 잡아내고, 컴포넌트 생성 절차를 자동화해 새 컴포넌트가 규칙 위에서 시작하게 했습니다.",
+        ]}
+      />
+
+      {/* 9. Collaboration */}
+      <ProseSection
+        eyebrow="COLLABORATION"
+        paragraphs={[
+          "혼자 만드는 시스템이어도 혼자 결정하지 않았습니다. 스펙 변경은 PR 리뷰를 거쳤고, 개발 리뷰어와의 논의가 컴포넌트 API의 경계를 다듬었습니다. Figma가 항상 진실이었습니다 — 코드와 Figma가 어긋나면 어느 쪽이 맞는지 먼저 확정하고 다른 쪽을 고쳤습니다.",
+        ]}
+        media={[
+          {
+            label: "PR 리뷰 화면 — 마스킹 후",
+            ratio: "wide",
+          },
+        ]}
+      />
+
+      {/* 10. Outcome */}
+      <ProseSection
+        eyebrow="OUTCOME"
+        paragraphs={[
+          "CSS 변수 346개 · 컴포넌트 33종(6개 카테고리) · 텍스트 스타일 25종 · 문서 사이트 1개. 전체 화면 마이그레이션은 화면 단위로 진행하며 시스템과 제품이 함께 이관되는 중이었습니다. 숫자보다 중요한 변화는 작업 방식이었습니다 — 새 화면은 컴포넌트 조립으로 시작하고, 스타일 논쟁은 토큰 선택으로 끝나며, 규칙은 문서에서 찾습니다.",
+        ]}
+      />
+
+      {/* 11. Reflection */}
+      <ProseSection
+        eyebrow="REFLECTION"
+        paragraphs={[
+          "시스템은 만드는 것보다 지키게 만드는 것이 어려웠습니다. 규칙을 문서에 적는 것으로는 부족했고, 위반이 빌드와 스크립트에서 드러나는 구조를 만들었을 때에야 규칙이 살아남았습니다.",
+          "버그도 시스템의 일부였습니다. 이후 이 토큰 시스템을 개인 프로젝트에 이식하면서 duration 토큰이 ms가 아닌 px 단위로 빌드되는 오류를 발견했는데, 토큰이 단일 소스라는 말은 오류도 단일 소스로 퍼진다는 뜻이었습니다. 파이프라인에는 생성만큼 검증이 필요하다는 것을 배웠습니다.",
+        ]}
+      />
+
+      {/* 12. 이전/다음 프로젝트 */}
+      <ProjectNav slug="kds" />
+    </div>
   );
 }
