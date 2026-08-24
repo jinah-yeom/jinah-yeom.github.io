@@ -81,20 +81,13 @@ const WORKS: WorkSectionProps[] = [
     ],
     visuals: [
       {
-        src: "/images/work/kds-tokens.svg",
-        alt: "KDS 색상 토큰 램프",
-        ratio: "tall",
+        /* 상세 페이지 Hero 와 같은 이미지 — 목록과 상세가 같은 얼굴을 갖게 한다 */
+        src: "/images/work/kds-hero.png",
+        alt: "왼쪽에 시맨틱 토큰 표와 프리미티브 색상 램프, 오른쪽에 Button 의 variant × state 매트릭스가 펼쳐진 화면.",
+        ratio: "wide",
         tone: "light",
-        width: 600,
-        height: 800,
-      },
-      {
-        src: "/images/work/kds-components.svg",
-        alt: "KDS 컴포넌트 라이브러리",
-        ratio: "tall",
-        tone: "dark",
-        width: 600,
-        height: 800,
+        width: 1920,
+        height: 1080,
       },
     ],
   },
