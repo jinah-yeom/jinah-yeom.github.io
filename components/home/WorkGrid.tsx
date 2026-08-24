@@ -33,16 +33,18 @@ export default function WorkGrid({ cards = [] }: WorkGridProps) {
       {cards.map((card) => (
         /*
          * hover 는 사이트 공통 문법을 따른다 — 색이 아니라 제목 밑줄.
-         * 포커스 링은 전역 :focus-visible 규칙이 그린다. 기본 오프셋(4px)은
-         * 썸네일 보더에 붙어 이중 테두리로 보여, 카드에서만 8px 로 벌린다.
+         * 포커스 링은 전역 :focus-visible 규칙이 그린다. 각진 썸네일에 맞춰
+         * 링도 각지게 두고, 기본 오프셋(4px)만 8px 로 벌린다 — 4px 은
+         * 썸네일 보더에 붙어 이중 테두리로 보인다.
          */
         <Link
           key={card.href}
           href={card.href}
           aria-label={card.title}
-          className="group rounded-[var(--radius-500)] [--site-focus-ring-offset:var(--space-100)]"
+          className="group [--site-focus-ring-offset:var(--space-100)]"
         >
-          <div className={`${SLOT_SURFACE} aspect-[16/10]`}>
+          {/* 522×335 비율. 그리드가 유동 폭이라 고정 px 대신 비율로 잡는다 */}
+          <div className={`${SLOT_SURFACE} aspect-[522/335]`}>
             <Image
               src={card.thumbnail.src}
               alt={card.thumbnail.alt}
@@ -52,12 +54,13 @@ export default function WorkGrid({ cards = [] }: WorkGridProps) {
             />
           </div>
 
-          <h2 className="mt-[var(--space-250)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--site-tracking-work-title)] [font-weight:var(--font-weight-700)] group-hover:underline">
+          <h2 className="mt-[var(--space-250)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] tracking-[var(--site-tracking-work-title)] [font-weight:var(--font-weight-600)] group-hover:underline">
             {card.title}
           </h2>
 
           {card.tags.length > 0 && (
-            <p className="mt-[var(--space-050)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-alternative)]">
+            /* 13px 토큰이 없어 --font-size-050(12px). weight 300 도 스케일에 없어 400 */
+            <p className="mt-[var(--space-050)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] [font-weight:var(--font-weight-400)] text-[var(--color-label-alternative)]">
               {card.tags.slice(0, TAG_LIMIT).join(", ")}
             </p>
           )}

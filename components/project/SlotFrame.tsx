@@ -14,11 +14,13 @@ export interface SlotFrameProps {
 }
 
 /**
- * 이미지가 앉는 자리의 겉면 — 라운드·보더·배경.
- * 홈 워크 카드의 썸네일도 같은 프레임을 쓰므로 여기서 한 번만 정의한다.
+ * 이미지가 앉는 자리의 겉면 — 보더·배경·넘침 처리.
+ * 홈 워크 카드의 썸네일도 같은 프레임을 쓴다.
+ * 라운드는 여기 넣지 않는다 — 상세 슬롯은 둥글고 카드 썸네일은 각져야 해서,
+ * 두 곳이 같은 값을 공유하면 한쪽이 반드시 틀린다. 라운드는 쓰는 쪽이 정한다.
  */
 export const SLOT_SURFACE =
-  "overflow-hidden rounded-[var(--radius-500)] border border-[var(--color-divider-alternative)] bg-[var(--color-gray-100)]";
+  "overflow-hidden border border-[var(--color-divider-alternative)] bg-[var(--color-gray-100)]";
 
 /** 도형·표·코드 블록이 함께 쓰는 캡션 스타일 — 슬롯과 같은 톤을 유지한다 */
 export const FIGURE_CAPTION =
@@ -44,7 +46,7 @@ export default function SlotFrame({
   return (
     <figure className="my-[var(--space-400)]">
       <div
-        className={`flex items-center justify-center ${SLOT_SURFACE} ${RATIO[ratio]}`}
+        className={`flex items-center justify-center rounded-[var(--radius-500)] ${SLOT_SURFACE} ${RATIO[ratio]}`}
       >
         {children ?? (
           <span className="px-[var(--space-300)] text-center text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-500)]">
