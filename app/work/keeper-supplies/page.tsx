@@ -79,13 +79,17 @@ const APPROACHES: ApproachItem[] = [
   },
 ];
 
-/* 미디어는 전부 플레이스홀더 — 라벨은 초안의 [export] 항목 그대로다 */
+/*
+ * 미디어는 전부 플레이스홀더 — 라벨은 초안의 [export] 항목 그대로다.
+ * Solution 마다 같은 흐름의 화면 3장이라 나란히 놓는다 (mediaLayout: "grid").
+ */
 const SOLUTIONS: SolutionBlockProps[] = [
   {
     headline: "구매의 시작점을 한 화면 안에서 끝냈다",
     paragraphs: [
       "Keeper에서 소모품을 구매하기 위해 필수적인 AirSupply 계정 인증 과정을 한 화면 내에서 명확하게 안내하는 UX를 설계했습니다. 최소한의 입력과 흐름 단절 없이 연동이 완료되도록 단계 수를 줄였으며, 에러 케이스(계정 없음, 비밀번호 불일치 등)도 일관된 패턴으로 정의해 사용자 혼란을 최소화했습니다.",
     ],
+    mediaLayout: "grid",
     media: [
       { label: "연동 판단", ratio: "wide" },
       { label: "케이스 라우팅", ratio: "wide" },
@@ -97,6 +101,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
     paragraphs: [
       "소모품 부족 시 즉시 구매로 이어질 수 있도록, AirSupply 상품을 Keeper UI 패턴에 맞게 재구성했습니다. 필터·정렬은 Keeper Admin의 기존 탐색 기준과 일관되도록 매핑했고, 사용자에게 필요한 정보(상품명·규격·가격·재고)를 한눈에 비교할 수 있는 카드형 UI를 설계했습니다.",
     ],
+    mediaLayout: "grid",
     media: [
       { label: "상품 리스트", ratio: "wide" },
       { label: "카드 정보 구조·CTA", ratio: "wide" },
@@ -108,6 +113,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
     paragraphs: [
       "기존 AirSupply 결제 구조를 Keeper 내부에 재정의하여 사용자가 최소한의 확인만으로 결제를 완료할 수 있도록 UX를 단축했습니다. 배송지·수량·결제 수단은 실제 운영에서 가장 자주 쓰이는 항목만 우선 노출하고, 나머지는 단계 후면에서 관리하는 방식으로 흐름을 최적화했습니다.",
     ],
+    mediaLayout: "grid",
     media: [
       { label: "배송지 선택", ratio: "wide" },
       { label: "수량·옵션 변경·재고 검증", ratio: "wide" },
@@ -119,6 +125,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
     paragraphs: [
       "결제 완료 후 필요한 정보(주문번호·상품정보·배송지·예상 도착일)를 즉시 확인할 수 있도록 단일 화면으로 요약했습니다. 이후 단계의 업무 효율성을 위해 주문 상태 확인, 재구매, 목록 복귀 등 후속 액션도 명확하게 배치했습니다.",
     ],
+    mediaLayout: "grid",
     media: [
       { label: "주문 현황", ratio: "wide" },
       { label: "주문 상세", ratio: "wide" },
