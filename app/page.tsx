@@ -31,6 +31,12 @@ const WORKS: WorkCard[] = [
     },
     tags: ["B2B Admin", "Design System Replatforming"],
   },
+  {
+    title: "KEEPER ADMIN 소모품 구매",
+    href: "/work/keeper-supplies",
+    /* 썸네일은 상세 Hero 가 나오면 붙인다 — 그때까지 빈 프레임 */
+    tags: ["B2B Admin", "Procurement"],
+  },
 ];
 
 const BIO_KO =

@@ -4,8 +4,15 @@
 `포트폴리오_웹_템플릿.md`(프로젝트 루트)의 14섹션 템플릿을 재사용 가능한 컴포넌트 세트로 구현하고, 첫 케이스로 **Keeper APP 리스트뷰 UX 개선** 페이지를 만든다. 콘텐츠는 템플릿 파일의 예시 본문을 그대로 사용한다.
 
 ## 라우트
-- `app/work/keeper-listview/page.tsx`
-- 이후 프로젝트가 같은 컴포넌트를 재사용하므로, 페이지는 조립만 하고 표현은 전부 `components/project/`에 둔다
+| 라우트 | 프로젝트 | 템플릿 |
+|---|---|---|
+| `app/work/keeper-listview/page.tsx` | Keeper APP 리스트뷰 UX 개선 | v2 기준선 |
+| `app/work/kds/page.tsx` | Keeper Design System | v2 확장형 |
+| `app/work/keeper-supplies/page.tsx` | Keeper Admin 소모품 구매 | v2 기준선 (미디어 전부 플레이스홀더) |
+
+노출 순서는 `lib/projects.ts` 의 `PROJECTS` 배열이 정한다 — 홈 워크 그리드와 이전/다음 내비가 같은 배열을 본다.
+
+이후 프로젝트가 같은 컴포넌트를 재사용하므로, 페이지는 조립만 하고 표현은 전부 `components/project/`에 둔다.
 
 ## 컴포넌트 분해 (components/project/)
 | 컴포넌트 | 템플릿 섹션 | 비고 |

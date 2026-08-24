@@ -11,6 +11,7 @@ export interface ProjectRef {
 export const PROJECTS: ProjectRef[] = [
   { slug: "keeper-listview", title: "Keeper APP 리스트뷰 UX 개선" },
   { slug: "kds", title: "Keeper Design System" },
+  { slug: "keeper-supplies", title: "Keeper Admin 소모품 구매" },
 ];
 
 export interface ProjectNeighbors {

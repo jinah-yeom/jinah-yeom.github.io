@@ -11,8 +11,10 @@
 
 ## 페이지 구조
 ```
-/            홈: garri식 히어로(대형 스테이트먼트 3줄) → 워크 그리드(카드 ×2) → 국영문 2단 소개
-/work/kds    KDS 상세: 좌측 사이드 내비 + 인포박스 + 문서형 본문 (프로토타입 참조)
+/            홈: garri식 히어로(대형 스테이트먼트 3줄) → 워크 그리드(카드 ×3) → 국영문 2단 소개
+/work/keeper-listview  Keeper APP 리스트뷰 UX 개선 — v2 템플릿 기준선
+/work/kds              Keeper Design System — v2 템플릿 확장형
+/work/keeper-supplies  Keeper Admin 소모품 구매 — v2 템플릿 (미디어 플레이스홀더)
 /blog        글 목록 (날짜 역순)
 /blog/[slug] 개별 글 — content/blog/*.mdx 기반, generateStaticParams로 정적화
 /about       How I Think / How I Work / Strengths — 소제목별 국영문 2단
@@ -23,11 +25,14 @@
 - 활성 내비: 밑줄(border-bottom) 표시. hover는 색상 전환만
 - 링크 hover는 underline (색 변화 아님)
 
-## 워크 그리드 (홈, 카드 2개)
-3열 그리드(gap `--space-400`), 1024px 이하 2열, 720px 이하 1열. 카드는 상세 페이지가 있는 프로젝트만 올린다 — 현재 2개라 첫 행 세 번째 칸은 비운다. 자리를 메우는 플레이스홀더 카드는 두지 않는다.
+## 워크 그리드 (홈, 카드 3개)
+3열 그리드(gap `--space-400`), 1024px 이하 2열, 720px 이하 1열. 카드는 상세 페이지가 있는 프로젝트만 올린다 — 지금은 3개라 첫 행이 정확히 찬다. 자리를 메우는 플레이스홀더 카드는 두지 않는다.
 
 1. Keeper APP 리스트뷰 UX 개선 → /work/keeper-listview 링크
 2. Keeper Design System → /work/kds 링크
+3. Keeper Admin 소모품 구매 → /work/keeper-supplies 링크
+
+썸네일이 아직 없는 카드는 `thumbnail` 을 비워 둔다 — 빈 슬롯 프레임만 서고 카드 높이는 그대로 유지된다.
 
 KDS Documentation·Sheets to Variables·Design Review Agent 는 뺐다 — 앞의 것은 KDS 케이스의 Solution 으로 들어갔고, 뒤의 둘은 들어갈 상세가 없어 섹션만 남아 있었다.
 

@@ -6,8 +6,11 @@ export interface WorkCard {
   title: string;
   /** 상세 페이지 경로 — 카드 전체가 이 링크가 된다 */
   href: string;
-  /** 상세 Hero 를 그대로 재사용한다 — 목록과 상세가 같은 얼굴을 갖게 */
-  thumbnail: {
+  /**
+   * 상세 Hero 를 그대로 재사용한다 — 목록과 상세가 같은 얼굴을 갖게.
+   * 아직 이미지가 없으면 비워 둔다 — 빈 프레임만 서고 자리는 그대로 잡힌다.
+   */
+  thumbnail?: {
     src: string;
     alt: string;
     width: number;
@@ -52,13 +55,15 @@ export default function WorkGrid({ cards = [] }: WorkGridProps) {
         >
           {/* 522×335 비율. 그리드가 유동 폭이라 고정 px 대신 비율로 잡는다 */}
           <div className={`${SLOT_SURFACE} aspect-[522/335]`}>
-            <Image
-              src={card.thumbnail.src}
-              alt={card.thumbnail.alt}
-              width={card.thumbnail.width}
-              height={card.thumbnail.height}
-              className="h-full w-full object-cover"
-            />
+            {card.thumbnail && (
+              <Image
+                src={card.thumbnail.src}
+                alt={card.thumbnail.alt}
+                width={card.thumbnail.width}
+                height={card.thumbnail.height}
+                className="h-full w-full object-cover"
+              />
+            )}
           </div>
 
           <h2 className={`mt-[var(--space-250)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] tracking-[var(--site-tracking-work-title)] [font-weight:var(--font-weight-600)] ${HOVER_FADE}`}>
