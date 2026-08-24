@@ -17,7 +17,6 @@ import ProseSection, {
 import SnippetBlock from "@/components/project/SnippetBlock";
 import StepFlow from "@/components/project/StepFlow";
 import TerminalBlock from "@/components/project/TerminalBlock";
-import Pipeline, { type PipelineNode } from "@/components/work/Pipeline";
 
 const LEDE =
   "MUI 라이브러리로 만들어져 있던 Keeper Admin을 자체 디자인 시스템으로 재구축한 프로젝트. 33종 컴포넌트를 다시 설계·구현하고 전체 화면을 순차 이관하면서, 디자이너와 개발자가 같은 언어로 말하는 구조를 만들었습니다.";
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
 const META: MetaItem[] = [
   { label: "Timeline", value: "2026.01 – 2026.06" },
   { label: "Product", value: "Keeper Admin (Web · B2B)" },
-  { label: "Team", value: "디자인 1 · Dev 협업" },
+  { label: "Team", value: "PD 1 · FE 1" },
   { label: "Role", value: "시스템 설계·구현·운영 전담 · 레포 오너십" },
   {
     label: "Tools",
@@ -38,23 +37,14 @@ const META: MetaItem[] = [
   },
 ];
 
-/* 이 사이트의 토큰도 같은 파이프라인을 거쳐 나온다 — tokens.css 가 그 결과물이다 */
-const PIPELINE_NODES: PipelineNode[] = [
-  { label: "Figma" },
-  { label: "Token Studio" },
-  { label: "Style Dictionary" },
-  { label: "tokens.css" },
-  { label: "Component", highlight: true },
-];
-
 const OVERVIEW = [
-  "MUI 라이브러리로 만들어져 있던 Keeper Admin을 자체 디자인 시스템으로 재구축했습니다. shadcn/React 기반으로 33종 컴포넌트를 다시 설계·구현하고 전체 화면을 순차 이관했으며, Token Studio에서 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인과 규칙이 찾아지고 읽히도록 만든 문서 사이트까지 — 시스템의 설계와 구현, 운영을 혼자 완결했습니다.",
+  "MUI 라이브러리로 만들어져 있던 Keeper Admin을 자체 디자인 시스템으로 재구축했습니다. shadcn/React 기반으로 33종 컴포넌트를 다시 설계·구현하고 전체 화면을 순차 이관했으며, Token Studio에서 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인과 규칙이 찾아지고 읽히도록 만든 문서 사이트까지 시스템의 설계와 구현, 운영을 혼자 완결했습니다.",
   "목표는 “디자이너와 개발자가 같은 언어로 말하는 상태”였습니다. 색상 하나를 바꾸기 위해 파일 수십 개를 뒤지지 않아도 되고, Figma의 variant 이름이 코드의 prop 이름과 일치하며, 규칙이 문서에 있어 개발자가 묻기 전에 답을 찾을 수 있는 구조를 만들었습니다.",
 ];
 
 const BACKGROUND = [
   "KDS 이전의 Keeper Admin은 MUI 라이브러리 위에 만들어져 있었습니다. 빠르게 화면을 만들 수는 있었지만, 제품의 디자인 언어는 MUI의 기본값과 커스텀 오버라이드 사이 어딘가에 있었습니다. 커스터마이징은 오버라이드 위에 오버라이드를 쌓는 일이었고, 무엇보다 토큰 체계가 없어 디자인 결정이 코드 어디에 어떤 값으로 박혀 있는지 추적할 수 없었습니다.",
-  "자체 시스템으로의 재구축을 결정했습니다 — shadcn/React 기반으로 컴포넌트를 다시 만들고, 전체 화면을 새 시스템으로 마이그레이션하는 계획이었습니다.",
+  "자체 시스템으로의 재구축을 결정했습니다. shadcn/React 기반으로 컴포넌트를 다시 만들고, 전체 화면을 새 시스템으로 마이그레이션하는 계획이었습니다.",
 ];
 
 const PROBLEM = [
@@ -172,8 +162,6 @@ const TOKEN_MEDIA: MediaItem[] = [
     alt: "Figma Variables 패널의 semantic 컬렉션. 좌측에 primitive 266개, semantic 56개, admin_lokalise 1530개 컬렉션이 있고 semantic 아래 color 그룹이 themeDependent·theme·background·foreground·border·divider·label 로 나뉘어 있다. 우측 표에는 primary·secondary·success·warning·danger 같은 이름이 color/blue/500, color/green/600 처럼 primitive 값을 가리키고 있다.",
     width: 1920,
     height: 1056,
-    caption:
-      "Fig 2 — 컴포넌트가 보는 역할 계층. primary·danger 같은 이름이 원시 값을 가리킨다",
   },
   {
     label: "Figma Variables — primitive 컬렉션",
@@ -182,8 +170,6 @@ const TOKEN_MEDIA: MediaItem[] = [
     alt: "Figma Variables 패널의 primitive 컬렉션. 좌측 그룹 목록에 color 110개, font 49개, dimension 16개, radius 12개, space 18개, motion 10개, shadows 51개가 있고, 우측 표에는 gray 000~950, red 050~900 같은 색상 스케일이 FFFFFF·F7F7FA 처럼 실제 hex 값으로 나열돼 있다.",
     width: 1920,
     height: 1060,
-    caption:
-      "Fig 3 — 역할 이름이 가리키는 원시 값. 색상·서체·간격·모션까지 한 곳에서 정의된다",
   },
 ];
 
@@ -196,8 +182,6 @@ const COMPONENT_MEDIA: MediaItem[] = [
     alt: "Figma 캔버스에 컴포넌트가 이름표를 달고 격자로 늘어서 있다. 윗줄은 Button·Chip·Floating Action·Checkbox·Date Picker·Field·Radio·Switch·Select·Text Input·Textarea·Time Picker·ToggleGroup·Accordion·Avatar·Badge, 아랫줄은 Alert·Progress·Skeleton·Sonner·Spinner·Dialog·Tooltip·Menu·Popover·BottomSheet·Breadcrumb·Pagination·GNB·Sidebar·Navigation·Tab·Guideline 이다. 각 이름표 아래에는 그 컴포넌트의 가이드와 variant 시트가 여러 장씩 붙어 있다.",
     width: 1920,
     height: 832,
-    caption:
-      "Fig 5 — 컴포넌트 라이브러리 전체. 6개 카테고리에 33종이 같은 형식의 시트를 갖는다",
   },
   {
     label: "Button 컴포넌트 — variant × state 매트릭스와 속성 패널",
@@ -206,8 +190,6 @@ const COMPONENT_MEDIA: MediaItem[] = [
     alt: "Figma 에서 Button 원본 컴포넌트를 선택한 화면. 캔버스의 선택 영역 아래에 “168 Variants” 배지가 붙어 있고, 그 안에 variant 별 행과 상태별 열로 버튼이 채워져 있으며 아래쪽 절반은 같은 조합의 아이콘 전용 버튼이다. 우측 속성 패널에는 Variant(Brand Solid, Brand Outline, Neutral Solid …), Size(Small, Medium, Large), Icon Only(False, True), State(Enabled, Hover, Pressed, Disabled), Loading, Label, Prefix Icon 과 Suffix Icon 이 각각 별도 속성으로 나열돼 있고, 그 아래 Nested instances 로 Leading Icon·Trailing Icon·Interaction 이 있다.",
     width: 1920,
     height: 1243,
-    caption:
-      "Fig 6 — 버튼 하나가 variant·size·state 조합으로 168개. 상태와 아이콘은 전부 속성으로 분리된다",
   },
 ];
 
@@ -220,8 +202,6 @@ const DOCS_MEDIA: MediaItem[] = [
     alt: "문서 사이트의 Button 페이지 Variant 섹션. Brand Solid, Brand Outline, Neutral Solid, Neutral Outline, Neutral Weak, Critical Solid, Ghost 일곱 가지가 실제 버튼으로 렌더돼 있고 각각 옆에 언제 쓰는지 한 줄 설명이 붙어 있다. 아래 Size 섹션에는 Small 32px, Medium 40px, Large 48px 세 버튼이 나란히 놓여 있다.",
     width: 1920,
     height: 1293,
-    caption:
-      "Fig 8 — 문서의 예시는 이미지가 아니라 실제 컴포넌트다. 토큰이 바뀌면 이 화면도 함께 바뀐다",
   },
   {
     label: "문서 사이트 — Button Definition·Anatomy",
@@ -230,8 +210,6 @@ const DOCS_MEDIA: MediaItem[] = [
     alt: "문서 사이트의 Button 페이지 상단. Definition 에 버튼의 정의가, Anatomy 에 Container·Leading Icon·Label·Trailing Icon 네 부분을 번호로 짚은 도해와 설명이 있고 그 아래 Properties 와 Variant 섹션이 이어진다. 좌측 사이드바에는 Actions·Controls·Display·Feedback 카테고리별 컴포넌트 목록이 있고 아직 문서화되지 않은 항목은 흐리게 표시돼 있다.",
     width: 1920,
     height: 1303,
-    caption:
-      "Fig 9 — 언제 쓰는지, 무엇으로 이루어졌는지까지 컴포넌트마다 같은 형식으로 적어 뒀다",
   },
 ];
 
@@ -242,8 +220,6 @@ const CODE_CONNECT_MEDIA: MediaItem = {
   alt: "Figma Dev Mode 에서 Button 컴포넌트를 선택한 화면. 가운데 다이얼로그 왼쪽에 파란 Label 버튼이, 오른쪽에 GitHub 저장소의 button.tsx 로 연결된 코드가 <Button variant=\"brand-solid\" size=\"medium\">Label</Button> 로 표시되고 상단에 Connected 배지가 붙어 있다. 우측 Inspect 패널의 Variant 는 Brand Solid, Size 는 Medium 으로 코드의 prop 값과 이름이 같다.",
   width: 1920,
   height: 1047,
-  caption:
-    "Fig 10 — Figma 에서 고른 Brand Solid·Medium 이 코드의 variant·size prop 과 같은 이름으로 나온다",
 };
 
 const COLLAB_MEDIA: MediaItem[] = [
@@ -255,8 +231,6 @@ const COLLAB_MEDIA: MediaItem[] = [
     alt: "GitHub Pull Request 화면. 제목은 “feat: TabsTrigger suffixIcon prop 추가” 이고 Merged 상태이며 리뷰어 한 명이 승인 표시를 남겼다. 본문이 요약·배경·변경·설계 결정·하위호환·관련 티켓으로 나뉘어 있고, 설계 결정 항목에는 Figma 의 boolean 이 아니라 ReactNode 슬롯으로 받는 이유, notification dot 앵커를 옮기지 않는 이유, 아이콘 크기를 20px 로 고정하고 sizeConfig 를 건드리지 않는 이유가 각각 한 줄로 적혀 있다.",
     width: 1920,
     height: 1183,
-    caption:
-      "Fig 15 — 결정과 근거를 PR 본문에 적어 두면 리뷰가 코드가 아니라 판단을 본다",
   },
   {
     label: "PR — Chip 컴포넌트 Figma 스펙 반영",
@@ -265,8 +239,6 @@ const COLLAB_MEDIA: MediaItem[] = [
     alt: "GitHub Pull Request 화면. 제목은 “feat: Chip 컴포넌트 Figma 스펙 반영 및 오버레이 구조 개선” 이고 Merged 상태다. 본문은 리팩터와 스펙 반영 두 커밋으로 나뉘어 있고, 스펙 반영 쪽에 size 별 paddingH·gap·icon 값을 as-is 와 to-be 두 열로 비교한 표가 --space-100(8) → --space-150(12) 처럼 토큰 이름과 픽셀 값을 함께 적어 놓았다. 아래에는 Outline border 색을 상태별로 비교한 표가 이어진다.",
     width: 1920,
     height: 1184,
-    caption:
-      "Fig 16 — Figma 가 바뀌면 무엇이 어떤 토큰으로 바뀌는지 표로 옮겨 놓고 합의했다",
   },
 ];
 
@@ -275,7 +247,7 @@ export default function KdsPage() {
     <div className="flex flex-col gap-[var(--space-900)]">
       {/* 01 Hero */}
       <ProjectHero
-        eyebrow="Design System · Replatforming · 2026"
+        eyebrow="DESIGN SYSTEM"
         title="Keeper Design System"
         lede={LEDE}
         image={{
@@ -290,17 +262,14 @@ export default function KdsPage() {
       />
 
       {/* 02 Meta */}
-      <section>
-        <MetaGrid items={META} />
-        <Pipeline nodes={PIPELINE_NODES} />
-      </section>
+      <MetaGrid items={META} />
 
       {/* 03 Overview */}
-      <ProseSection eyebrow="03 OVERVIEW" paragraphs={OVERVIEW} />
+      <ProseSection eyebrow="OVERVIEW" paragraphs={OVERVIEW} />
 
       {/* 04 Impact */}
       <ImpactStats
-        eyebrow="04 IMPACT"
+        eyebrow="IMPACT"
         stats={[
           {
             value: "33",
@@ -321,24 +290,18 @@ export default function KdsPage() {
               "컴포넌트 코드에 남은 하드코딩된 색상·간격 값. 검사 스크립트로 상시 확인합니다.",
           },
         ]}
-        shift={{
-          label: "색상 하나를 바꾸는 데 드는 일",
-          from: "파일 수십 개를 뒤지고, 빠뜨린 곳이 남음",
-          to: "토큰 값 1개 수정 후 빌드",
-        }}
-        basis="측정 기준 — CSS 변수 수는 styles/tokens.css 집계값, 하드코딩 0건은 토큰 검사 스크립트 결과입니다."
       />
 
       {/* 05 Background */}
       <ProseSection
-        eyebrow="05 BACKGROUND"
+        eyebrow="BACKGROUND"
         headline="제품의 디자인 언어가 MUI의 기본값과 오버라이드 사이에 있었다"
         paragraphs={BACKGROUND}
       />
 
       {/* 06 Problem */}
       <ProseSection
-        eyebrow="06 PROBLEM"
+        eyebrow="PROBLEM"
         headline="무엇을 바꾸려 해도 어디를 바꿔야 하는지 알 수 없었다"
         paragraphs={PROBLEM}
       >
@@ -346,20 +309,19 @@ export default function KdsPage() {
           <CodeCompare
             before={{ label: "AS-IS · 값이 화면에 박혀 있는 상태", code: AS_IS_CODE }}
             after={{ label: "TO-BE · 값이 토큰에만 있는 상태", code: TO_BE_CODE }}
-            caption="Fig 1 — 같은 화면을 두 방식으로 썼을 때의 차이. 왼쪽은 값을 바꾸려면 이 파일을 찾아야 하고, 오른쪽은 찾을 파일이 하나입니다."
           />
         </div>
       </ProseSection>
 
       {/* 07 Approach */}
       <ProseSection
-        eyebrow="07 APPROACH"
+        eyebrow="APPROACH"
         headline="컴포넌트보다 토큰 파이프라인을 먼저 만들었다"
         paragraphs={APPROACH}
       />
 
       {/* 08 Solution */}
-      <ProseSection eyebrow="08 SOLUTION">
+      <ProseSection eyebrow="SOLUTION">
         <article>
           <h3 className={PROSE_HEADLINE}>
             토큰이 Figma에서 코드까지 한 방향으로 흐르게 했습니다
@@ -393,7 +355,6 @@ export default function KdsPage() {
           </p>
           <TerminalBlock
             content={TOKEN_CHECK_OUTPUT}
-            caption="Fig 4 — 토큰 검사 리포트. 위반을 잡는 데서 끝내지 않고 어떤 토큰으로 바꿔야 하는지까지 함께 출력합니다."
           />
         </article>
 
@@ -423,7 +384,6 @@ export default function KdsPage() {
               ["Icon = True (boolean)", "leadingIcon={<Icon/>}", "슬롯 변환"],
               ["State = Hovered / Pressed", "CSS ::before overlay", "상태 변환"],
             ]}
-            caption="Fig 7 — 이름은 그대로 옮기되, Figma의 boolean은 코드에서 enum이 아니라 슬롯으로 번역했습니다. 이유는 10에 적었습니다."
           />
         </article>
 
@@ -484,7 +444,6 @@ export default function KdsPage() {
               ["DatePicker", "DatePicker (신규 구축)", "선행 구축"],
               ["CircularProgress", "Progress (신규 구축)", "선행 구축"],
             ]}
-            caption="Fig 11 — 판단이 필요한 지점을 미리 분류해두면, 마이그레이션은 판단이 아니라 실행이 됩니다."
           />
         </article>
 
@@ -515,14 +474,13 @@ export default function KdsPage() {
                 note: "기획 단계에서 바로 검증합니다 — 디자인 시스템 레포는 read-only clone 으로 씁니다.",
               },
             ]}
-            caption="Fig 12 — 검증 시점을 앞으로 당기면 디자인과 개발은 이미 검증된 안에서 시작합니다."
           />
         </article>
       </ProseSection>
 
       {/* 09 Interaction Detail */}
       <ProseSection
-        eyebrow="09 INTERACTION DETAIL"
+        eyebrow="INTERACTION DETAIL"
         headline="AI 워크플로"
         paragraphs={[
           "반복 검증은 사람이 아니라 구조가 하도록 도구를 만들었습니다. 토큰 정합성 검사 스킬은 하드코딩된 색상·간격 값을 잡아내고, 마이그레이션을 마친 화면은 핸드오프 전에 스킬로 정합성을 검사했습니다 — API 응답 필드와 화면 텍스트의 1:1 대조, 엣지 케이스 커버리지, 조건부 필드 존재 여부까지 검사 기준을 프롬프트에 명시하고, 결과를 수정 필수·협의·확인 완료로 분류해 받았습니다. 아래는 실제 사용한 프롬프트와 리포트의 발췌입니다.",
@@ -542,7 +500,7 @@ export default function KdsPage() {
 
       {/* 10 Design Detail */}
       <ProseSection
-        eyebrow="10 DESIGN DETAIL"
+        eyebrow="DESIGN DETAIL"
         headline="컴포넌트가 앱의 사정을 알지 않게 했다"
         paragraphs={[
           "재사용을 전제로 만든 컴포넌트도 쓰이는 동안 앱 로직을 조금씩 끌어안게 됩니다. 33종을 만들면서 세 가지 기준을 두고 예외를 만들지 않았습니다.",
@@ -552,14 +510,13 @@ export default function KdsPage() {
           <CodeCompare
             before={{ label: "enum으로 받으면", code: ENUM_CODE }}
             after={{ label: "슬롯으로 열어두면", code: SLOT_CODE }}
-            caption="Fig 13 — Figma의 “아이콘 있음/없음” 변형을 코드에서 어떻게 번역하느냐가 컴포넌트의 수명을 결정합니다."
           />
         </div>
         <PrincipleList items={PRINCIPLES} />
       </ProseSection>
 
       {/* 11 Collaboration */}
-      <ProseSection eyebrow="11 COLLABORATION">
+      <ProseSection eyebrow="COLLABORATION">
         <article>
           <h3 className={PROSE_HEADLINE}>
             리뷰 강도를 변경의 성격에 따라 나눴습니다
@@ -574,7 +531,6 @@ export default function KdsPage() {
           </p>
           <StepFlow
             steps={BRANCH_STEPS}
-            caption="Fig 14 — 리뷰가 필요한 변경과 그렇지 않은 변경을 미리 나눠두면, 리뷰는 병목이 아니라 게이트가 됩니다."
           />
           {COLLAB_MEDIA.map((item) => (
             <MediaSlot key={item.label} {...item} />
@@ -596,7 +552,7 @@ export default function KdsPage() {
 
       {/* 12 Outcome */}
       <ProseSection
-        eyebrow="12 OUTCOME"
+        eyebrow="OUTCOME"
         headline="디자이너와 개발자가 같은 언어로 말하게 됐다"
         paragraphs={[
           "MUI 의존을 걷어내며 전체 화면을 KDS로 옮기는 이관을 진행했습니다. 색상 하나를 바꾸려면 파일 수십 개를 뒤져야 했던 일이 토큰 값 하나를 고치는 일로 바뀌었고, Figma의 variant 이름과 코드의 prop 이름이 일치하면서 스펙을 전달할 때의 통역 비용이 사라졌습니다. 규칙은 문서 사이트에 있어 개발자가 묻지 않고 찾을 수 있게 됐고, 기획자는 디자인 시안을 기다리지 않고도 KDS 기반 프로토타입으로 화면을 검증할 수 있게 됐습니다.",
