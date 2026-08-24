@@ -17,9 +17,13 @@
  * 컴포넌트에서는 이 변수들만 참조하고 리터럴 값을 쓰지 않는다.
  */
 :root {
-  /* 본문(--site-width-content 960px)보다 넓은 프레임 폭 — 헤더/본문 시작선 불일치는 의도된 2단 구조 */
-  --site-width-header: 1120px;
-  --site-width-content: 960px;
+  /*
+   * 헤더와 본문은 지금 같은 폭이라 시작선이 맞는다.
+   * 값이 같아도 토큰은 둘로 남긴다 — 예전처럼 헤더만 넓히는 2단 구조로
+   * 되돌릴 여지를 두기 위해서다. 한쪽만 바꾸면 시작선이 다시 어긋난다.
+   */
+  --site-width-header: 1600px;
+  --site-width-content: 1600px;
   --site-tracking-nav: 0.06em;
   --site-tracking-eyebrow: 0.08em;
   --site-tracking-work-title: 0.02em;
