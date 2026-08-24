@@ -29,14 +29,6 @@ const WORKS: WorkSectionProps[] = [
           </>
         ),
       },
-      {
-        label: "Link",
-        value: (
-          <span className="underline underline-offset-[var(--space-050)]">
-            Case study ↗
-          </span>
-        ),
-      },
     ],
     visuals: [
       {
@@ -58,24 +50,16 @@ const WORKS: WorkSectionProps[] = [
       "shadcn/React 기반으로 33종 컴포넌트를 다시 설계·구현하고 전체 화면을 순차 이관하며, 토큰 파이프라인과 문서 사이트까지 시스템의 설계·구현·운영을 혼자 완결했습니다.",
     ],
     meta: [
-      { label: "Years", value: "2025 – 2026" },
-      { label: "Role", value: "Designer · Developer (1인)" },
+      { label: "Years", value: "2026" },
+      { label: "Role", value: "시스템 설계 · 구현 · 운영 전담" },
       {
         label: "Scope",
         value: (
           <>
-            Design Tokens, 33 Components,
+            Figma Migration, Design Tokens,
             <br />
-            Migration, Docs
+            Component Library, Developer Handoff
           </>
-        ),
-      },
-      {
-        label: "Link",
-        value: (
-          <span className="underline underline-offset-[var(--space-050)]">
-            Case study ↗
-          </span>
         ),
       },
     ],
@@ -88,68 +72,6 @@ const WORKS: WorkSectionProps[] = [
         tone: "light",
         width: 1920,
         height: 1080,
-      },
-    ],
-  },
-  {
-    title: "SHEETS TO VARIABLES",
-    paragraphs: [
-      "Google Sheets의 언어팩·토큰 데이터를 Figma Variables로 동기화하는 플러그인을 만들었습니다.",
-      "Apps Script로 시트 변경을 감지해 Slack으로 알리고, 플러그인에서 한 번에 반영합니다. 수작업 복사를 없애 디자인-데이터 불일치를 구조적으로 제거했습니다.",
-    ],
-    meta: [
-      { label: "Years", value: "2026" },
-      { label: "Role", value: "Design · Development" },
-      {
-        label: "Scope",
-        value: (
-          <>
-            Figma Plugin, Apps Script,
-            <br />
-            Slack Integration
-          </>
-        ),
-      },
-    ],
-    visuals: [
-      {
-        src: "/images/work/sheets-to-variables.svg",
-        alt: "Google Sheets 와 Figma Variables 동기화",
-        ratio: "wide",
-        tone: "light",
-        width: 960,
-        height: 600,
-      },
-    ],
-  },
-  {
-    title: "DESIGN REVIEW AGENT",
-    paragraphs: [
-      "토큰 정합성 검사와 컴포넌트 생성 절차를 AI 스킬로 만들어, 리뷰와 반복 작업을 자동화했습니다.",
-      "하드코딩된 색상·간격 값을 잡아내고 Figma 스펙과 코드의 어긋남을 리포트합니다.",
-    ],
-    meta: [
-      { label: "Years", value: "2026" },
-      { label: "Role", value: "Workflow Design" },
-      {
-        label: "Scope",
-        value: (
-          <>
-            Claude Skills, Figma API,
-            <br />
-            Token Validation
-          </>
-        ),
-      },
-    ],
-    visuals: [
-      {
-        src: "/images/work/design-review-agent.svg",
-        alt: "디자인 리뷰 에이전트 리포트",
-        ratio: "wide",
-        tone: "dark",
-        width: 960,
-        height: 600,
       },
     ],
   },

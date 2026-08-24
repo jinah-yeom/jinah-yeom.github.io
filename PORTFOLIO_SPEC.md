@@ -11,7 +11,7 @@
 
 ## 페이지 구조
 ```
-/            홈: garri식 히어로(대형 스테이트먼트 3줄) → 워크 섹션 ×4 → 국영문 2단 소개
+/            홈: garri식 히어로(대형 스테이트먼트 3줄) → 워크 섹션 ×2 → 국영문 2단 소개
 /work/kds    KDS 상세: 좌측 사이드 내비 + 인포박스 + 문서형 본문 (프로토타입 참조)
 /blog        글 목록 (날짜 역순)
 /blog/[slug] 개별 글 — content/blog/*.mdx 기반, generateStaticParams로 정적화
@@ -23,16 +23,14 @@
 - 활성 내비: 밑줄(border-bottom) 표시. hover는 색상 전환만
 - 링크 hover는 underline (색 변화 아님)
 
-## 워크 섹션 (홈, 4개)
+## 워크 섹션 (홈, 2개)
 좌 300px 텍스트 / 우 이미지, 순서:
 1. Keeper APP 리스트뷰 UX 개선 → /work/keeper-listview 링크
 2. Keeper Design System → /work/kds 링크
-3. Sheets to Variables
-4. Design Review Agent
 
-KDS Documentation 은 별도 섹션이 아니라 KDS 케이스 스터디의 Solution 으로 들어간다 — 문서 사이트는 시스템의 일부이지 별개 작업이 아니다.
+상세 페이지가 있는 프로젝트만 올린다. KDS Documentation·Sheets to Variables·Design Review Agent 는 별도 섹션에서 뺐다 — 앞의 것은 KDS 케이스의 Solution 으로 들어갔고, 뒤의 둘은 들어갈 상세가 없어 섹션만 남아 있었다.
 
-각 섹션: 대문자 제목 → 문단 1–2개 → 메타 표(Years/Role/Scope/Link, 라벨-값 행 + 상단 보더). 텍스트는 프로토타입 문구 사용. 이미지는 `public/images/work/` 플레이스홀더로 두고 `<Image>` 자리만 잡을 것 (unoptimized).
+각 섹션: 대문자 제목 → 문단 1–2개 → 메타 표(Years/Role/Scope, 라벨-값 행 + 상단 보더). 섹션 전체가 상세로 가는 링크라 Link 행은 두지 않는다. 이미지는 상세 Hero 를 그대로 재사용한다.
 
 ## 블로그 (MDX)
 - `content/blog/*.mdx` + frontmatter(title, description, date)
