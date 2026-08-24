@@ -32,6 +32,10 @@ const META: MetaItem[] = [
   { label: "Product", value: "Keeper Admin (Web · B2B)" },
   { label: "Team", value: "디자인 1 · Dev 협업" },
   { label: "Role", value: "시스템 설계·구현·운영 전담 · 레포 오너십" },
+  {
+    label: "Tools",
+    value: "Figma, Token Studio, Style Dictionary, Next.js, Claude Code",
+  },
 ];
 
 /* 이 사이트의 토큰도 같은 파이프라인을 거쳐 나온다 — tokens.css 가 그 결과물이다 */
