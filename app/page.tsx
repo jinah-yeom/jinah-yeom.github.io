@@ -156,7 +156,7 @@ const WORKS: WorkSectionProps[] = [
 ];
 
 const BIO_KO =
-  "디자인과 개발의 경계에서 일하는 디자이너-개발자입니다. B2B 어드민 제품의 디자인 시스템을 0부터 설계하고 직접 구현했습니다. Token Studio에서 시작해 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인을 구축했고, Figma Code Connect로 디자인과 코드가 1:1로 대응되는 구조를 만들었습니다. 컴포넌트 라이브러리와 문서 사이트, 그리고 반복 작업을 자동화하는 AI 워크플로까지 — 시스템의 설계와 구현, 운영을 한 사람의 손으로 완결했습니다.";
+  "디자인과 개발의 경계에서 일하는 디자이너-개발자입니다. B2B 어드민 제품의 디자인 시스템을 0부터 설계하고 직접 구현했습니다. Token Studio에서 시작해 Style Dictionary를 거쳐 CSS 변수로 빌드되는 토큰 파이프라인을 구축했고, Figma Code Connect로 디자인과 코드가 1:1로 대응되는 구조를 만들었습니다. 컴포넌트 라이브러리와 문서 사이트, 그리고 반복 작업을 자동화하는 AI 워크플로우까지 — 시스템의 설계와 구현, 운영을 한 사람의 손으로 완결했습니다.";
 
 const BIO_EN =
   "I am a designer-developer working at the boundary between design and code. I built a design system for a B2B admin product from zero: a token pipeline running from Token Studio through Style Dictionary to CSS variables, a 1:1 design-to-code mapping via Figma Code Connect, a component library with a documentation site, and AI workflows that automate repetitive checks. I designed, implemented, and operated the whole system single-handedly.";

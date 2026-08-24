@@ -92,7 +92,7 @@ const STRENGTHS: AboutItem[] = [
         "디자인 시스템 재구축 — CSS 변수 346개, 컴포넌트 33종",
         "Token Studio → Style Dictionary → CSS 변수 파이프라인 설계",
         "Figma Code Connect로 디자인-코드 1:1 매핑 운영",
-        "AI 워크플로 구축 — 토큰 검사·컴포넌트 생성 자동화",
+        "AI 워크플로우 구축 — 토큰 검사·컴포넌트 생성 자동화",
       ],
     },
     en: {
