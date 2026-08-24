@@ -13,6 +13,10 @@ export interface SlotFrameProps {
   caption?: string;
 }
 
+/** 도형·표·코드 블록이 함께 쓰는 캡션 스타일 — 슬롯과 같은 톤을 유지한다 */
+export const FIGURE_CAPTION =
+  "mt-[var(--space-150)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] text-[var(--color-label-assistive)]";
+
 const RATIO: Record<SlotRatio, string> = {
   tall: "aspect-[3/4]",
   wide: "aspect-[16/10]",
@@ -43,7 +47,7 @@ export default function SlotFrame({
       </div>
 
       {caption && (
-        <figcaption className="mt-[var(--space-150)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] text-[var(--color-label-assistive)]">
+        <figcaption className={FIGURE_CAPTION}>
           {caption}
         </figcaption>
       )}
