@@ -154,6 +154,7 @@ export default function KeeperSuppliesPage() {
       {/* 4. Background */}
       <ProseSection
         eyebrow="BACKGROUND"
+        headline="운영팀은 매번 외부 플랫폼을 거쳐 소모품을 구매해야 했습니다"
         paragraphs={BACKGROUND}
         media={[
           {
@@ -165,7 +166,11 @@ export default function KeeperSuppliesPage() {
       />
 
       {/* 5. Problem */}
-      <ProseSection eyebrow="PROBLEM" paragraphs={PROBLEM} />
+      <ProseSection
+        eyebrow="PROBLEM"
+        headline="구매가 밖에서 일어나는 한, 안의 문제는 풀리지 않았다"
+        paragraphs={PROBLEM}
+      />
 
       {/* 6. Approach */}
       <ProseSection eyebrow="APPROACH" paragraphs={APPROACH_LEAD}>
@@ -182,6 +187,7 @@ export default function KeeperSuppliesPage() {
       {/* 8. Interaction Detail */}
       <ProseSection
         eyebrow="INTERACTION DETAIL"
+        headline="어떤 경로로 들어와도 막다른 화면이 없게 했다"
         paragraphs={[
           "상품 없음·계정 미연동·배송지 없음 등 다양한 예외 케이스를 UX 레벨에서 선제적으로 처리하는 정책을 정의했습니다. 네트워크·인증·권한·상품 각 영역의 케이스를 리스트업하고 케이스별 정책을 문서로 확정해, 어떤 경로로 진입해도 막다른 화면이 없게 했습니다.",
         ]}
@@ -191,6 +197,7 @@ export default function KeeperSuppliesPage() {
       {/* 9. Collaboration */}
       <ProseSection
         eyebrow="COLLABORATION"
+        headline="화면별 상태·동작·예외를 Jira 기반으로 문서화했습니다"
         paragraphs={[
           "디자인–개발 간 해석 차이를 최소화하기 위해 UI 요소 정의부터 인터랙션 트리거·결과 구조화까지 명세서로 정리하고, Jira 티켓 기준으로 바로 구현 가능한 형태로 전달했습니다. 화면 단위 구현 명세서, 인터랙션·동작 정의, Edge case·Error 처리의 세 축으로 나눠 문서화했습니다. 출시 후 명세 관련 재요청은 0건이었습니다.",
         ]}
@@ -205,6 +212,7 @@ export default function KeeperSuppliesPage() {
       {/* 10. Outcome */}
       <ProseSection
         eyebrow="OUTCOME"
+        headline="외부 이탈 없는 구매 완결, 운영 효율과 신규 매출 기반을 확보했습니다"
         paragraphs={[
           "외부 플랫폼 이탈 없이 검색부터 결제, 배송 조회까지 Admin 안에서 단일 흐름으로 완결되는 구조를 확보했습니다. 출시 후 명세 관련 재요청은 0건이었고, 권한 기반 승인이 도입되면서 운영 효율도 올라갔습니다. 구매 데이터가 쌓이기 시작하면서 공동구매, 도매 단가 협상, 자동 발주 추천 같은 신규 매출 파이프라인의 기반도 생겼습니다.",
         ]}
