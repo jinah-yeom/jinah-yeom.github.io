@@ -41,7 +41,7 @@ const PROBLEM = [
 ];
 
 const APPROACH_LEAD = [
-  "가설은 하나였습니다. 고객의 소모품 구매 행동을 촉진하는 핵심 동기는 '즉시성'이며, 이를 플랫폼 내부에서 해결할 수 있을 때 구매 전환율과 운영 효율이 함께 상승할 것이다. 이 가설에 따라 화면 이동을 최소화하고 구매 흐름이 한 번에 이어지는 구조로 정책과 IA를 정의했습니다.",
+  "가설은 하나였습니다. 고객의 소모품 구매 행동을 촉진하는 핵심 동기는 '즉시성'이며, 이를 플랫폼 내부에서 해결할 수 있을 때 구매 전환율과 운영 효율이 함께 상승할 것이다. 청소 중 소모품이 부족해지는 상황은 예측이 어렵고 즉각적인 대응이 필요한데, 외부 쇼핑몰을 거치는 구조는 그 자체가 행동 진입 장벽이었습니다. 이 가설에 따라 화면 이동을 최소화하고 구매 흐름이 한 번에 이어지는 구조로 정책과 IA를 정의했습니다.",
 ];
 
 const APPROACHES: ApproachItem[] = [
@@ -67,6 +67,7 @@ const APPROACHES: ApproachItem[] = [
     bullets: [
       "구매·정산 분산으로 생기던 비효율 제거",
       "단계별로 정보가 명확히 전달되는 구조",
+      "구매 과정의 CS 포인트를 예측해 안내·정책·상태 처리 정의",
     ],
   },
   {
@@ -156,13 +157,8 @@ export default function KeeperSuppliesPage() {
         eyebrow="BACKGROUND"
         headline="운영팀은 매번 외부 플랫폼을 거쳐 소모품을 구매해야 했습니다"
         paragraphs={BACKGROUND}
-        media={[
-          {
-            label:
-              "as-is 플로우 — 소모품 부족 감지 → 플랫폼 외 이탈 → 가격·배송 비교 반복 → 구매 지연",
-            ratio: "wide",
-          },
-        ]}
+        /* 파일명 예정: supplies-asis-tobe-flow */
+        media={[{ label: "as-is/to-be 플로우 비교", ratio: "wide" }]}
       />
 
       {/* 5. Problem */}
@@ -177,14 +173,25 @@ export default function KeeperSuppliesPage() {
         <ApproachList items={APPROACHES} />
       </ProseSection>
 
-      {/* 7. Solution */}
+      {/* 7. Flow Analysis */}
+      <ProseSection
+        eyebrow="FLOW ANALYSIS"
+        headline="구매 여정을 분해해 의사결정 구조부터 분석했다"
+        paragraphs={[
+          "설정한 가설을 검증하기 위해 고객의 소모품 구매 여정을 단계별로 분해하고, 의사결정 흐름을 플로우차트로 재정리했습니다. '필요한 순간에 즉시 해결할 수 있는가'를 중심으로 탐색, 선택, 결제 단계의 병목을 파악했고, 결제 권한 유무에 따른 분기까지 포함해 Airsupply 연동 시 어떤 흐름이 가장 효율적인지 분석했습니다. 이 결과를 기반으로 구매 플로우 정책과 예외·빈 상태 대응, 상품 탐색 UI 구조를 정의했으며, 이를 실제 기능으로 연결하기 위한 MVP 와이어프레임을 제작했습니다.",
+        ]}
+        /* 파일명 예정: supplies-decision-flow */
+        media={[{ label: "의사결정 플로우차트", ratio: "wide" }]}
+      />
+
+      {/* 8. Solution */}
       <ProseSection eyebrow="SOLUTION">
         {SOLUTIONS.map((solution) => (
           <SolutionBlock key={solution.headline} {...solution} />
         ))}
       </ProseSection>
 
-      {/* 8. Interaction Detail */}
+      {/* 9. Interaction Detail */}
       <ProseSection
         eyebrow="INTERACTION DETAIL"
         headline="어떤 경로로 들어와도 막다른 화면이 없게 했다"
@@ -194,7 +201,7 @@ export default function KeeperSuppliesPage() {
         media={[{ label: "예외 케이스 정책 문서", ratio: "hero" }]}
       />
 
-      {/* 9. Collaboration */}
+      {/* 10. Collaboration */}
       <ProseSection
         eyebrow="COLLABORATION"
         headline="화면별 상태·동작·예외를 Jira 기반으로 문서화했습니다"
@@ -209,7 +216,7 @@ export default function KeeperSuppliesPage() {
         ]}
       />
 
-      {/* 10. Outcome */}
+      {/* 11. Outcome */}
       <ProseSection
         eyebrow="OUTCOME"
         headline="외부 이탈 없는 구매 완결, 운영 효율과 신규 매출 기반을 확보했습니다"
@@ -218,7 +225,7 @@ export default function KeeperSuppliesPage() {
         ]}
       />
 
-      {/* 11. Reflection */}
+      {/* 12. Reflection */}
       <ProseSection
         eyebrow="REFLECTION"
         paragraphs={[
@@ -227,7 +234,7 @@ export default function KeeperSuppliesPage() {
         ]}
       />
 
-      {/* 12. 이전/다음 프로젝트 */}
+      {/* 13. 이전/다음 프로젝트 */}
       <ProjectNav slug="keeper-supplies" />
     </div>
   );
