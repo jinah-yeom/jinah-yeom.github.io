@@ -11,7 +11,7 @@
 
 ## 페이지 구조
 ```
-/            홈: garri식 히어로(대형 스테이트먼트 3줄) → 워크 섹션 ×2 → 국영문 2단 소개
+/            홈: garri식 히어로(대형 스테이트먼트 3줄) → 워크 그리드(카드 ×2) → 국영문 2단 소개
 /work/kds    KDS 상세: 좌측 사이드 내비 + 인포박스 + 문서형 본문 (프로토타입 참조)
 /blog        글 목록 (날짜 역순)
 /blog/[slug] 개별 글 — content/blog/*.mdx 기반, generateStaticParams로 정적화
@@ -23,14 +23,23 @@
 - 활성 내비: 밑줄(border-bottom) 표시. hover는 색상 전환만
 - 링크 hover는 underline (색 변화 아님)
 
-## 워크 섹션 (홈, 2개)
-좌 300px 텍스트 / 우 이미지, 순서:
+## 워크 그리드 (홈, 카드 2개)
+3열 그리드(gap `--space-400`), 1024px 이하 2열, 720px 이하 1열. 카드는 상세 페이지가 있는 프로젝트만 올린다 — 현재 2개라 첫 행 세 번째 칸은 비운다. 자리를 메우는 플레이스홀더 카드는 두지 않는다.
+
 1. Keeper APP 리스트뷰 UX 개선 → /work/keeper-listview 링크
 2. Keeper Design System → /work/kds 링크
 
-상세 페이지가 있는 프로젝트만 올린다. KDS Documentation·Sheets to Variables·Design Review Agent 는 별도 섹션에서 뺐다 — 앞의 것은 KDS 케이스의 Solution 으로 들어갔고, 뒤의 둘은 들어갈 상세가 없어 섹션만 남아 있었다.
+KDS Documentation·Sheets to Variables·Design Review Agent 는 뺐다 — 앞의 것은 KDS 케이스의 Solution 으로 들어갔고, 뒤의 둘은 들어갈 상세가 없어 섹션만 남아 있었다.
 
-각 섹션: 대문자 제목 → 문단 1–2개 → 메타 표(Years/Role/Scope, 라벨-값 행 + 상단 보더). 섹션 전체가 상세로 가는 링크라 Link 행은 두지 않는다. 이미지는 상세 Hero 를 그대로 재사용한다.
+카드 = 썸네일 → 제목 → 태그. 썸네일은 상세 Hero 를 그대로 재사용하고(16:10, 슬롯 프레임과 같은 겉면), 카드 전체가 상세로 가는 링크다. hover 는 사이트 공통 문법대로 제목 밑줄이고, 카드에는 `aria-label`(제목)과 키보드 포커스 링을 둔다. Years/Role/Scope 메타 표는 홈에서 빼고 상세 페이지에만 남긴다.
+
+### 카드 태그 규칙
+Scope 를 재사용하지 않고 카드 전용 `tags` 배열로 따로 쓴다 — Scope 는 작업 범위고 태그는 프로젝트가 무엇인지 훑는 용도라 목적이 다르다.
+
+- 순서: `[도메인/분야, 메뉴·depth, 프로젝트 목적]`
+- 가운데 메뉴·depth 는 생략 가능하다. 특정 화면 하나를 다룬 작업일 때만 쓰고, 제품 전체를 다룬 작업이면 뺀다.
+- 최대 4개까지만 노출한다 — 카드 폭에서 두 줄을 넘기지 않기 위해서다.
+- 쉼표로 이어 한 줄로 렌더한다 (`--font-size-075`, `--color-label-alternative`).
 
 ## 블로그 (MDX)
 - `content/blog/*.mdx` + frontmatter(title, description, date)
@@ -45,14 +54,14 @@
 
 ## 컴포넌트 분리 가이드
 - `components/layout/Header.tsx`, `Footer.tsx`
-- `components/home/Hero.tsx`, `WorkSection.tsx` (props: title, paragraphs, meta[], visual, href)
+- `components/home/Hero.tsx`, `WorkGrid.tsx` (카드 props: title, href, thumbnail, tags[])
 - `components/blog/PostList.tsx`
 - `components/chat/ChatFab.tsx`, `ChatPanel.tsx`
 - Props는 interface로 정의, 기본값 설정
 
 ## 진행 방식
 1. 토큰 CSS 분리 + 레이아웃(헤더/푸터/코너) 먼저 → 확인
-2. 홈(히어로 + 워크 섹션 + 소개) → 확인
+2. 홈(히어로 + 워크 그리드 + 소개) → 확인
 3. /work/kds, /about → 확인
 4. 블로그(MDX 파이프라인) → 확인
 5. 챗봇 → 확인

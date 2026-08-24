@@ -26,8 +26,6 @@
   --site-breakpoint-mobile: 720px;
   /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
   --site-tap-target: 44px;
-  --site-work-text-width: 300px;
-  --site-work-meta-label-width: 72px;
   --site-fab-size: 56px;
   /*
    * 코드 블록 신택스 색상 — 콘텐츠 가독성을 위한 유채색 예외.

@@ -1,5 +1,5 @@
 import Hero from "@/components/home/Hero";
-import WorkSection, { type WorkSectionProps } from "@/components/home/WorkSection";
+import WorkGrid, { type WorkCard } from "@/components/home/WorkGrid";
 
 const STATEMENT = [
   "디자인 시스템을 설계하고",
@@ -8,72 +8,28 @@ const STATEMENT = [
 ];
 
 /* UX 케이스가 앞, 시스템 작업이 뒤 — lib/projects.ts 의 상세 페이지 순서와 같다 */
-const WORKS: WorkSectionProps[] = [
+const WORKS: WorkCard[] = [
   {
     title: "KEEPER APP 리스트뷰 UX 개선",
     href: "/work/keeper-listview",
-    paragraphs: [
-      "Keeper 리스트뷰의 탐색 구조를 전면 재설계했습니다. 기존 앱은 필터가 가로 스와이프 칩에 갇혀 있고 날짜 탐색이 불가능하며 카드 정보 구조가 일관되지 않아, 키퍼들의 업무 선택 효율이 크게 떨어진 상태였습니다.",
-      "조건을 정해 좁힐 수도, 날짜로 건너뛸 수도 없는 리스트에서 키퍼가 할 수 있는 일은 스크롤뿐이었습니다.",
-    ],
-    meta: [
-      { label: "Years", value: "2025" },
-      { label: "Role", value: "정책 · PRD · UX/UI 설계" },
-      {
-        label: "Scope",
-        value: (
-          <>
-            Mobile App,
-            <br />
-            UX Redesign
-          </>
-        ),
-      },
-    ],
-    visuals: [
-      {
-        /* 상세 페이지 Hero 와 같은 이미지 — 목록과 상세가 같은 얼굴을 갖게 한다 */
-        src: "/images/work/keeper-listview-hero.png",
-        alt: "개선된 Keeper 앱 화면 세 개 — 업무 리스트, 날짜 선택 Bottom Sheet, 지점·동·층 필터 Bottom Sheet.",
-        ratio: "wide",
-        tone: "light",
-        width: 1920,
-        height: 1080,
-      },
-    ],
+    thumbnail: {
+      src: "/images/work/keeper-listview-hero.png",
+      alt: "개선된 Keeper 앱 화면 세 개 — 업무 리스트, 날짜 선택 Bottom Sheet, 지점·동·층 필터 Bottom Sheet.",
+      width: 1920,
+      height: 1080,
+    },
+    tags: ["B2B Mobile App", "Task List", "UX Redesign"],
   },
   {
     title: "KEEPER DESIGN SYSTEM",
     href: "/work/kds",
-    paragraphs: [
-      "MUI 라이브러리로 만들어져 있던 Keeper Admin을 자체 디자인 시스템으로 재구축했습니다.",
-      "shadcn/React 기반으로 33종 컴포넌트를 다시 설계·구현하고 전체 화면을 순차 이관하며, 토큰 파이프라인과 문서 사이트까지 시스템의 설계·구현·운영을 혼자 완결했습니다.",
-    ],
-    meta: [
-      { label: "Years", value: "2026" },
-      { label: "Role", value: "시스템 설계 · 구현 · 운영 전담" },
-      {
-        label: "Scope",
-        value: (
-          <>
-            Figma Migration, Design Tokens,
-            <br />
-            Component Library, Developer Handoff
-          </>
-        ),
-      },
-    ],
-    visuals: [
-      {
-        /* 상세 페이지 Hero 와 같은 이미지 — 목록과 상세가 같은 얼굴을 갖게 한다 */
-        src: "/images/work/kds-hero.png",
-        alt: "왼쪽에 시맨틱 토큰 표와 프리미티브 색상 램프, 오른쪽에 Button 의 variant × state 매트릭스가 펼쳐진 화면.",
-        ratio: "wide",
-        tone: "light",
-        width: 1920,
-        height: 1080,
-      },
-    ],
+    thumbnail: {
+      src: "/images/work/kds-hero.png",
+      alt: "왼쪽에 시맨틱 토큰 표와 프리미티브 색상 램프, 오른쪽에 Button 의 variant × state 매트릭스가 펼쳐진 화면.",
+      width: 1920,
+      height: 1080,
+    },
+    tags: ["B2B Admin", "Design System Replatforming"],
   },
 ];
 
@@ -91,9 +47,7 @@ export default function HomePage() {
     <>
       <Hero lines={STATEMENT} />
 
-      {WORKS.map((work) => (
-        <WorkSection key={work.title} {...work} />
-      ))}
+      <WorkGrid cards={WORKS} />
 
       <section className="grid grid-cols-2 gap-[var(--space-600)] border-t border-[var(--color-divider-alternative)] py-[var(--space-700)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-300)]">
         <p className={BIO_TEXT}>{BIO_KO}</p>
