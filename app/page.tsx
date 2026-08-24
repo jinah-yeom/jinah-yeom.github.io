@@ -34,7 +34,13 @@ const WORKS: WorkCard[] = [
   {
     title: "KEEPER ADMIN 소모품 구매",
     href: "/work/keeper-supplies",
-    /* 썸네일은 상세 Hero 가 나오면 붙인다 — 그때까지 빈 프레임 */
+    thumbnail: {
+      /* 상세 페이지 Hero 와 같은 이미지 — 목록과 상세가 같은 얼굴을 갖게 한다 */
+      src: "/images/work/supplies-hero.png",
+      alt: "Keeper Admin 소모품구매 상품 목록 화면 — 조직별 탭과 폴더 칩 아래로 상품명·판매가·판매상태·카테고리가 열로 놓인 표.",
+      width: 1920,
+      height: 1080,
+    },
     tags: ["B2B Admin", "Procurement"],
   },
 ];
