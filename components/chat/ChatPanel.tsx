@@ -268,7 +268,7 @@ export default function ChatPanel({
        * 닫힘 상태는 invisible — 페이드가 가능하면서 포커스 순서에서는 빠진다.
        * 모바일에서는 FAB 자리만 비우고 화면을 거의 채운다.
        */
-      className={`fixed right-[var(--space-300)] bottom-[calc(var(--site-fab-size)_+_var(--space-500))] z-[var(--site-z-chat)] flex h-[var(--site-chat-height)] max-h-[70vh] w-[var(--site-chat-width)] max-w-[calc(100vw_-_var(--space-600))] flex-col overflow-hidden rounded-[var(--radius-600)] bg-[var(--color-gray-950)] text-[var(--color-gray-100)] transition-[opacity,visibility] duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] max-[720px]:inset-x-[var(--space-150)] max-[720px]:top-[var(--space-150)] max-[720px]:bottom-[calc(var(--site-fab-size)_+_var(--space-400))] max-[720px]:h-auto max-[720px]:max-h-none max-[720px]:w-auto max-[720px]:max-w-none ${
+      className={`focus-ring-inverse fixed right-[var(--space-300)] bottom-[calc(var(--site-fab-size)_+_var(--space-500))] z-[var(--site-z-chat)] flex h-[var(--site-chat-height)] max-h-[70vh] w-[var(--site-chat-width)] max-w-[calc(100vw_-_var(--space-600))] flex-col overflow-hidden rounded-[var(--radius-600)] bg-[var(--color-gray-950)] text-[var(--color-gray-100)] transition-[opacity,visibility] duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] max-[720px]:inset-x-[var(--space-150)] max-[720px]:top-[var(--space-150)] max-[720px]:bottom-[calc(var(--site-fab-size)_+_var(--space-400))] max-[720px]:h-auto max-[720px]:max-h-none max-[720px]:w-auto max-[720px]:max-w-none ${
         open ? "visible opacity-100" : "invisible opacity-0"
       }`}
     >
@@ -378,7 +378,7 @@ export default function ChatPanel({
           tabIndex={open ? undefined : -1}
           aria-label="메시지 입력"
           placeholder="메시지를 입력하세요..."
-          className="flex-1 bg-[var(--color-black-alpha-100)] text-[length:var(--font-size-075)] text-[var(--color-gray-100)] outline-none placeholder:text-[var(--color-gray-600)]"
+          className="flex-1 bg-[var(--color-black-alpha-100)] text-[length:var(--font-size-075)] text-[var(--color-gray-100)] placeholder:text-[var(--color-gray-600)]"
         />
         <button
           type="submit"

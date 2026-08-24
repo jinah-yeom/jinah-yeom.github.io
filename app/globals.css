@@ -26,6 +26,13 @@
   --site-breakpoint-mobile: 720px;
   /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
   --site-tap-target: 44px;
+  /*
+   * 키보드 포커스 링. 색·간격을 한 곳에서만 정하고, 개별 요소는 이 두 변수만 덮어쓴다.
+   * 링은 요소 바깥에 그려지므로 색 기준은 요소 자신이 아니라 요소가 놓인 배경이다 —
+   * 어두운 면 위에 있는 요소는 focus-ring-inverse 로 색만 반전한다.
+   */
+  --site-focus-ring: var(--color-label-normal);
+  --site-focus-ring-offset: var(--space-050);
   --site-fab-size: 56px;
   /*
    * 코드 블록 신택스 색상 — 콘텐츠 가독성을 위한 유채색 예외.
@@ -70,6 +77,11 @@
   }
 }
 
+/* 어두운 면 위의 요소들 — 상속되는 변수라 컨테이너에 한 번만 걸면 안쪽 전부에 적용된다 */
+@utility focus-ring-inverse {
+  --site-focus-ring: var(--color-label-inverse);
+}
+
 /* 스크롤은 되지만 스크롤바는 그리지 않는다 — 실제로 넘치는 요소에 걸어야 한다 */
 @utility no-scrollbar {
   scrollbar-width: none;
@@ -96,6 +108,16 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/*
+ * 키보드 포커스 표시는 전역에서 한 번만 정한다.
+ * :focus 가 아니라 :focus-visible 이라 마우스 클릭에는 뜨지 않고 Tab 이동에만 뜬다.
+ * 요소별로 다시 정의하지 말고, 필요하면 위 두 변수만 덮어쓸 것.
+ */
+:focus-visible {
+  outline: var(--dimension-025) solid var(--site-focus-ring);
+  outline-offset: var(--site-focus-ring-offset);
 }
 
 /*

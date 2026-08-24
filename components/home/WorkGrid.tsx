@@ -33,13 +33,14 @@ export default function WorkGrid({ cards = [] }: WorkGridProps) {
       {cards.map((card) => (
         /*
          * hover 는 사이트 공통 문법을 따른다 — 색이 아니라 제목 밑줄.
-         * 포커스 링은 카드 전체에 걸어 키보드로도 어디에 와 있는지 보이게 한다.
+         * 포커스 링은 전역 :focus-visible 규칙이 그린다. 기본 오프셋(4px)은
+         * 썸네일 보더에 붙어 이중 테두리로 보여, 카드에서만 8px 로 벌린다.
          */
         <Link
           key={card.href}
           href={card.href}
           aria-label={card.title}
-          className="group rounded-[var(--radius-500)] focus-visible:outline-[length:var(--dimension-025)] focus-visible:outline-offset-[var(--space-100)] focus-visible:outline-[var(--color-label-normal)]"
+          className="group rounded-[var(--radius-500)] [--site-focus-ring-offset:var(--space-100)]"
         >
           <div className={`${SLOT_SURFACE} aspect-[16/10]`}>
             <Image

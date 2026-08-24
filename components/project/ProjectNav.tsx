@@ -30,7 +30,8 @@ function NavLink({
   return (
     <Link
       href={projectHref(project.slug)}
-      className={`group block ${align === "right" ? "text-right" : ""}`}
+      /* w-fit — 칸을 다 채우면 포커스 링이 글자가 아니라 칸 절반을 두른다 */
+      className={`group block w-fit ${align === "right" ? "text-right" : ""}`}
     >
       <span className={`${LABEL} block group-hover:underline`}>{label}</span>
       <span className={`${NAME} block`}>{project.title}</span>

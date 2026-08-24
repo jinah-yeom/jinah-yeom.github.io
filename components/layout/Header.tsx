@@ -104,9 +104,10 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
         }`}
       >
         <div className="mx-auto grid h-full w-full max-w-[var(--site-width-header)] grid-cols-[1fr_auto_1fr] items-center px-[var(--space-300)] max-[720px]:grid-cols-[1fr_auto]">
+          {/* justify-self-start — 그리드 칸을 다 채우면 포커스 링이 글자가 아니라 칸을 두른다 */}
           <Link
             href="/"
-            className="text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)]"
+            className="justify-self-start text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)]"
           >
             {name}
           </Link>
