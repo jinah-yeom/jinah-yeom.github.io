@@ -37,7 +37,7 @@ const BACKGROUND = [
 ];
 
 const PROBLEM = [
-  "운영의 단절, 데이터의 분산, 매출 모델의 부재. 세 가지 구조 문제가 동시에 발생하고 있었습니다. 구매가 외부에서 일어나는 한 어느 것도 개별 기능 추가로는 풀리지 않았습니다. 구매 여정 자체를 Admin 내부로 옮기는 것이 유일한 해법이었습니다.",
+  "운영의 단절, 데이터의 분산, 매출 모델의 부재라는 세 가지 구조 문제가 동시에 발생하고 있었습니다. 구매가 외부에서 일어나는 한 어느 것도 개별 기능 추가로는 풀리지 않았고, 구매 여정 자체를 Admin 내부로 옮기는 것이 유일한 해법이었습니다.",
 ];
 
 const APPROACH_LEAD = [
@@ -224,7 +224,7 @@ export default function KeeperSuppliesPage() {
     <div className="flex flex-col gap-[var(--space-900)]">
       {/* 1. Hero */}
       <ProjectHero
-        eyebrow="KEEPER ADMIN"
+        eyebrow="PRODUCT UX"
         title="Keeper Admin 소모품 구매"
         lede="외부 서비스에서 진행되던 소모품 구매를 Admin 내부로 통합했습니다. 탐색부터 결제까지 끊기지 않는 흐름을 설계해, 외부 이탈 없이 구매가 완결되는 구조를 만들었습니다."
         image={{
