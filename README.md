@@ -12,6 +12,7 @@
 | 웹사이트 | **[jinah-yeom.github.io](https://jinah-yeom.github.io)** |
 | 대표 케이스 스터디 | [Keeper 리스트뷰 UX 개선](https://jinah-yeom.github.io/work/keeper-listview) — 정책·PRD·설계·스프린트 1인 완결 |
 | 디자인 시스템 | [Keeper Design System](https://jinah-yeom.github.io/work/kds) — CSS 변수 346개 · 컴포넌트 33종 · MUI → 자체 시스템 재구축 |
+| 제품 UX 케이스 | [Keeper Admin 소모품 구매](https://jinah-yeom.github.io/work/keeper-supplies) — 외부 서비스 구매 흐름을 어드민 내부로 통합 |
 
 ---
 

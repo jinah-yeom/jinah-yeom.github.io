@@ -52,7 +52,22 @@ const TOPICS: Topic[] = [
     question: "KDS는 어떤 프로젝트인가요?",
     keywords: ["kds", "디자인시스템", "keeper", "designsystem", "토큰"],
     answer:
-      "MUI 로 만들어져 있던 B2B 어드민 제품을 자체 디자인 시스템으로 재구축한 프로젝트예요. 토큰 파이프라인(Token Studio → Style Dictionary), CSS 변수 346개, 컴포넌트 33종, Figma Code Connect 연동, 문서 사이트까지 혼자 만들었어요. 홈의 KEEPER DESIGN SYSTEM 섹션을 눌러 자세히 볼 수 있어요.",
+      "MUI 로 만들어져 있던 B2B 어드민 제품을 자체 디자인 시스템으로 재구축한 프로젝트예요. 토큰 파이프라인(Token Studio → Style Dictionary), CSS 변수 346개, 컴포넌트 33종, Figma Code Connect 연동, 문서 사이트까지 혼자 만들었어요. /work/kds 에서 자세히 볼 수 있어요.",
+  },
+  {
+    id: "supplies",
+    question: "소모품 구매는 어떤 프로젝트인가요?",
+    keywords: [
+      "소모품",
+      "구매",
+      "supplies",
+      "airsupply",
+      "에어서플라이",
+      "결제",
+      "procurement",
+    ],
+    answer:
+      "외부 서비스(AirSupply)에서 진행되던 소모품 구매를 B2B 어드민 안으로 통합한 프로젝트예요. 구매 여정을 분해해 의사결정 플로우차트로 다시 그리고, 계정 연동부터 상품 탐색·결제·주문 요약까지 화면 이동 없이 이어지는 흐름을 설계했어요. 예외 케이스 정책과 화면 단위 명세까지 문서로 확정해서 출시 후 명세 관련 재요청은 0건이었어요. /work/keeper-supplies 에서 자세히 볼 수 있어요.",
   },
   {
     id: "stack",
