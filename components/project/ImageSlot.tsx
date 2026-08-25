@@ -36,7 +36,13 @@ export default function ImageSlot({
   fit = "cover",
 }: ImageSlotProps) {
   return (
-    <SlotFrame label={label} ratio={ratio} caption={caption}>
+    <SlotFrame
+      label={label}
+      ratio={ratio}
+      caption={caption}
+      /* 이미지가 붙기 전까지 빈 프레임이 같은 비율로 서 있게 한다 */
+      aspect={ratio === "auto" ? `${width} / ${height}` : undefined}
+    >
       {src && (
         <Image
           src={src}
@@ -44,7 +50,10 @@ export default function ImageSlot({
           width={width}
           height={height}
           priority={priority}
-          className={`h-full w-full ${FIT[fit]}`}
+          /* auto 는 이미지가 프레임 높이를 정한다 — object-fit 이 개입할 여지가 없다 */
+          className={
+            ratio === "auto" ? "h-auto w-full" : `h-full w-full ${FIT[fit]}`
+          }
         />
       )}
     </SlotFrame>
