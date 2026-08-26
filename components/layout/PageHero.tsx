@@ -6,6 +6,12 @@ export interface PageHeroProps {
    * 홈에서만 켠다 — 페이지 제목은 읽는 대상이 아니라 이정표라 움직일 이유가 없다.
    */
   animate?: boolean;
+  /**
+   * 제목 아래에 구분선을 그릴지.
+   * 목록·항목이 곧바로 이어지는 About·Blog 는 선으로 제목과 본문을 가른다.
+   * 홈은 문장 하나로 시작하는 화면이라 선을 두지 않는다.
+   */
+  divider?: boolean;
 }
 
 /** 줄 사이 지연 — 1줄이 다 오르기 전에 2줄이 출발해야 한 덩어리로 읽힌다 */
@@ -33,35 +39,43 @@ const TYPE =
 export default function PageHero({
   lines = [],
   animate = false,
+  divider = false,
 }: PageHeroProps) {
   return (
-    <section className="mt-[var(--site-hero-mt)] mb-[var(--space-400)]">
-      <p lang="en" className={TYPE}>
-        {lines.map((line, index) =>
-          animate ? (
-            /*
-             * 마스크는 줄마다 따로 씌운다. 한 덩어리에 씌우면 위 줄이 아래 줄
-             * 자리를 지나가며 겹쳐 보인다.
-             * 여백은 두지 않는다 — line-height 상자가 y·p 꼬리보다 아래로 더
-             * 내려가 잘리지 않고, 마스크를 키우면 시작 위치(110%)가 마스크를
-             * 다 벗어나지 못해 대기 중에 글자 윗머리가 비친다.
-             */
-            <span key={line} className="block overflow-hidden">
-              <span
-                className="reveal-line block"
-                style={{ animationDelay: `${index * STAGGER_MS}ms` }}
-              >
+    <>
+      <section className="mt-[var(--site-hero-mt)] mb-[var(--space-400)]">
+        <p lang="en" className={TYPE}>
+          {lines.map((line, index) =>
+            animate ? (
+              /*
+               * 마스크는 줄마다 따로 씌운다. 한 덩어리에 씌우면 위 줄이 아래 줄
+               * 자리를 지나가며 겹쳐 보인다.
+               * 여백은 두지 않는다 — line-height 상자가 y·p 꼬리보다 아래로 더
+               * 내려가 잘리지 않고, 마스크를 키우면 시작 위치(110%)가 마스크를
+               * 다 벗어나지 못해 대기 중에 글자 윗머리가 비친다.
+               */
+              <span key={line} className="block overflow-hidden">
+                <span
+                  className="reveal-line block"
+                  style={{ animationDelay: `${index * STAGGER_MS}ms` }}
+                >
+                  {line}
+                </span>
+              </span>
+            ) : (
+              /* 정적일 때는 마스크 래퍼를 만들지 않는다 — 쓰지 않을 상자다 */
+              <span key={line} className="block">
                 {line}
               </span>
-            </span>
-          ) : (
-            /* 정적일 때는 마스크 래퍼를 만들지 않는다 — 쓰지 않을 상자다 */
-            <span key={line} className="block">
-              {line}
-            </span>
-          )
-        )}
-      </p>
-    </section>
+            )
+          )}
+        </p>
+      </section>
+
+      {/* 타이틀과 본문을 가르는 선 — 섹션 구분선과 같은 톤 */}
+      {divider && (
+        <hr className="mb-[var(--space-300)] border-t border-[var(--color-divider-alternative)]" />
+      )}
+    </>
   );
 }

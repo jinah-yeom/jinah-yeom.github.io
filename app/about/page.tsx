@@ -117,10 +117,7 @@ const CONTACT_LINKS: ContactLink[] = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero lines={["About"]} />
-
-      {/* 타이틀과 본문을 가르는 선 — 섹션 구분선과 같은 톤 */}
-      <hr className="mb-[var(--space-300)] border-t border-[var(--color-divider-alternative)]" />
+      <PageHero lines={["About"]} divider />
 
       {/*
        * 프로토타입의 .ab-section + .ab-section 규칙 — 첫 섹션엔 구분선을 넣지 않는다.

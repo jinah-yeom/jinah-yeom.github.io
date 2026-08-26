@@ -13,7 +13,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <PageHero lines={["Blog"]} />
+      <PageHero lines={["Blog"]} divider />
       <PostList posts={posts} />
     </>
   );
