@@ -2,9 +2,9 @@ import Hero from "@/components/home/Hero";
 import WorkGrid, { type WorkCard } from "@/components/home/WorkGrid";
 
 const STATEMENT = [
-  "디자인 시스템을 설계하고",
-  "코드로 직접 완성하는",
-  "디자이너-개발자입니다",
+  "Hey! I'm Jinah, a designer",
+  "who brings clarity and structure",
+  "into complex product experiences.",
 ];
 
 /* UX 케이스가 앞, 시스템 작업이 뒤 — lib/projects.ts 의 상세 페이지 순서와 같다 */
