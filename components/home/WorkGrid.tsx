@@ -41,7 +41,8 @@ export default function WorkGrid({ cards = [] }: WorkGridProps) {
      * 히어로와 본문을 갈라 첫 화면이 두 덩어리로 읽힌다. 아래 소개 섹션은
      * 자기 보더를 갖고 있어 그리드와의 경계는 남는다.
      */
-    <section className="grid grid-cols-3 gap-[var(--space-400)] py-[var(--space-700)] max-[1024px]:grid-cols-2 max-[720px]:grid-cols-1">
+    /* 홈의 마지막 블록이라 아래 여백은 두지 않는다 — 그 자리는 main 의 --site-page-mb 가 갖는다 */
+    <section className="grid grid-cols-3 gap-[var(--space-400)] pt-[var(--space-700)] max-[1024px]:grid-cols-2 max-[720px]:grid-cols-1">
       {cards.map((card) => (
         /*
          * hover 는 HOVER_FADE 가 맡는다 — 글자만 흐려진다.
