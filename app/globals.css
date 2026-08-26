@@ -183,6 +183,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
   /* #앵커 이동 시 대상이 sticky 헤더 아래로 들어가지 않게 한다 */
   scroll-padding-top: var(--site-sticky-offset);
+  /*
+   * 스크롤바 자리를 항상 비워 둔다. 글이 적은 Blog 목록은 뷰포트를 넘지 않아
+   * 혼자 스크롤바가 없었고, 그 페이지로 이동할 때마다 화면 전체가 스크롤바
+   * 폭의 절반(7.5px)만큼 옆으로 밀렸다 — 늘 보이는 sticky 헤더에서 가장
+   * 크게 읽히던 움직임이다. 오버레이 스크롤바를 쓰는 환경은 예약 폭이 0 이라
+   * 아무 영향이 없다.
+   */
+  scrollbar-gutter: stable;
 }
 
 body {
