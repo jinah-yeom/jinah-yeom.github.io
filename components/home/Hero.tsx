@@ -4,21 +4,25 @@ export interface HeroProps {
 }
 
 /** 줄 사이 지연 — 1줄이 다 오르기 전에 2줄이 출발해야 한 덩어리로 읽힌다 */
-const STAGGER_MS = 120;
+const STAGGER_MS = 160;
 
 const TYPE =
-  "text-[length:var(--font-size-550)] leading-[var(--font-line-height-600)] tracking-[var(--font-letter-spacing-none)] [font-weight:var(--font-weight-500)] max-[720px]:text-[length:var(--font-size-400)] max-[720px]:leading-[var(--font-line-height-400)] max-[480px]:text-[length:var(--font-size-200)] max-[480px]:leading-[var(--font-line-height-200)]";
+  "text-[length:var(--font-size-700)] leading-[var(--font-line-height-1000)] tracking-[var(--font-letter-spacing-none)] [font-weight:var(--font-weight-500)] max-[1024px]:text-[length:var(--font-size-550)] max-[1024px]:leading-[var(--font-line-height-600)] max-[720px]:text-[length:var(--font-size-400)] max-[720px]:leading-[var(--font-line-height-400)] max-[480px]:text-[length:var(--font-size-200)] max-[480px]:leading-[var(--font-line-height-200)]";
 
 export default function Hero({ lines = [] }: HeroProps) {
   return (
-    <section className="flex min-h-[62vh] items-center">
+    <section className="flex h-[var(--site-hero-height)] items-center">
       {/*
        * 영문 전용이라 트래킹을 none 으로 둔다 — display 토큰의 -0.4px 은
        * 한글 낱자 사이를 좁히려는 값이고, 라틴 문자에는 자간이 붙어 보인다.
        *
-       * 줄바꿈 위치가 카피의 일부라, 세 줄이 접히지 않는 선에서 크기를 두 번
-       * 내린다. 36px 은 673px 폭까지, 24px 은 432px 까지, 18px 은 331px 까지
-       * 세 줄을 지킨다 — 흔한 폰 폭(360·375·390)이 전부 이 안에 들어온다.
+       * 줄바꿈 위치가 카피의 일부라, 세 줄이 접히지 않는 선에서 크기를 내린다.
+       * 가장 긴 줄이 48px 에서 753px, 36px 에서 565px, 24px 에서 377px,
+       * 18px 에서 283px 이라 각 단계가 자기 구간을 덮는다.
+       *
+       * line-height 는 같은 단계(700, 48px)를 쓰지 않는다. 48px 에서는 줄
+       * 상자가 폰트 상자(58px)보다 작아 마스크가 y·g 꼬리를 3px 잘라낸다.
+       * 잘리지 않는 첫 단계가 1000(62px)이다.
        */}
       <p lang="en" className={TYPE}>
         {lines.map((line, index) => (

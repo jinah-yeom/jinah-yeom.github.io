@@ -30,12 +30,15 @@
   --site-breakpoint-mobile: 720px;
   /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
   --site-tap-target: 44px;
+  /* 히어로는 뷰포트가 아니라 고정 높이를 쓴다 — 화면 높이에 따라 첫인상이 달라지지 않게 */
+  --site-hero-height: 600px;
+
   /*
    * 히어로 연출용 지속시간 — KDS 모션 스케일(d1~d6, 최대 300ms)은 버튼·패널
    * 같은 UI 피드백 용도라 범위가 다르다. 읽는 속도에 맞춰 글자가 올라오는
    * 연출에는 그 위쪽 값이 필요해 따로 둔다.
    */
-  --site-reveal-duration: 700ms;
+  --site-reveal-duration: 1100ms;
 
   /*
    * 마스크 리빌 전용 이징. KDS 의 --motion-easing-out 은 CSS 키워드 ease-out
@@ -92,6 +95,12 @@
 @media (max-width: 720px) {
   :root {
     --site-header-height: 84px;
+    /*
+     * 폰에서는 600px 이 화면을 거의 다 먹는다 — 헤더 84 + 히어로 600 이면
+     * 667~750px 짜리 세로 화면에서 워크 그리드가 통째로 접힌다.
+     * 글자 덩어리(90~102px)를 가운데 두기에 420px 이면 충분하다.
+     */
+    --site-hero-height: 420px;
   }
 }
 
