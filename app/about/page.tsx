@@ -122,8 +122,12 @@ export default function AboutPage() {
       {/* 타이틀과 본문을 가르는 선 — 섹션 구분선과 같은 톤 */}
       <hr className="mb-[var(--space-300)] border-t border-[var(--color-divider-alternative)]" />
 
-      {/* 프로토타입의 .ab-section + .ab-section 규칙 — 첫 섹션엔 구분선을 넣지 않는다 */}
-      <div className="[&>section+section]:border-t [&>section+section]:border-[var(--color-divider-alternative)]">
+      {/*
+       * 프로토타입의 .ab-section + .ab-section 규칙 — 첫 섹션엔 구분선을 넣지 않는다.
+       * 첫 섹션의 위 패딩도 뺀다 — 위 divider 의 아래 여백에 더해지면 그 자리만
+       * 48px 이 되어 섹션 구분선들과 리듬이 어긋난다.
+       */}
+      <div className="[&>section:first-child]:pt-0 [&>section+section]:border-t [&>section+section]:border-[var(--color-divider-alternative)]">
         <AboutSection label="Info">
           <div className="flex flex-col gap-[var(--space-250)]">
             {INFO.map((paragraph) => (
