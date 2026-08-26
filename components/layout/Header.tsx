@@ -18,20 +18,18 @@ const NAV_ITEMS: NavItem[] = [
   { label: "BLOG", href: "/blog", matches: ["/blog"] },
 ];
 
-const CONTACT_HREF = "/about#contact";
-
 /*
- * 색상·굵기는 idle/active 중 한쪽에만 넣는다.
- * 두 클래스를 겹쳐 쓰면 최종 승자가 클래스 순서가 아니라 CSS 출력 순서로 결정돼 불안정해진다.
+ * 현재 위치는 밑줄이 아니라 색 위계로만 알린다 — 굵기는 양쪽 같게 두어
+ * 글자 폭이 흔들리지 않게 하고, 색만 한 단계 올린다.
+ * 색은 idle/active 중 한쪽에만 넣는다. 두 클래스를 겹쳐 쓰면 최종 승자가
+ * 클래스 순서가 아니라 CSS 출력 순서로 결정돼 불안정해진다.
  */
 const NAV_LINK_BASE =
-  "py-[var(--space-050)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] tracking-[var(--site-tracking-nav)] transition-colors hover:text-[var(--color-label-normal)]";
+  "py-[var(--space-050)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--site-tracking-nav)] [font-weight:var(--font-weight-500)] transition-colors hover:text-[var(--color-label-normal)]";
 
-const NAV_LINK_IDLE =
-  "text-[var(--color-label-assistive)] [font-weight:var(--font-weight-500)]";
+const NAV_LINK_IDLE = "text-[var(--color-label-alternative)]";
 
-const NAV_LINK_ACTIVE =
-  "text-[var(--color-label-normal)] [font-weight:var(--font-weight-700)] [border-bottom-width:var(--dimension-025)] border-[var(--color-border-contrast)]";
+const NAV_LINK_ACTIVE = "text-[var(--color-label-normal)]";
 
 const MENU_BAR =
   "block w-[var(--dimension-250)] [height:var(--dimension-025)] bg-[var(--color-label-normal)]";
@@ -77,18 +75,11 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
     setMenuOpen(false);
   }
 
-  /*
-   * CONTACT 는 섹션이 아니라 액션이라 활성 표시를 두지 않는다.
-   * (ABOUT 과 같은 경로여서, 활성으로 두면 /about 에서 밑줄이 두 개 생긴다)
-   */
-  const menuItems: MobileMenuItem[] = [
-    ...NAV_ITEMS.map((item) => ({
-      label: item.label,
-      href: item.href,
-      active: isActive(pathname, item),
-    })),
-    { label: "CONTACT", href: CONTACT_HREF, active: false },
-  ];
+  const menuItems: MobileMenuItem[] = NAV_ITEMS.map((item) => ({
+    label: item.label,
+    href: item.href,
+    active: isActive(pathname, item),
+  }));
 
   return (
     <>
@@ -103,16 +94,16 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
             : "border-[var(--color-black-alpha-100)]"
         }`}
       >
-        <div className="mx-auto grid h-full w-full max-w-[var(--site-width-header)] grid-cols-[1fr_auto_1fr] items-center px-[var(--space-300)] max-[720px]:grid-cols-[1fr_auto]">
-          {/* justify-self-start — 그리드 칸을 다 채우면 포커스 링이 글자가 아니라 칸을 두른다 */}
+        {/* 좌 로고 / 우 내비 2단 — 내비 오른쪽 끝이 본문 우측선과 맞는다 */}
+        <div className="mx-auto flex h-full w-full max-w-[var(--site-width-header)] items-center justify-between px-[var(--space-300)]">
           <Link
             href="/"
-            className="justify-self-start text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)]"
+            className="text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)]"
           >
             {name}
           </Link>
 
-          <nav className="flex gap-[var(--space-300)] max-[720px]:hidden">
+          <nav className="flex gap-[var(--space-200)] max-[720px]:hidden">
             {NAV_ITEMS.map((item) => {
               const active = isActive(pathname, item);
               return (
@@ -130,13 +121,6 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
             })}
           </nav>
 
-          <Link
-            href={CONTACT_HREF}
-            className={`${NAV_LINK_BASE} ${NAV_LINK_IDLE} justify-self-end max-[720px]:hidden`}
-          >
-            CONTACT
-          </Link>
-
           <button
             type="button"
             aria-label="메뉴 열기"
@@ -144,7 +128,7 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen(true)}
             /* 오버레이 닫기 버튼과 정확히 같은 좌표에 오도록 히트박스 크기를 동일하게 유지한다 */
-            className="hidden h-[var(--site-tap-target)] w-[var(--site-tap-target)] flex-col items-center justify-center gap-[var(--dimension-075)] justify-self-end max-[720px]:flex"
+            className="hidden h-[var(--site-tap-target)] w-[var(--site-tap-target)] flex-col items-center justify-center gap-[var(--dimension-075)] max-[720px]:flex"
           >
             <span className={MENU_BAR} />
             <span className={MENU_BAR} />
