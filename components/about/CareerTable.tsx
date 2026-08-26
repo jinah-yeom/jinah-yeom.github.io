@@ -19,10 +19,10 @@ export default function CareerTable({ rows = [] }: CareerTableProps) {
   return (
     <div className="flex flex-col">
       {rows.map((row) => (
-        /* 행마다 상단 보더 — 첫 행에도 넣어 라벨과 같은 선에서 시작한다 */
+        /* 행 사이에만 선을 둔다 — 첫 행에 넣으면 섹션 구분선과 이중선이 된다 */
         <div
           key={row.period}
-          className="grid grid-cols-[140px_220px_1fr] gap-[var(--space-300)] border-t border-[var(--color-divider-alternative)] py-[var(--space-250)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-100)]"
+          className="grid grid-cols-[140px_220px_1fr] gap-[var(--space-300)] border-t border-[var(--color-divider-alternative)] py-[var(--space-250)] first:border-t-0 first:pt-0 max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-100)]"
         >
           <p className={`${CELL} text-[var(--color-label-alternative)]`}>
             {row.period}

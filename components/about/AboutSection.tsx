@@ -27,7 +27,7 @@ export default function AboutSection({
   return (
     /* 좌 라벨 / 우 본문. 720px 아래에서는 라벨이 본문 위 소제목으로 내려앉는다 */
     <section
-      className={`grid gap-[var(--space-600)] py-[var(--space-600)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-300)] ${
+      className={`grid gap-[var(--space-600)] py-[var(--space-300)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-300)] ${
         wide
           ? "grid-cols-[var(--site-about-label-width)_1fr]"
           : "grid-cols-[var(--site-about-label-width)_minmax(0,var(--site-width-prose))]"
