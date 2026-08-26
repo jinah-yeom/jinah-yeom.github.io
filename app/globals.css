@@ -31,6 +31,13 @@
   /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
   --site-tap-target: 44px;
   /*
+   * 히어로 연출용 지속시간 — KDS 모션 스케일(d1~d6, 최대 300ms)은 버튼·패널
+   * 같은 UI 피드백 용도라 범위가 다르다. 읽는 속도에 맞춰 글자가 올라오는
+   * 연출에는 그 위쪽 값이 필요해 따로 둔다.
+   */
+  --site-reveal-duration: 700ms;
+
+  /*
    * 마스크 리빌 전용 이징. KDS 의 --motion-easing-out 은 CSS 키워드 ease-out
    * (cubic-bezier(0, 0, .58, 1)) 이라 끝이 길게 끌리지 않는다. 마스크 밖에서
    * 올라오는 글자는 초반에 크게 움직이고 끝에서 부드럽게 멎어야 읽히므로,
@@ -104,7 +111,7 @@
 }
 
 @utility reveal-line {
-  animation: site-line-reveal var(--motion-duration-d6)
+  animation: site-line-reveal var(--site-reveal-duration)
     var(--site-reveal-easing) both;
 }
 
