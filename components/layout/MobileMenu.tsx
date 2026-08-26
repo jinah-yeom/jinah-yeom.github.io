@@ -23,13 +23,13 @@ export interface MobileMenuProps {
   id?: string;
 }
 
-const ITEM_BASE =
-  "w-fit text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-display)] [font-weight:var(--font-weight-500)]";
-
-/* 헤더 내비와 같은 규칙 — 현재 위치는 밑줄이 아니라 색 한 단계로만 알린다 */
-const ITEM_IDLE = "text-[var(--color-label-alternative)]";
-
-const ITEM_ACTIVE = "text-[var(--color-label-normal)]";
+/*
+ * 헤더 내비와 같은 규칙 — 항목을 나란히 두고 현재 위치는 aria-current 로만
+ * 남긴다. hover 도 같은 문법(투명도)이고, Tailwind 가 hover 를 hover 가능한
+ * 기기로 한정하므로 터치에서 눌린 상태가 남지 않는다.
+ */
+const ITEM =
+  "w-fit text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-display)] [font-weight:var(--font-weight-500)] text-[var(--color-label-normal)] opacity-100 transition-opacity duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:opacity-60";
 
 export default function MobileMenu({
   open = false,
@@ -91,7 +91,7 @@ export default function MobileMenu({
             onClick={onClose}
             aria-current={item.active ? "page" : undefined}
             tabIndex={open ? undefined : -1}
-            className={`${ITEM_BASE} ${item.active ? ITEM_ACTIVE : ITEM_IDLE}`}
+            className={ITEM}
           >
             {item.label}
           </Link>

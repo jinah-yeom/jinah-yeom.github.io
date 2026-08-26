@@ -19,17 +19,13 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 /*
- * 현재 위치는 밑줄이 아니라 색 위계로만 알린다 — 굵기는 양쪽 같게 두어
- * 글자 폭이 흔들리지 않게 하고, 색만 한 단계 올린다.
- * 색은 idle/active 중 한쪽에만 넣는다. 두 클래스를 겹쳐 쓰면 최종 승자가
- * 클래스 순서가 아니라 CSS 출력 순서로 결정돼 불안정해진다.
+ * 세 항목을 같은 색·굵기로 둔다. 현재 위치는 화면에 표시하지 않고
+ * aria-current 로만 남긴다 — 스크린리더는 알고 눈으로는 나란하다.
+ * hover 는 카드와 같은 문법(투명도)을 쓴다. 색이 하나뿐이라 색 전환은
+ * 걸 곳이 없다.
  */
-const NAV_LINK_BASE =
-  "py-[var(--space-050)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--site-tracking-nav)] [font-weight:var(--font-weight-500)] transition-colors duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:text-[var(--color-label-normal)]";
-
-const NAV_LINK_IDLE = "text-[var(--color-label-alternative)]";
-
-const NAV_LINK_ACTIVE = "text-[var(--color-label-normal)]";
+const NAV_LINK =
+  "py-[var(--space-050)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)] text-[var(--color-label-normal)] opacity-100 transition-opacity duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:opacity-60";
 
 const MENU_BAR =
   "block w-[var(--dimension-250)] [height:var(--dimension-025)] bg-[var(--color-label-normal)]";
@@ -98,7 +94,7 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
         <div className="mx-auto flex h-full w-full max-w-[var(--site-width-header)] items-center justify-between px-[var(--space-300)]">
           <Link
             href="/"
-            className="text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)]"
+            className="text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)]"
           >
             {name}
           </Link>
@@ -111,9 +107,7 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
                   key={item.label}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`${NAV_LINK_BASE} ${
-                    active ? NAV_LINK_ACTIVE : NAV_LINK_IDLE
-                  }`}
+                  className={NAV_LINK}
                 >
                   {item.label}
                 </Link>
