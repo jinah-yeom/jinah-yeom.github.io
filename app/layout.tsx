@@ -45,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="ko" className="h-full">
       <body className="flex min-h-full flex-col">
         <Header />
-        <main className="mx-auto w-full max-w-[var(--site-width-content)] flex-1 px-[var(--space-300)] pt-[var(--space-400)] pb-[var(--space-900)]">
+        <main className="mx-auto w-full max-w-[var(--site-width-content)] flex-1 px-[var(--space-300)] pt-[var(--space-400)] pb-[var(--site-page-mb)]">
           {children}
         </main>
         <Footer />

@@ -61,7 +61,8 @@ export default function HomePage() {
 
       <WorkGrid cards={WORKS} />
 
-      <section className="grid grid-cols-2 gap-[var(--space-600)] border-t border-[var(--color-divider-alternative)] py-[var(--space-700)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-300)]">
+      {/* 페이지의 마지막 블록이라 아래 여백은 두지 않는다 — 그 자리는 main 의 --site-page-mb 가 갖는다 */}
+      <section className="grid grid-cols-2 gap-[var(--space-600)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-700)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-300)]">
         <p className={BIO_TEXT}>{BIO_KO}</p>
         <p className={BIO_TEXT} lang="en">
           {BIO_EN}
