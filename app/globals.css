@@ -31,7 +31,7 @@
   /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
   --site-tap-target: 44px;
   /* 히어로는 뷰포트가 아니라 고정 높이를 쓴다 — 화면 높이에 따라 첫인상이 달라지지 않게 */
-  --site-hero-height: 600px;
+  --site-hero-height: 500px;
 
   /*
    * 히어로 연출용 지속시간 — KDS 모션 스케일(d1~d6, 최대 300ms)은 버튼·패널

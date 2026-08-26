@@ -36,7 +36,12 @@ const HOVER_FADE =
 
 export default function WorkGrid({ cards = [] }: WorkGridProps) {
   return (
-    <section className="grid grid-cols-3 gap-[var(--space-400)] border-t border-[var(--color-divider-alternative)] py-[var(--space-700)] max-[1024px]:grid-cols-2 max-[720px]:grid-cols-1">
+    /*
+     * 상단 보더는 두지 않는다 — 이 그리드 바로 위가 히어로라, 그 선이
+     * 히어로와 본문을 갈라 첫 화면이 두 덩어리로 읽힌다. 아래 소개 섹션은
+     * 자기 보더를 갖고 있어 그리드와의 경계는 남는다.
+     */
+    <section className="grid grid-cols-3 gap-[var(--space-400)] py-[var(--space-700)] max-[1024px]:grid-cols-2 max-[720px]:grid-cols-1">
       {cards.map((card) => (
         /*
          * hover 는 HOVER_FADE 가 맡는다 — 글자만 흐려진다.

@@ -11,7 +11,8 @@ const TYPE =
 
 export default function Hero({ lines = [] }: HeroProps) {
   return (
-    <section className="flex h-[var(--site-hero-height)] items-center">
+    /* 글자를 히어로 아래쪽 기준선에 붙인다 — 아래 여백은 그리드 상단 여백과 같은 단계로 */
+    <section className="flex h-[var(--site-hero-height)] items-end pb-[var(--space-600)]">
       {/*
        * 영문 전용이라 트래킹을 none 으로 둔다 — display 토큰의 -0.4px 은
        * 한글 낱자 사이를 좁히려는 값이고, 라틴 문자에는 자간이 붙어 보인다.
