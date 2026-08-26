@@ -6,7 +6,7 @@ import ChatFab from "@/components/chat/ChatFab";
 
 const SITE_URL = "https://jinah-yeom.github.io";
 const DESCRIPTION =
-  "디자인 시스템을 설계하고 코드로 직접 완성하는 디자이너-개발자, 염지나의 포트폴리오와 기술 블로그.";
+  "디자인 시스템 구축과 프로덕트 UX 설계를 코드까지 직접 완결하는 디자이너-개발자 염지나의 포트폴리오입니다.";
 
 export const metadata: Metadata = {
   /*
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Jinah Yeom — 디자인 시스템을 설계하고 코드로 직접 완성하는 디자이너-개발자",
+        alt: "디자인 시스템 구축과 프로덕트 UX 설계를 코드까지 직접 완결하는 디자이너-개발자 염지나의 포트폴리오입니다.",
       },
     ],
     locale: "ko_KR",
