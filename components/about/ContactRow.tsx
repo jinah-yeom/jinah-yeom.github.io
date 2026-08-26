@@ -10,7 +10,7 @@ export interface ContactRowProps {
 }
 
 const CHIP =
-  "rounded-[var(--radius-900)] border px-[var(--space-200)] py-[var(--space-075)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] [font-weight:var(--font-weight-500)]";
+  "rounded-[var(--radius-900)] border px-[var(--space-200)] py-[var(--space-075)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] [font-weight:var(--font-weight-500)]";
 
 const CHIP_LINK =
   "border-[var(--color-border-secondary)] hover:bg-[var(--color-background-alternative)]";

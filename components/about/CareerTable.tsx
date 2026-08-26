@@ -28,14 +28,9 @@ export default function CareerTable({ rows = [] }: CareerTableProps) {
             {row.period}
           </p>
 
-          <p className={CELL}>
-            <span className="[font-weight:var(--font-weight-700)]">
-              {row.company}
-            </span>
-            <span className="text-[var(--color-label-alternative)]">
-              {" · "}
-              {row.role}
-            </span>
+          {/* 회사·직책은 기간 열과 같은 굵기(400)에 기본 블랙 — 셋을 나란히 읽게 둔다 */}
+          <p className={`${CELL} text-[var(--color-label-normal)]`}>
+            {row.company} · {row.role}
           </p>
 
           <p className={ABOUT_PARAGRAPH}>{row.description}</p>

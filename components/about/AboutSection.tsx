@@ -13,9 +13,9 @@ export interface AboutSectionProps {
 
 /** 문단이 이어지는 본문의 공통 스타일 — 항목 본문과 Info 문단이 같이 쓴다 */
 export const ABOUT_PARAGRAPH =
-  "text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-neutral)]";
+  "text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] text-[var(--color-label-neutral)]";
 
-/** 항목 소제목 — Strength 제목, Principles 번호+제목 */
+/** 항목 소제목 — Strength·Principles 제목 */
 export const ABOUT_ITEM_TITLE =
   "mb-[var(--space-150)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] [font-weight:var(--font-weight-700)]";
 
@@ -33,7 +33,8 @@ export default function AboutSection({
           : "grid-cols-[var(--site-about-label-width)_minmax(0,var(--site-width-prose))]"
       }`}
     >
-      <h2 className="text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-md)] [font-weight:var(--font-weight-800)]">
+      {/* 라벨은 제목이 아니라 이정표다 — 본문과 같은 크기로 낮추고 톤만 한 단계 뺀다 */}
+      <h2 className="text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] [font-weight:var(--font-weight-500)] text-[var(--color-label-alternative)]">
         {label}
       </h2>
 
