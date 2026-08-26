@@ -13,7 +13,7 @@ export interface CareerTableProps {
 }
 
 const CELL =
-  "text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)]";
+  "text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)]";
 
 export default function CareerTable({ rows = [] }: CareerTableProps) {
   return (
