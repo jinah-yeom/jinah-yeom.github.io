@@ -1,4 +1,4 @@
-import Hero from "@/components/home/Hero";
+import PageHero from "@/components/layout/PageHero";
 import WorkGrid, { type WorkCard } from "@/components/home/WorkGrid";
 
 const STATEMENT = [
@@ -57,7 +57,7 @@ const BIO_TEXT =
 export default function HomePage() {
   return (
     <>
-      <Hero lines={STATEMENT} />
+      <PageHero lines={STATEMENT} animate />
 
       <WorkGrid cards={WORKS} />
 

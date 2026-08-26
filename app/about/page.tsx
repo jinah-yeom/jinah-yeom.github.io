@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHero from "@/components/layout/PageHero";
 import AboutSection, {
   type AboutItem,
 } from "@/components/about/AboutSection";
@@ -121,13 +122,17 @@ const CONTACT_LINKS: ContactLink[] = [
 
 export default function AboutPage() {
   return (
-    /* 프로토타입의 .ab-section + .ab-section 규칙 — 첫 섹션엔 구분선을 넣지 않는다 */
-    <div className="[&>section+section]:border-t [&>section+section]:border-[var(--color-divider-alternative)]">
-      <AboutSection category="How I Think" items={HOW_I_THINK} />
-      <AboutSection category="How I Work" items={HOW_I_WORK} />
-      <AboutSection category="Strengths" items={STRENGTHS}>
-        <ContactRow id="contact" links={CONTACT_LINKS} />
-      </AboutSection>
-    </div>
+    <>
+      <PageHero lines={["About"]} />
+
+      {/* 프로토타입의 .ab-section + .ab-section 규칙 — 첫 섹션엔 구분선을 넣지 않는다 */}
+      <div className="[&>section+section]:border-t [&>section+section]:border-[var(--color-divider-alternative)]">
+        <AboutSection category="How I Think" items={HOW_I_THINK} />
+        <AboutSection category="How I Work" items={HOW_I_WORK} />
+        <AboutSection category="Strengths" items={STRENGTHS}>
+          <ContactRow id="contact" links={CONTACT_LINKS} />
+        </AboutSection>
+      </div>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PostList from "@/components/blog/PostList";
+import PageHero from "@/components/layout/PageHero";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
@@ -10,5 +11,10 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const posts = getAllPosts();
 
-  return <PostList posts={posts} />;
+  return (
+    <>
+      <PageHero lines={["Blog"]} />
+      <PostList posts={posts} />
+    </>
+  );
 }
