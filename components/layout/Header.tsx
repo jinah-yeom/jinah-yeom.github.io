@@ -25,7 +25,7 @@ const NAV_ITEMS: NavItem[] = [
  * 클래스 순서가 아니라 CSS 출력 순서로 결정돼 불안정해진다.
  */
 const NAV_LINK_BASE =
-  "py-[var(--space-050)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--site-tracking-nav)] [font-weight:var(--font-weight-500)] transition-colors hover:text-[var(--color-label-normal)]";
+  "py-[var(--space-050)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--site-tracking-nav)] [font-weight:var(--font-weight-500)] transition-colors duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:text-[var(--color-label-normal)]";
 
 const NAV_LINK_IDLE = "text-[var(--color-label-alternative)]";
 

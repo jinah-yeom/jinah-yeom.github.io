@@ -24,14 +24,12 @@ export interface MobileMenuProps {
 }
 
 const ITEM_BASE =
-  "w-fit text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-display)]";
+  "w-fit text-[length:var(--font-size-500)] leading-[var(--font-line-height-500)] tracking-[var(--font-letter-spacing-display)] [font-weight:var(--font-weight-500)]";
 
-const ITEM_IDLE =
-  "text-[var(--color-label-alternative)] [font-weight:var(--font-weight-500)]";
+/* 헤더 내비와 같은 규칙 — 현재 위치는 밑줄이 아니라 색 한 단계로만 알린다 */
+const ITEM_IDLE = "text-[var(--color-label-alternative)]";
 
-/* 데스크톱 활성 표시와 같은 규칙 — 색 변화가 아니라 밑줄(하단 보더) */
-const ITEM_ACTIVE =
-  "text-[var(--color-label-normal)] [font-weight:var(--font-weight-700)] [border-bottom-width:var(--dimension-025)] border-[var(--color-border-contrast)]";
+const ITEM_ACTIVE = "text-[var(--color-label-normal)]";
 
 export default function MobileMenu({
   open = false,
