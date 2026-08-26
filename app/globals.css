@@ -27,6 +27,17 @@
   --site-tracking-eyebrow: 0.08em;
   --site-tracking-work-title: 0.02em;
   --site-breakpoint-mobile: 720px;
+  /*
+   * 읽기 폭. 본문 컨테이너가 1600px 이라 프로즈를 그대로 흘리면 줄이 너무
+   * 길어진다(14px 기준 줄당 100자 이상). 문단이 이어지는 영역은 이 폭으로
+   * 묶는다 — About 이 첫 적용처이고, 워크 상세·블로그 본문도 후보다.
+   */
+  --site-width-prose: 800px;
+  /*
+   * About 섹션의 좌측 라벨 열. 라벨 네 개(Info/Strength/Principles/Career)가
+   * 한 줄에 들어가면서 본문과 충분히 떨어지는 폭이다.
+   */
+  --site-about-label-width: 200px;
   /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
   --site-tap-target: 44px;
   /*

@@ -22,7 +22,8 @@ export default function ContactRow({ links = [], id }: ContactRowProps) {
   return (
     <div
       id={id}
-      className="mt-[var(--space-300)] flex flex-wrap gap-[var(--space-150)]"
+      /* 위 여백은 두지 않는다 — 섹션의 유일한 내용이라 라벨과 같은 선에서 시작한다 */
+      className="flex flex-wrap gap-[var(--space-150)]"
     >
       {links.map((link) =>
         link.href ? (

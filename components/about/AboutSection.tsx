@@ -1,73 +1,43 @@
 import type { ReactNode } from "react";
 
-export interface AboutColumn {
-  paragraphs: string[];
-  /** 문단 아래 붙는 불릿 목록 */
-  list?: string[];
-}
-
-export interface AboutItem {
-  title: string;
-  ko: AboutColumn;
-  en: AboutColumn;
-}
-
 export interface AboutSectionProps {
-  /** How I Think / How I Work / Strengths */
-  category: string;
-  items?: AboutItem[];
-  /** 섹션 끝에 덧붙일 내용 (연락처 행 등) */
+  /** 좌측 라벨 — Info / Strength / Principles / Career */
+  label: string;
+  /**
+   * 본문 열의 읽기 폭 제한을 풀지.
+   * Career 처럼 표에 가까운 내용은 800px 안에서 세 열이 눌린다.
+   */
+  wide?: boolean;
   children?: ReactNode;
 }
 
-const PARAGRAPH =
-  "mb-[var(--space-150)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-neutral)]";
+/** 문단이 이어지는 본문의 공통 스타일 — 항목 본문과 Info 문단이 같이 쓴다 */
+export const ABOUT_PARAGRAPH =
+  "text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-neutral)]";
 
-function Column({ column, lang }: { column: AboutColumn; lang?: string }) {
-  return (
-    <div lang={lang}>
-      {column.paragraphs.map((paragraph) => (
-        <p key={paragraph} className={PARAGRAPH}>
-          {paragraph}
-        </p>
-      ))}
-      {column.list && (
-        <ul className="mt-[var(--space-150)] ml-[var(--space-200)] flex list-disc flex-col gap-[var(--space-100)] text-[length:var(--font-size-075)] leading-[var(--font-line-height-050)] text-[var(--color-label-alternative)]">
-          {column.list.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
+/** 항목 소제목 — Strength 제목, Principles 번호+제목 */
+export const ABOUT_ITEM_TITLE =
+  "mb-[var(--space-150)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] [font-weight:var(--font-weight-700)]";
 
 export default function AboutSection({
-  category,
-  items = [],
+  label,
+  wide = false,
   children,
 }: AboutSectionProps) {
   return (
-    <section className="py-[var(--space-600)]">
-      <h2 className="mb-[var(--space-500)] text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-md)] [font-weight:var(--font-weight-800)]">
-        {category}
+    /* 좌 라벨 / 우 본문. 720px 아래에서는 라벨이 본문 위 소제목으로 내려앉는다 */
+    <section
+      className={`grid gap-[var(--space-600)] py-[var(--space-600)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-300)] ${
+        wide
+          ? "grid-cols-[var(--site-about-label-width)_1fr]"
+          : "grid-cols-[var(--site-about-label-width)_minmax(0,var(--site-width-prose))]"
+      }`}
+    >
+      <h2 className="text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-md)] [font-weight:var(--font-weight-800)]">
+        {label}
       </h2>
 
-      <div className="flex flex-col gap-[var(--space-600)]">
-        {items.map((item) => (
-          <div key={item.title}>
-            <h3 className="mb-[var(--space-250)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] [font-weight:var(--font-weight-700)]">
-              {item.title}
-            </h3>
-            <div className="grid grid-cols-2 gap-[var(--space-600)] max-[720px]:grid-cols-1 max-[720px]:gap-[var(--space-300)]">
-              <Column column={item.ko} />
-              <Column column={item.en} lang="en" />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {children}
+      <div>{children}</div>
     </section>
   );
 }
