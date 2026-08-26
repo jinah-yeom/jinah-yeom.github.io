@@ -31,11 +31,12 @@
   /* 터치 타깃 최소 크기 (WCAG 2.5.8 Target Size) — KDS dimension 스케일엔 44px 이 없다 */
   --site-tap-target: 44px;
   /*
-   * 히어로 글리치 주기. 지터는 주기 끝 0.32초에만 터지고 나머지 시간은 정지해 있다.
-   * WCAG 2.3.1(어떤 1초 안에서도 점멸 3회 이하)을 지키려고 버스트 안의 명암 반전을
-   * 2회로 묶었다 — 한 주기에 2회이고, 두 번이 0.16초 간격이라 최악의 1초에도 2회다.
+   * 마스크 리빌 전용 이징. KDS 의 --motion-easing-out 은 CSS 키워드 ease-out
+   * (cubic-bezier(0, 0, .58, 1)) 이라 끝이 길게 끌리지 않는다. 마스크 밖에서
+   * 올라오는 글자는 초반에 크게 움직이고 끝에서 부드럽게 멎어야 읽히므로,
+   * 감속이 훨씬 가파른 곡선을 따로 둔다.
    */
-  --site-glitch-cycle: 4s;
+  --site-reveal-easing: cubic-bezier(0.22, 1, 0.36, 1);
   /*
    * 키보드 포커스 링. 색·간격을 한 곳에서만 정하고, 개별 요소는 이 두 변수만 덮어쓴다.
    * 링은 요소 바깥에 그려지므로 색 기준은 요소 자신이 아니라 요소가 놓인 배경이다 —
@@ -88,42 +89,31 @@
 }
 
 /*
- * 히어로 지터. 평소에는 멈춰 있다가 주기 끝(92~100%)에서만 튄다.
- * steps(2, start) 로 값 사이를 이어 붙이지 않고 끊어 던져야 디지털 노이즈로 읽힌다.
- * opacity 는 0.3 아래로 내리지 않는다 — 글자가 사라졌다 나타나면 점멸이 된다.
+ * 히어로 마스크 리빌. 바깥 래퍼가 overflow-hidden 으로 마스크가 되고,
+ * 안쪽 줄이 마스크 아래(자기 높이의 110%)에서 제자리로 올라온다.
+ * both 로 채워야 지연 대기 중에도 마스크 밖에 머문다 — 없으면 늦게 시작하는
+ * 줄이 먼저 보였다가 다시 내려갔다 올라온다.
  */
-@keyframes site-glitch-jitter {
-  0%,
-  92% {
-    transform: translate(0, 0);
-    opacity: 1;
+@keyframes site-line-reveal {
+  from {
+    transform: translateY(110%);
   }
-  94% {
-    transform: translate(-2px, 1px);
-    opacity: 0.3;
-  }
-  96% {
-    transform: translate(2px, -2px);
-    opacity: 1;
-  }
-  98% {
-    transform: translate(-2px, -1px);
-    opacity: 0.3;
-  }
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
+  to {
+    transform: translateY(0);
   }
 }
 
-@utility glitch-jitter {
-  animation: site-glitch-jitter var(--site-glitch-cycle) steps(2, start)
-    infinite;
+@utility reveal-line {
+  animation: site-line-reveal var(--motion-duration-d6)
+    var(--site-reveal-easing) both;
 }
 
-/* 모션을 줄여 달라고 한 사용자에게는 애니메이션 없이 정지 상태로 보인다 */
+/*
+ * 모션을 줄여 달라고 한 사용자에게는 애니메이션 없이 최종 상태로 보인다.
+ * transform 은 애니메이션만 주므로, 애니메이션을 끄면 제자리(translateY(0))다.
+ */
 @media (prefers-reduced-motion: reduce) {
-  .glitch-jitter {
+  .reveal-line {
     animation: none;
   }
 }
