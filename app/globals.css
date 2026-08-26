@@ -107,6 +107,17 @@
   --site-sticky-offset: calc(var(--site-header-height) + var(--space-300));
 }
 
+/*
+ * 라벨 열이 고정이라 창이 좁아지면 본문만 눌린다. 1440px 아래에서는
+ * 읽기 폭(800px)을 지킬 수 없으므로 라벨을 원래 폭으로 되돌린다 —
+ * 1024px 에서 Career 설명 열이 85px 까지 좁아지던 구간이다.
+ */
+@media (max-width: 1440px) {
+  :root {
+    --site-about-label-width: 200px;
+  }
+}
+
 @media (max-width: 720px) {
   :root {
     --site-header-height: 84px;
