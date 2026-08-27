@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import ApproachList, {
+  type ApproachItem,
+} from "@/components/project/ApproachList";
 import MediaGrid from "@/components/project/MediaGrid";
 import type { MediaItem } from "@/components/project/MediaSlot";
 import MetaGrid, { type MetaItem } from "@/components/project/MetaGrid";
@@ -7,9 +10,6 @@ import ProjectNav from "@/components/project/ProjectNav";
 import ProseSection, {
   PROSE_PARAGRAPH,
 } from "@/components/project/ProseSection";
-import QuoteBlock, {
-  type QuoteBlockProps,
-} from "@/components/project/QuoteBlock";
 import SolutionBlock, {
   type SolutionBlockProps,
 } from "@/components/project/SolutionBlock";
@@ -238,17 +238,25 @@ const LIST_FLOW: MediaItem[] = [
   },
 ];
 
-/* 상품 등록 블록에서 유형을 정의하는 인용 2개 */
-const PRODUCT_TYPES: QuoteBlockProps[] = [
+/*
+ * 상품 유형 정의 — 원고의 인용 두 줄을 제목과 불릿으로 나눠 담는다.
+ * label(eyebrow)은 비운다. 제목이 곧 유형 이름이라 같은 말을 위에 한 번 더
+ * 얹을 자리가 아니고, 원고에도 그 자리에 쓸 문구가 없다.
+ */
+const PRODUCT_TYPES: ApproachItem[] = [
   {
-    term: "바우처형",
-    description:
-      "사용 기간 내 원하는 시점에 현장에 방문해 사용하는 NFT 상품. 예: PC방 4시간 이용권.",
+    title: "바우처형",
+    bullets: [
+      "사용 기간 내 원하는 시점에 현장에 방문해 사용하는 NFT 상품",
+      "예: PC방 4시간 이용권",
+    ],
   },
   {
-    term: "날짜·좌석 선택형",
-    description:
-      "사용 기간 내 정해진 날짜의 회차를 선택해 사용하는 NFT 상품. 예: 콘서트 티켓.",
+    title: "날짜·좌석 선택형",
+    bullets: [
+      "사용 기간 내 정해진 날짜의 회차를 선택해 사용하는 NFT 상품",
+      "예: 콘서트 티켓",
+    ],
   },
 ];
 
@@ -396,9 +404,9 @@ export default function KonkritPartnerCenterPage() {
             "상품 등록은 유형 선택부터 기본 정보·옵션 정보 입력, 등록 완료와 승인 요청까지 단계가 길고, 선택한 유형에 따라 입력 항목이 달라지는 플로우였습니다. 파트너센터의 상품은 사용 방식에 따라 두 유형으로 나뉩니다.",
           ]}
         >
-          {PRODUCT_TYPES.map((type) => (
-            <QuoteBlock key={type.term} {...type} />
-          ))}
+          <div className="my-[var(--space-300)]">
+            <ApproachList items={PRODUCT_TYPES} />
+          </div>
 
           {REGISTER_BODY.map((paragraph) => (
             <p key={paragraph} className={PROSE_PARAGRAPH}>
