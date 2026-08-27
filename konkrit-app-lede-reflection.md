@@ -1,7 +1,6 @@
 # konkrit-app 추가 원고: lede · Reflection
 
-검토용 초안. 승인되면 레포 루트에 올려 반영한다.
-Reflection 둘째 문단은 런아웃 회고를 담았다. Outcome이 이미 출시 미완을 밝히므로 회고에서 이를 다루는 것이 자연스럽다고 판단했으나, 빼고 첫 문단만 쓰는 선택도 가능하다.
+확정 원고. 레포 루트에 올려 반영한다. lede는 ProjectHero, Reflection은 기존 관례(eyebrow REFLECTION, headline 없이 문단 2개, ProjectNav 앞).
 
 ---
 
