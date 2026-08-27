@@ -130,6 +130,6 @@ Solution은 tint title 하나로 통합. 아래 세 블록은 각각 소제목(h
 
 - **슬러그:** `konkrit-partnercenter`
 - **홈 카드 메타 제안:** 타이틀 "KONKRIT Partner Center" / 태그 후보 B2B Admin · IA · UX Flow / 기간 2024.06 – 2025.01
-- **에셋 목록 (총 29장):** hero=로그인 목업(홈 카드 썸네일 겸용) 1, 타임라인 1, IA 시트 1, 인증 플로우 8, 상품 등록 바우처형 4 + 날짜선택형 4, 상품 목록 8, 협업 코멘트 캡처 2(세로 스택). 플로우 프레임은 전부 제너럴 케이스, 1920×1080 1x.
-- **파일명:** `konkrit-login` / `konkrit-timeline` / `konkrit-ia-sheet` / `konkrit-flow-auth-01~08` / `konkrit-flow-register-voucher-01~04` / `konkrit-flow-register-dateseat-01~04` / `konkrit-flow-list-01~08` / `konkrit-collaboration-01~02` (.png)
+- **에셋 목록 (총 25장):** hero=로그인 목업(홈 카드 썸네일 겸용) 1, 타임라인 1, IA 시트 1, 인증 플로우 8, 상품 등록 바우처형 4 + 날짜선택형 4, 상품 목록 4, 협업 코멘트 캡처 2(세로 스택). 플로우 프레임은 전부 제너럴 케이스, 1920×1080 1x.
+- **파일명:** `konkrit-login` / `konkrit-timeline` / `konkrit-ia-sheet` / `konkrit-flow-auth-01~08` / `konkrit-flow-register-voucher-01~04` / `konkrit-flow-register-dateseat-01~04` / `konkrit-flow-list-01~04` / `konkrit-collaboration-01~02` (.png)
 - **피그마 링크:** 본문에 미포함 (확정).

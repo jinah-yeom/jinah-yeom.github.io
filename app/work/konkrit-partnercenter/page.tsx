@@ -27,11 +27,7 @@ export const metadata: Metadata = {
 const META: MetaItem[] = [
   { label: "Timeline", value: "2024.06 – 2025.01" },
   { label: "Product", value: "Admin (B2B 파트너센터)" },
-  {
-    label: "Team",
-    value:
-      "1 Product Owner, 1 Product Designer, 1 Frontend Developer, 1 Backend Developer",
-  },
+  { label: "Team", value: "PO 1 · PD 1 · FE 1 · BE 1" },
   {
     label: "Role",
     value: "사용자 플로우 및 예외 케이스 UX 설계, IA·UX 설계 전담",
@@ -202,7 +198,7 @@ const REGISTER_DATESEAT: MediaItem[] = [
   },
 ];
 
-/* 상품 목록 — 원고는 8장이지만 지금 있는 파일이 4장이라 그만큼만 건다 */
+/* 상품 목록 4장 */
 const LIST_FLOW: MediaItem[] = [
   {
     label: "상품 목록 플로우 프레임 01",
@@ -322,7 +318,7 @@ export default function KonkritPartnerCenterPage() {
     <div className="flex flex-col gap-[var(--space-900)]">
       {/* 1. Hero */}
       <ProjectHero
-        eyebrow="KONKRIT Partner Center"
+        eyebrow="PRODUCT UX"
         title="NFT 서비스 운영 효율화를 위한 파트너센터 구축"
         lede="운영팀의 수기 관리를 셀프서비스 구조로 전환한 B2B 파트너센터의 IA 설계와 예외 케이스 정의, 개발 핸드오프 전 과정."
         image={{
