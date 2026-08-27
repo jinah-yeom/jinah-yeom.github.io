@@ -32,7 +32,8 @@ export default function ProjectHero({
       </h1>
 
       {lede && (
-        <p className="mt-[var(--space-200)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
+        /* 본문과 같은 읽기 폭 — 한 줄로 끝나는 케이스도 있지만 kds·supplies 는 100자를 넘는다 */
+        <p className="mt-[var(--space-200)] max-w-[var(--site-width-prose)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
           {lede}
         </p>
       )}
