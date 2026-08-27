@@ -43,6 +43,18 @@ const WORKS: WorkCard[] = [
     },
     tags: ["B2B Admin", "Procurement"],
   },
+  {
+    title: "KONKRIT Partner Center",
+    href: "/work/konkrit-partnercenter",
+    thumbnail: {
+      /* 상세 Hero 와 같은 파일 — 목록과 상세가 같은 얼굴을 갖게 한다 */
+      src: "/images/work/konkrit-login.png",
+      alt: "노트북 목업 화면에 열린 KONKRIT 파트너센터 로그인 화면 — 로고와 '파트너센터' 아래로 이메일 ID·비밀번호 입력란과 로그인·회원가입 버튼이 놓인다.",
+      width: 3200,
+      height: 1800,
+    },
+    tags: ["B2B Admin", "IA", "UX Flow"],
+  },
 ];
 
 export default function HomePage() {

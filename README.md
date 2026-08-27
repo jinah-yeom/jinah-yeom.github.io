@@ -13,6 +13,7 @@
 | 대표 케이스 스터디 | [Keeper 리스트뷰 UX 개선](https://jinah-yeom.github.io/work/keeper-listview) — 정책·PRD·설계·스프린트 1인 완결 |
 | 디자인 시스템 | [Keeper Design System](https://jinah-yeom.github.io/work/kds) — CSS 변수 346개 · 컴포넌트 33종 · MUI → 자체 시스템 재구축 |
 | 제품 UX 케이스 | [Keeper Admin 소모품 구매](https://jinah-yeom.github.io/work/keeper-supplies) — 외부 서비스 구매 흐름을 어드민 내부로 통합 |
+| IA·UX 설계 케이스 | [KONKRIT Partner Center](https://jinah-yeom.github.io/work/konkrit-partnercenter) — NFT 서비스 운영사를 위한 B2B 파트너센터 IA·예외 케이스 설계 |
 
 ---
 
