@@ -5,6 +5,7 @@ import {
   PROSE_STRONG,
   PROSE_SUBHEADLINE,
 } from "@/components/project/ProseSection";
+import { QUOTE_SURFACE } from "@/components/project/QuoteBlock";
 import {
   CODE_SURFACE,
   CODE_TEXT,
@@ -48,12 +49,7 @@ const components: MDXComponents = {
     />
   ),
   strong: (props) => <strong className={PROSE_STRONG} {...props} />,
-  blockquote: (props) => (
-    <blockquote
-      className="my-[var(--space-300)] border-l-[length:var(--dimension-025)] border-[var(--color-divider-normal)] pl-[var(--space-250)] text-[var(--color-label-alternative)]"
-      {...props}
-    />
-  ),
+  blockquote: (props) => <blockquote className={QUOTE_SURFACE} {...props} />,
   hr: (props) => (
     <hr
       className="my-[var(--space-500)] border-[var(--color-divider-alternative)]"
