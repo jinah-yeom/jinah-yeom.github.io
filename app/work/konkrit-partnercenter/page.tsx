@@ -149,7 +149,7 @@ const REGISTER_VOUCHER: MediaItem[] = [
     label: "상품 등록 플로우 프레임 바우처형 03",
     ratio: "hero",
     src: "/images/work/konkrit-flow-register-voucher-03.png",
-    alt: "앞 단계와 같은 바우처형 옵션 정보 화면.",
+    alt: "상품 등록 중 장소를 지정하는 '위치 정보' 모달. 검색창이 놓인 지도 아래로 장소명, 반경 설정(1km), 상세 주소 입력란이 모두 필수 표시와 함께 이어지고 하단에 취소·등록 버튼이 있다. 뒤로는 공지사항과 고객문의, 구매/사용 조건, 취소/환불 규정이 놓인 상품 추가 패널이 비친다.",
     width: 1600,
     height: 900,
   },
