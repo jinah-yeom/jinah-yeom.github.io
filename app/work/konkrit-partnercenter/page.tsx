@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MediaGrid from "@/components/project/MediaGrid";
+import type { MediaItem } from "@/components/project/MediaSlot";
 import MetaGrid, { type MetaItem } from "@/components/project/MetaGrid";
 import ProjectHero from "@/components/project/ProjectHero";
 import ProjectNav from "@/components/project/ProjectNav";
@@ -63,27 +64,179 @@ const UX_STRATEGY = [
 ];
 
 /* 인증 8장 — 파일명 번호가 곧 배치 순서(좌상→우상→좌하→우하) */
-const AUTH_FLOW = Array.from({ length: 8 }, (_, index) => ({
-  label: `회원가입·로그인 플로우 프레임 ${String(index + 1).padStart(2, "0")}`,
-  ratio: "hero" as const,
-}));
+const AUTH_FLOW: MediaItem[] = [
+  {
+    label: "회원가입·로그인 플로우 프레임 01",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-01.png",
+    alt: "회원가입 첫 화면. '계정으로 사용할 이메일 인증이 필요합니다' 안내 아래 아이디(이메일) 입력란이 비어 있고, 이메일 인증 버튼은 비활성 상태다. 아래에 '이미 계정이 있으신가요? 로그인' 링크가 있다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "회원가입·로그인 플로우 프레임 02",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-02.png",
+    alt: "이메일을 입력하고 인증을 요청한 상태. '인증 메일 발송 완료' 팝업이 떠 발송된 인증 메일을 확인해 달라는 안내와 확인 버튼을 보여준다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "회원가입·로그인 플로우 프레임 03",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-03.png",
+    alt: "앞 단계와 같은 인증 메일 발송 완료 팝업 화면.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "회원가입·로그인 플로우 프레임 04",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-04.png",
+    alt: "인증 메일을 받은 지메일 화면. '[KONKRIT] 회원가입 인증을 완료해주세요' 제목의 메일이 열려 있고, 본문에 KONKRIT 로고와 '이메일 인증을 완료해주세요.' 제목, 계정 생성을 위해 아래 버튼을 눌러 달라는 안내, 노란 인증하기 버튼이 있다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "회원가입·로그인 플로우 프레임 05",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-05.png",
+    alt: "이메일 인증을 마치고 기본정보를 입력하는 화면. 아이디는 입력값이 채워진 채 비활성이고 비밀번호·비밀번호 확인란은 비어 있다. '영문 대소문자, 숫자, 특수문자 조합 8~16자' 규칙이 적혀 있고, 전체 약관 동의와 파트너 약관 동의(필수)·개인정보 수집 및 약관 동의(필수) 체크박스가 모두 해제돼 가입하기 버튼이 비활성이다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "회원가입·로그인 플로우 프레임 06",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-06.png",
+    alt: "같은 기본정보 화면에서 비밀번호와 비밀번호 확인을 모두 채우고 약관 세 항목에 체크한 상태. 가입하기 버튼이 노란색으로 활성화됐다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "회원가입·로그인 플로우 프레임 07",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-07.png",
+    alt: "파트너센터 로그인 화면. 아이디와 비밀번호 입력란이 비어 있고 아이디 저장 체크박스는 해제돼 있으며, 로그인 버튼 아래로 회원가입 버튼과 아이디 찾기·비밀번호 찾기 링크가 놓인다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "회원가입·로그인 플로우 프레임 08",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-auth-08.png",
+    alt: "로그인 화면에 아이디와 비밀번호를 입력하고 아이디 저장에 체크한 상태.",
+    width: 1600,
+    height: 900,
+  },
+];
 
 /* 상품 등록 — 유형별로 4장씩 나뉘어 라벨이 붙는다 */
-const REGISTER_VOUCHER = Array.from({ length: 4 }, (_, index) => ({
-  label: `상품 등록 플로우 프레임 바우처형 ${String(index + 1).padStart(2, "0")}`,
-  ratio: "hero" as const,
-}));
+const REGISTER_VOUCHER: MediaItem[] = [
+  {
+    label: "상품 등록 플로우 프레임 바우처형 01",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-voucher-01.png",
+    alt: "상품 추가 패널의 기본 정보 탭. 전시 정보에서 진열안함·판매대기가 선택돼 있고, 기본 정보에 상품코드·상품명·서브 상품명·상품 검색어 입력란과 1:1·3:4 목록 이미지 업로드 자리가 있다. 판매 정보의 판매유형에서 바우처형이 선택되고 판매기간·사용기간·판매수량 입력란이 이어진다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 등록 플로우 프레임 바우처형 02",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-voucher-02.png",
+    alt: "바우처형 상품의 옵션 정보 입력. 옵션 구성방식은 단독형, 옵션 개수는 2개이고 옵션 1에 'Portal Pass', 옵션 2에 'Secret, Cool'을 넣어 옵션 목록 적용하기를 누른 결과가 아래 표에 Portal Pass Secret·Portal Pass Cool 두 행으로 만들어져 각각 판매가·판매기간·사용기간을 입력하게 돼 있다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 등록 플로우 프레임 바우처형 03",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-voucher-03.png",
+    alt: "앞 단계와 같은 바우처형 옵션 정보 화면.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 등록 플로우 프레임 바우처형 04",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-voucher-04.png",
+    alt: "바우처형 상품의 구매/사용 조건과 취소/환불 규정, 결제방식 입력. 최대 구매수량 설정·이용 가능 연령·바로 사용 설정이 모두 사용안함이고, 취소 설정은 취소가능(승인 취소)에 취소 가능 기한은 이용일 기준이다. 취소 수수료와 취소/환불 규정 입력란이 있고, 결제수단으로 현대카드·카드결제·계좌이체가 체크돼 있으며 할인설정은 사용함이다.",
+    width: 1600,
+    height: 900,
+  },
+];
 
-const REGISTER_DATESEAT = Array.from({ length: 4 }, (_, index) => ({
-  label: `상품 등록 플로우 프레임 날짜·좌석 선택형 ${String(index + 1).padStart(2, "0")}`,
-  ratio: "hero" as const,
-}));
+const REGISTER_DATESEAT: MediaItem[] = [
+  {
+    label: "상품 등록 플로우 프레임 날짜·좌석 선택형 01",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-dateseat-01.png",
+    alt: "날짜+좌석선택형을 고른 상품 추가 화면. 판매유형에서 날짜+좌석선택형이 선택되고 판매기간·사용기간·판매수량·판매가·최대 구매 수량·사용횟수 입력란과 적용하기 버튼이 있다. 아래로 좌석배치도 업로드 자리와 좌석 등급·좌석 key 입력란을 가진 좌석 정보 영역이 이어지고, 옵션 구성방식은 조합형으로 고정돼 있다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 등록 플로우 프레임 날짜·좌석 선택형 02",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-dateseat-02.png",
+    alt: "좌석 정보와 옵션 정보를 채운 상태. 좌석배치도 이미지가 올라가 있고 좌석 등급에 'VIP석', 'R석', 좌석 key 에 식별자가 들어가 있다. 옵션 입력의 회차정보에 20:00, 21:00, 좌석등급에 VIP석, R석 을 넣어 옵션 목록 적용하기를 누른 결과가 20:00 VIP석·20:00 R석·21:00 VIP석·21:00 R석 네 행으로 조합돼 있다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 등록 플로우 프레임 날짜·좌석 선택형 03",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-dateseat-03.png",
+    alt: "상품 정보 제공 고시와 구매/사용 조건, 취소/환불 규정 입력. 품목정보가 공연으로 선택돼 있고 주최 또는 기획·관람등급·관람시간·장소·공지사항·고객문의 항목이 이어진다. 구매/사용 조건 세 항목은 사용안함, 취소 설정은 취소불가다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 등록 플로우 프레임 날짜·좌석 선택형 04",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-register-dateseat-04.png",
+    alt: "입력을 마쳐 등록 버튼이 활성화된 상태. 진열상태는 진열함, 판매상태는 판매대기이고 상품코드 coldplay, 상품명 '콜드플레이 내한공연', 상품 검색어 'coldplay'·'콜드플레이'가 들어가 있으며 1:1·3:4 목록 이미지가 모두 업로드돼 있다. 판매유형은 날짜+좌석선택형이다.",
+    width: 1600,
+    height: 900,
+  },
+];
 
 /* 상품 목록 — 원고는 8장이지만 지금 있는 파일이 4장이라 그만큼만 건다 */
-const LIST_FLOW = Array.from({ length: 4 }, (_, index) => ({
-  label: `상품 목록 플로우 프레임 ${String(index + 1).padStart(2, "0")}`,
-  ratio: "hero" as const,
-}));
+const LIST_FLOW: MediaItem[] = [
+  {
+    label: "상품 목록 플로우 프레임 01",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-list-01.png",
+    alt: "상품 목록 화면 전체. 좌측 내비에 상품·주문·정산·혜택이 있고, 상단에 전체·판매대기·판매중·품절·판매종료 건수 요약과 검색분류·진열상태·판매상태·날짜 필터, 검색·초기화 버튼이 있다. 아래 상품 목록 표에는 복사·삭제·티켓 발행·진열설정·판매설정 버튼과 상품명·상품코드·판매기간·사용기간·판매상태·진열상태 열로 된 행 네 개, 그리고 페이지네이션이 놓인다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 목록 플로우 프레임 02",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-list-02.png",
+    alt: "목록에서 한 행을 체크하고 진열설정을 누른 상태. 진열설정으로 진열분류를 변경할 수 있다는 안내와 함께 진열상태(진열함·진열안함), 진열기간 입력란, 취소·적용 버튼을 가진 팝업이 떠 있다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 목록 플로우 프레임 03",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-list-03.png",
+    alt: "목록에서 한 행을 체크하고 판매설정을 누른 상태. 판매상태를 판매중·판매대기·품절·판매종료 중에서 고르는 팝업이 떠 있고 취소·적용 버튼이 있다.",
+    width: 1600,
+    height: 900,
+  },
+  {
+    label: "상품 목록 플로우 프레임 04",
+    ratio: "hero",
+    src: "/images/work/konkrit-flow-list-04.png",
+    alt: "표를 가로로 스크롤해 등록일(수정일) 열까지 보이는 상태. 행 오른쪽 끝의 더보기 버튼을 눌러 상품 수정·티켓 발행·좌석 판매 관리 메뉴가 펼쳐져 있다.",
+    width: 1600,
+    height: 900,
+  },
+];
 
 /* 상품 등록 블록에서 유형을 정의하는 인용 2개 */
 const PRODUCT_TYPES: QuoteBlockProps[] = [
@@ -160,6 +313,10 @@ export default function KonkritPartnerCenterPage() {
         image={{
           label: "대표 이미지 — 파트너센터 로그인 화면 목업",
           ratio: "hero",
+          src: "/images/work/konkrit-login.png",
+          alt: "노트북 목업 화면에 열린 KONKRIT 파트너센터 로그인 화면. 가운데 KONKRIT 로고와 '파트너센터' 글자 아래로 이메일 ID·비밀번호 입력란, 체크된 아이디 저장, 노란 로그인 버튼이 있고 구분선 아래에 회원가입 버튼과 아이디 찾기·비밀번호 찾기 링크가 놓인다.",
+          width: 3200,
+          height: 1800,
           priority: true,
         }}
       />
@@ -175,7 +332,16 @@ export default function KonkritPartnerCenterPage() {
         eyebrow="BACKGROUND"
         headline="예측 가능한 프로세스가 필요했던 B2B 프로젝트"
         paragraphs={BACKGROUND}
-        media={[{ label: "프로젝트 타임라인 다이어그램", ratio: "wide" }]}
+        media={[
+          {
+            label: "프로젝트 타임라인 다이어그램",
+            ratio: "hero",
+            src: "/images/work/konkrit-timeline.png",
+            alt: "프로젝트 타임라인 다이어그램. 리서치, 디자인 및 프로토타이핑, 디자인 개발 협업 및 핸드오프, 디자인 개발 협업 및 핸드오프 재개 네 구간이 가로로 이어지고 각 구간에 Phase 1(2024.06)부터 Phase 4(2024.12–2025.01)까지 색이 다른 막대가 놓인다. 구간마다 리서치·디자인 요구사항, 컨셉 구체화·화면 설계·와이어프레임 및 프로토타입 제작, 최종 디자인 작업·리소스 전달·프로젝트 불발(내부 사정), 화면 설계·최종 디자인 작업·리소스 전달 같은 세부 작업이 설명과 함께 적혀 있고, 아래 띠에 리서치 리드와 기획·디자인 리드가 PO & PD 로 표시돼 있다.",
+            width: 3200,
+            height: 1800,
+          },
+        ]}
       />
 
       {/* 5. Problem — 미디어 없음 */}
@@ -197,7 +363,16 @@ export default function KonkritPartnerCenterPage() {
         eyebrow="UX STRATEGY"
         headline="명확한 정보 구조(IA)가 구축되어야 비로소 사용자 경험이 정교해진다"
         paragraphs={UX_STRATEGY}
-        media={[{ label: "IA 구조도 시트", ratio: "wide" }]}
+        media={[
+          {
+            label: "IA 구조도 시트",
+            ratio: "hero",
+            src: "/images/work/konkrit-ia-sheet.png",
+            alt: "'티켓 파트너 메뉴구조도' 시트. 화면 ID(CODE_na·CODE_no), 1~4 Depth 로 나뉜 범위, 경로/URL, 상세 설명, Popup·Page 형태 열로 짜여 있다. SG 회원가입·로그인, MA 파트너센터 메인, DS 대시보드, PJ 프로젝트, PD 상품, PL 플러그인 순으로 행이 이어지고 각 행에 '파트너센터 메인 > 내 사이트 > 관리 btn > 상품 탭' 같은 경로와 '등록된 상품 목록을 확인하고 상품을 등록할 수 있는 화면' 같은 설명이 붙어 있다.",
+            width: 3200,
+            height: 1800,
+          },
+        ]}
       />
 
       {/* 8. Solution — eyebrow 하나 아래 소제목 블록 셋 */}
@@ -241,8 +416,22 @@ export default function KonkritPartnerCenterPage() {
         headline="스펙 위에서 질문하고 답하는 협업 구조"
         paragraphs={COLLABORATION}
         media={[
-          { label: "협업 코멘트 — 상품 파일 코멘트 스레드", ratio: "hero" },
-          { label: "협업 코멘트 — 로그인 파일 코멘트 상세", ratio: "hero" },
+          {
+            label: "협업 코멘트 — 상품 파일 코멘트 스레드",
+            ratio: "hero",
+            src: "/images/work/konkrit-collaboration-01.png",
+            alt: "피그마 '[DESIGN] ADMIN_상품' 파일의 Design 페이지. 캔버스에 PRD-001 라벨이 붙은 공통 플로우와 특정 플로우 모음 프레임이 줄지어 있고 곳곳에 코멘트 핀이 찍혀 있다. 우측 코멘트 패널에는 '상품을 선택하지 않았을 경우 해당 버튼들은 비활성화 처리되는 건가요?', '목록에서 바로 기간 수정이 가능한건가요?', '삭제 기능 관련해서는 백엔드 논의에 따라 아래 두 가지 안에서 기능 제공 여부가 달라질 것 같습니다' 같은 스레드가 답글 수와 함께 쌓여 있다.",
+            width: 3200,
+            height: 1800,
+          },
+          {
+            label: "협업 코멘트 — 로그인 파일 코멘트 상세",
+            ratio: "hero",
+            src: "/images/work/konkrit-collaboration-02.png",
+            alt: "피그마 '[DESIGN] 파트너시스템_로그인' 파일. 캔버스에 로그인(SG-003) 커버와 'Ready for Review' 라벨이 붙은 Core Frame·Flow Frame 이 놓여 있다. 열린 코멘트 스레드에 '해당 텍스트 스타일이 mixed styled로 보이는데, 구체적인 Font 스타일 명을 알 수 있을까요?' 라는 질문과 'text-underline 스타일을 적용하다니 깨진 것 같습니다. 타이포스타일 다음과 같이 전달드립니다 — Label/label-md/Regular' 라는 답이 보이고, 우측 패널에는 placeholder 색상과 아이디 형식에 관한 스레드가 이어진다.",
+            width: 3200,
+            height: 1800,
+          },
         ]}
       />
 
