@@ -29,7 +29,12 @@ export default async function BlogPostPage({
   const { default: Post } = await import(`@/content/blog/${slug}.mdx`);
 
   return (
-    <article>
+    /*
+     * 글 전체를 읽기 폭으로 묶는다 — 문단만 좁히면 코드 블록과 이미지가
+     * 컨테이너 끝까지 뻗어, 블록이 바뀔 때마다 읽는 열이 끊긴다.
+     * 코드 최장 줄이 84자라 이 폭 안에서 가로 스크롤 없이 들어간다.
+     */
+    <article className="max-w-[var(--site-width-prose)]">
       <p className="mb-[var(--space-100)] text-[length:var(--font-size-050)] leading-[var(--font-line-height-035)] tracking-[var(--site-tracking-eyebrow)] text-[var(--color-label-assistive)] [font-weight:var(--font-weight-600)]">
         BLOG
       </p>
