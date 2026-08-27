@@ -1,9 +1,18 @@
 import MediaSlot, { type MediaItem } from "./MediaSlot";
-import { PROSE_HEADLINE, PROSE_PARAGRAPH } from "./ProseSection";
+import {
+  PROSE_HEADLINE,
+  PROSE_PARAGRAPH,
+  PROSE_SUBHEADLINE,
+} from "./ProseSection";
 
 export interface SolutionBlockProps {
   /** 결정을 드러내는 주장형 헤드라인 */
   headline: string;
+  /**
+   * 헤드라인이 대상을 가리키는 이름일 때, 그 아래에서 주장을 잇는 문장.
+   * 원고가 이름과 주장을 두 층으로 나눠 준 경우에만 쓴다.
+   */
+  subheadline?: string;
   paragraphs?: string[];
   /** 이미지·영상을 섞어 여러 개 붙일 수 있다 */
   media?: MediaItem[];
@@ -21,6 +30,7 @@ const MEDIA_GRID =
 
 export default function SolutionBlock({
   headline,
+  subheadline,
   paragraphs = [],
   media = [],
   mediaLayout = "stack",
@@ -30,6 +40,7 @@ export default function SolutionBlock({
   return (
     <article>
       <h3 className={PROSE_HEADLINE}>{headline}</h3>
+      {subheadline && <p className={PROSE_SUBHEADLINE}>{subheadline}</p>}
       {paragraphs.map((paragraph) => (
         <p key={paragraph} className={PROSE_PARAGRAPH}>
           {paragraph}
