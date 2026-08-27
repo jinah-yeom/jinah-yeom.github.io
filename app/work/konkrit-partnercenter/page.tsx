@@ -281,6 +281,12 @@ const COLLABORATION = [
   "핸드오프는 프레임 단위 상태 라벨(\"Ready for Review\", \"Ready for develop\")로 어떤 화면이 리뷰 또는 구현 가능한 상태인지 명시해 진행했습니다. 디자인·개발 간 진행 상황에 대한 확인 비용을 줄였고, 프로젝트가 일시 중단되었다가 재개된 뒤에도 질문과 결정이 화면 위에 남아 있는 이 체계 덕분에 흐름을 끊긴 지점부터 그대로 이어 붙일 수 있었습니다.",
 ];
 
+/* konkrit-lede-reflection.md 원문 */
+const REFLECTION = [
+  "이 프로젝트에서 가장 오래 남은 배움은 예외를 정의하는 일이 곧 협업의 언어라는 점이었습니다. 인증, 상품 목록, 혜택 등록 어느 플로우에서든 정상 경로보다 예외 경로에서 질문이 생겼고, 진입부터 에러·엣지 케이스까지 상태를 미리 정의해 전달할수록 개발과의 왕복이 줄었습니다. 화면 ID와 유저스토리 문장으로 스펙의 존재 이유를 명시한 것도 같은 맥락이었습니다.",
+  "프로젝트가 내부 사정으로 중단되었다가 재개되는 과정도 설계 방식에 영향을 줬습니다. 몇 달의 공백 뒤에 작업을 이어 붙일 수 있었던 것은 IA 구조도와 화면정의서가 사람의 기억이 아니라 문서에 남아 있었기 때문입니다. 담당자가 바뀌어도, 흐름이 끊겨도 무너지지 않는 구조를 만드는 일이 디자인의 범위라는 확신이 이 프로젝트에서 굳어졌습니다.",
+];
+
 /* 원고의 Outcome 은 굵은 소제목 + 문단이 세 번 반복되는 구조라 블록으로 옮긴다 */
 const OUTCOMES: SolutionBlockProps[] = [
   {
@@ -306,10 +312,11 @@ const OUTCOMES: SolutionBlockProps[] = [
 export default function KonkritPartnerCenterPage() {
   return (
     <div className="flex flex-col gap-[var(--space-900)]">
-      {/* 1. Hero — lede 는 다음 단계에서 원고로 채운다 */}
+      {/* 1. Hero */}
       <ProjectHero
         eyebrow="KONKRIT Partner Center"
         title="NFT 서비스 운영 효율화를 위한 파트너센터 구축"
+        lede="운영팀의 수기 관리를 셀프서비스 구조로 전환한 B2B 파트너센터의 IA 설계와 예외 케이스 정의, 개발 핸드오프 전 과정."
         image={{
           label: "대표 이미지 — 파트너센터 로그인 화면 목업",
           ratio: "hero",
@@ -442,7 +449,8 @@ export default function KonkritPartnerCenterPage() {
         ))}
       </ProseSection>
 
-      {/* 11. Reflection — 다음 단계에서 원고로 채운다 */}
+      {/* 11. Reflection */}
+      <ProseSection eyebrow="REFLECTION" paragraphs={REFLECTION} />
 
       {/* 12. 이전/다음 프로젝트 — PROJECTS 등록은 마지막 단계 */}
       <ProjectNav slug="konkrit-partnercenter" />
