@@ -41,8 +41,8 @@ function NavLink({
 
 export default function ProjectNav({
   slug,
-  nextLabel = "← Next Project",
-  prevLabel = "Previous Project →",
+  nextLabel = "Next Project →",
+  prevLabel = "← Previous Project",
 }: ProjectNavProps) {
   const { prev, next } = getProjectNeighbors(slug);
 
@@ -55,10 +55,10 @@ export default function ProjectNav({
       className="grid grid-cols-2 gap-[var(--space-300)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-400)]"
     >
       <div>
-        {next && <NavLink project={next} label={nextLabel} align="left" />}
+        {prev && <NavLink project={prev} label={prevLabel} align="left" />}
       </div>
       <div className="justify-self-end">
-        {prev && <NavLink project={prev} label={prevLabel} align="right" />}
+        {next && <NavLink project={next} label={nextLabel} align="right" />}
       </div>
     </nav>
   );
