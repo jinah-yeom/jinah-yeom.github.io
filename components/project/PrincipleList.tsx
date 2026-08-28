@@ -11,11 +11,8 @@ export interface PrincipleListProps {
 
 export default function PrincipleList({ items = [] }: PrincipleListProps) {
   return (
-    /*
-     * 1열 전폭 박스라 안쪽 글이 컨테이너 끝까지 흘렀다. 내부 타이포가 자체
-     * 인라인이라 상자에 읽기 폭을 걸어 한 번에 잡는다.
-     */
-    <ul className="flex max-w-[var(--site-width-prose)] flex-col gap-[var(--space-300)]">
+    /* 1열 전폭 박스 — 같은 페이지의 본문·미디어와 오른쪽 끝을 맞춘다 */
+    <ul className="flex flex-col gap-[var(--space-300)]">
       {items.map((item) => (
         <li
           key={item.title}

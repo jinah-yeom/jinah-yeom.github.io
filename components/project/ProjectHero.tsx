@@ -33,12 +33,11 @@ export default function ProjectHero({
 
       {lede && (
         /*
-         * 본문과 같은 읽기 폭 — 한 줄로 끝나는 케이스도 있지만 kds·supplies 는
-         * 100자를 넘는다. text-wrap:balance 로 줄을 고르게 나눈다 — 이 폭에서
-         * konkrit 은 마지막 줄이 "과정." 세 글자만 남았다. pretty 는 이 경우를
-         * 잡지 못했고(65/3 그대로), balance 라야 33/35 로 갈린다.
+         * 본문과 같은 전폭으로 흐른다. 대신 text-wrap:balance 는 남긴다 —
+         * 전폭에서 kds lede 는 마지막 줄에 세 글자만 남았고(125/3), balance 가
+         * 그 고아 줄을 없앤다. pretty 는 이 경우를 잡지 못했다.
          */
-        <p className="mt-[var(--space-200)] max-w-[var(--site-width-prose)] [text-wrap:balance] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
+        <p className="mt-[var(--space-200)] [text-wrap:balance] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] text-[var(--color-label-alternative)]">
           {lede}
         </p>
       )}

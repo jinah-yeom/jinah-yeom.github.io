@@ -17,25 +17,22 @@ export interface ProseSectionProps {
 }
 
 /*
- * 읽기 폭. 본문 컨테이너가 1552px 이라 그대로 흘리면 한 줄이 140자를 넘어
- * 눈이 다음 줄 첫 글자를 놓친다.
+ * 프로즈에는 읽기 폭을 걸지 않는다 — 워크 상세는 글과 미디어가 한 흐름으로
+ * 번갈아 나오는 화면이라, 글만 800px 로 좁히면 문단마다 오른쪽 끝이 미디어와
+ * 어긋나 흐름이 끊겼다. 글도 미디어와 같은 컨테이너 폭으로 흐른다.
  *
- * 섹션이 아니라 글자에 건다 — ProseSection·SolutionBlock 은 문단과 미디어를
- * 같은 상자 안에 형제로 늘어놓고, konkrit 처럼 children 안에서 둘이 섞이기도
- * 한다. 섹션을 좁히면 미디어까지 따라 좁아지고, 텍스트만 감싸는 래퍼는 섞인
- * 자리에서 깨진다. 글자에 걸어 두면 어디에 놓이든 따라간다.
+ * 블로그 상세는 <article> 이 통째로 읽기 폭을 잡는다(app/blog/[slug]/page.tsx).
+ * 이 상수들은 거기서도 쓰이지만 바깥 래퍼가 이미 좁혀 둔 뒤라 영향이 없다.
  */
-const MEASURE = "max-w-[var(--site-width-prose)]";
-
 export const PROSE_HEADLINE =
-  `mb-[var(--space-250)] text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)] ${MEASURE}`;
+  "mb-[var(--space-250)] text-[length:var(--font-size-300)] leading-[var(--font-line-height-300)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]";
 
 /** 섹션 헤드라인 아래 단계의 소제목 — Approach 카드 제목, 블로그 h3 */
 export const PROSE_SUBHEADLINE =
-  `mb-[var(--space-200)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)] ${MEASURE}`;
+  "mb-[var(--space-200)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-sm)] [font-weight:var(--font-weight-700)]";
 
 export const PROSE_PARAGRAPH =
-  `mb-[var(--space-200)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)] last:mb-0 ${MEASURE}`;
+  "mb-[var(--space-200)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-100)] text-[var(--color-label-neutral)] last:mb-0";
 
 /** 본문 속 볼드 — 굵기만이 아니라 색도 한 단계 올려 본문과 구분한다 */
 export const PROSE_STRONG =
