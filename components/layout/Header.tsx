@@ -19,17 +19,24 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 /*
+ * 헤더 글자는 로고와 내비가 같은 값을 쓴다 — 16px/500. 이름을 제목처럼
+ * 키우지 않고 메뉴와 한 줄로 읽히게 둔다.
+ * 트래킹은 선언하지 않는다. heading-xs 와 body 기본값이 둘 다 -0.1px 이라
+ * 제목용 토큰을 얹어도 렌더가 같았고, 상속에 맡기는 편이 About 라벨과 같다.
+ *
+ * 타이포만 여기 모은다 — 두 곳에 같은 값을 적어 두면 한쪽만 바뀌어 어긋난다.
+ * 로고의 링크 성격(패딩 없음, hover 없음)까지 묶지는 않는다.
+ */
+const HEADER_TYPE =
+  "text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] [font-weight:var(--font-weight-500)]";
+
+/*
  * 세 항목을 같은 색·굵기로 둔다. 현재 위치는 화면에 표시하지 않고
  * aria-current 로만 남긴다 — 스크린리더는 알고 눈으로는 나란하다.
  * hover 는 카드와 같은 문법(투명도)을 쓴다. 색이 하나뿐이라 색 전환은
- * 걸 곳이 없다.
- *
- * 로고보다 한 단계 낮춘다 — 16px/500 으로, 로고는 18px/700 로 남는다.
- * 트래킹은 선언하지 않는다. heading-xs 와 body 기본값이 둘 다 -0.1px 이라
- * 제목용 토큰을 얹어도 렌더가 같았고, 상속에 맡기는 편이 About 라벨과 같다.
+ * 걸 곳이 없다. 여기엔 내비만의 것(히트 영역, 색, hover)만 더한다.
  */
-const NAV_LINK =
-  "py-[var(--space-050)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] [font-weight:var(--font-weight-500)] text-[var(--color-label-normal)] opacity-100 transition-opacity duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:opacity-60";
+const NAV_LINK = `py-[var(--space-050)] ${HEADER_TYPE} text-[var(--color-label-normal)] opacity-100 transition-opacity duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:opacity-60`;
 
 const MENU_BAR =
   "block w-[var(--dimension-250)] [height:var(--dimension-025)] bg-[var(--color-label-normal)]";
@@ -96,10 +103,7 @@ export default function Header({ name = "JINAH YEOM" }: HeaderProps) {
       >
         {/* 좌 로고 / 우 내비 2단 — 내비 오른쪽 끝이 본문 우측선과 맞는다 */}
         <div className="mx-auto flex h-full w-full max-w-[var(--site-width-header)] items-center justify-between px-[var(--space-300)]">
-          <Link
-            href="/"
-            className="text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)]"
-          >
+          <Link href="/" className={HEADER_TYPE}>
             {name}
           </Link>
 
