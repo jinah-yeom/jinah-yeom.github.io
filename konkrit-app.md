@@ -140,7 +140,7 @@ Key-Value 테이블과 스프레드시트 자동화, Figma Variables 866개로 �
 
 - **슬러그:** `konkrit-app`
 - **홈 카드 메타:** 타이틀 "KONKRIT 3.0 UX 개편" / 태그 후보 Mobile App · NFT · UX Strategy / 기간 2024.11 – 2025.02
-- **에셋 구성 (총 14장 중 12장 반영):** 전폭 7장 = hero, 타임라인, 요구사항 정의서(Approach), 결제 flow 2장(Approach, 세로 스택), AS-IS/TO-BE(UX Strategy), 다국어 시스템(Collaboration). 스크린 5장 = 온보딩 3, 티켓 사용 2. 구매·환불·탐색 2장(`konkrit-app-screen-order-01~02`)은 미공급이라 해당 Solution 블록은 텍스트만으로 세워 두고 파일이 오면 후속 반영한다. Problem·Outcome은 이미지 없음.
+- **에셋 구성 (총 14장, 전량 반영):** 전폭 7장 = hero, 타임라인, 요구사항 정의서(Approach), 결제 flow 2장(Approach, 세로 스택), AS-IS/TO-BE(UX Strategy), 다국어 시스템(Collaboration). 스크린 7장 = 온보딩 3, 티켓 사용 2, 구매·환불·탐색 2. Problem·Outcome은 이미지 없음.
 - **파일명:** `konkrit-app-hero` / `konkrit-app-timeline` / `konkrit-app-requirements` / `konkrit-app-flow-payment-01~02` / `konkrit-app-asis-tobe` / `konkrit-app-i18n` / `konkrit-app-screen-onboarding-01~03` / `konkrit-app-screen-ticket-01~02` / `konkrit-app-screen-order-01~02` (.png)
 - **스크린 레이아웃(구현 확정):** 4열 트랙은 쓰지 않는다. 공급된 스크린 파일이 세로 낱장이 아니라 폰 목업 3~4대가 늘어선 가로 16:9 조합 이미지라, 격자에 넣으면 폰 하나가 100px 아래로 내려가 화면을 읽을 수 없다. 전폭(1552px) 세로 스택으로 두면 폰 하나가 약 370px 로 서고 세 그룹의 스크린 폭도 자동으로 같아진다. 새 그리드 컴포넌트는 만들지 않는다.
 - **문제정의·디자인 목표 3쌍:** ApproachList 박스 조판 확정 (Problem 섹션 매핑 참조).
