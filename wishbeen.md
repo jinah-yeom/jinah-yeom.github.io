@@ -1,7 +1,7 @@
 # 위시빈 UX 개선 케이스 스터디
 
 구현용 최종 콘텐츠. `[에셋]`은 이미지 자리 표시. 섹션 tint title은 각 `##` 제목.
-섹션 순서: Overview, Background, Problem, Approach, UX Strategy 없음, Solution, Outcome. Collaboration은 소스 부재로 제외 확정 (초기 3개 케이스와 같은 구성).
+섹션 순서: Overview, Background, Problem, Approach, UX Strategy 없음, Solution, Outcome. Collaboration은 소스 부재로 제외 확정.
 
 ---
 
