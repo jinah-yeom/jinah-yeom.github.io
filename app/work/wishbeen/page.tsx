@@ -173,13 +173,20 @@ const OUTCOMES: SolutionBlockProps[] = [
   },
 ];
 
+/* wishbeen-lede-reflection.md 원문 */
+const REFLECTION = [
+      "이 프로젝트의 출발점은 화면이 아니라 숫자였습니다. 유입은 느는데 체류는 30초라는 GA 데이터에서 문제를 꺼냈고, 직관적인 콘텐츠 위치 UI를 제공하면 이탈하지 않을 것이라는 가설을 세운 뒤에야 화면을 그렸습니다. 프로그래스 바라는 작은 장치 하나가 긴 스크롤의 압박을 위치 감각으로 바꾸는 걸 보면서, 문제를 정확히 정의하면 답은 생각보다 가벼울 수 있다는 걸 배웠습니다.",
+      "아쉬움도 분명합니다. 출시 후 같은 지표로 재측정한 데이터가 남아 있지 않아, 30초라는 문제 수치에 짝이 되는 결과 수치로 이 개선을 닫지 못했습니다. 조사로 시작한 프로젝트는 지표로 끝나야 한다는 원칙은 이 아쉬움에서 굳어졌고, 이후의 프로젝트들에서 설계 전에 측정 기준부터 세우는 방식으로 이어졌습니다.",
+];
+
 export default function WishbeenPage() {
   return (
     <div className="flex flex-col gap-[var(--space-900)]">
-      {/* 1. Hero — lede 는 다음 단계에서 채운다 */}
+      {/* 1. Hero */}
       <ProjectHero
         eyebrow="PRODUCT UX"
         title="위시빈 여행기 UX 개선"
+        lede="가장 많은 방문이 모이는 여행기 상세를 거점으로, 읽기와 탐색이 한 화면에서 이어지도록 다시 설계한 UX 개선."
         image={{
           label: "대표 이미지 — 여행기 상세 화면 목업",
           ratio: "hero",
@@ -237,7 +244,10 @@ export default function WishbeenPage() {
         ))}
       </ProseSection>
 
-      {/* 9. 이전/다음 프로젝트 — PROJECTS 등록은 마지막 단계 */}
+      {/* 9. Reflection */}
+      <ProseSection eyebrow="REFLECTION" paragraphs={REFLECTION} />
+
+      {/* 10. 이전/다음 프로젝트 — PROJECTS 등록은 마지막 단계 */}
       <ProjectNav slug="wishbeen" />
     </div>
   );
