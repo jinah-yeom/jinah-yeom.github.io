@@ -23,9 +23,13 @@ const NAV_ITEMS: NavItem[] = [
  * aria-current 로만 남긴다 — 스크린리더는 알고 눈으로는 나란하다.
  * hover 는 카드와 같은 문법(투명도)을 쓴다. 색이 하나뿐이라 색 전환은
  * 걸 곳이 없다.
+ *
+ * 로고보다 한 단계 낮춘다 — 16px/500 으로, 로고는 18px/700 로 남는다.
+ * 트래킹은 선언하지 않는다. heading-xs 와 body 기본값이 둘 다 -0.1px 이라
+ * 제목용 토큰을 얹어도 렌더가 같았고, 상속에 맡기는 편이 About 라벨과 같다.
  */
 const NAV_LINK =
-  "py-[var(--space-050)] text-[length:var(--font-size-200)] leading-[var(--font-line-height-200)] tracking-[var(--font-letter-spacing-heading-xs)] [font-weight:var(--font-weight-700)] text-[var(--color-label-normal)] opacity-100 transition-opacity duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:opacity-60";
+  "py-[var(--space-050)] text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] [font-weight:var(--font-weight-500)] text-[var(--color-label-normal)] opacity-100 transition-opacity duration-[var(--motion-duration-d4)] ease-[var(--motion-easing-out)] hover:opacity-60";
 
 const MENU_BAR =
   "block w-[var(--dimension-250)] [height:var(--dimension-025)] bg-[var(--color-label-normal)]";
