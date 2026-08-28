@@ -13,6 +13,7 @@ export const PROJECTS: ProjectRef[] = [
   { slug: "kds", title: "Keeper Design System" },
   { slug: "keeper-supplies", title: "Keeper Admin 소모품 구매" },
   { slug: "konkrit-partnercenter", title: "KONKRIT Partner Center" },
+  { slug: "konkrit-app", title: "KONKRIT 3.0 UX 개편" },
 ];
 
 export interface ProjectNeighbors {

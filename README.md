@@ -14,6 +14,7 @@
 | 디자인 시스템 | [Keeper Design System](https://jinah-yeom.github.io/work/kds) — CSS 변수 346개 · 컴포넌트 33종 · MUI → 자체 시스템 재구축 |
 | 제품 UX 케이스 | [Keeper Admin 소모품 구매](https://jinah-yeom.github.io/work/keeper-supplies) — 외부 서비스 구매 흐름을 어드민 내부로 통합 |
 | IA·UX 설계 케이스 | [KONKRIT Partner Center](https://jinah-yeom.github.io/work/konkrit-partnercenter) — NFT 서비스 운영사를 위한 B2B 파트너센터 IA·예외 케이스 설계 |
+| 모바일 앱 UX 케이스 | [KONKRIT 3.0 UX 개편](https://jinah-yeom.github.io/work/konkrit-app) — 블록체인을 드러내지 않는 NFT 티켓 앱으로 가입·결제·입장·거래 재설계 |
 
 ---
 

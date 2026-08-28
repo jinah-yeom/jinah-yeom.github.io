@@ -55,6 +55,18 @@ const WORKS: WorkCard[] = [
     },
     tags: ["B2B Admin", "IA", "UX Flow"],
   },
+  {
+    title: "KONKRIT 3.0 UX 개편",
+    href: "/work/konkrit-app",
+    thumbnail: {
+      /* 상세 Hero 와 같은 파일 — 목록과 상세가 같은 얼굴을 갖게 한다 */
+      src: "/images/work/konkrit-app-hero.png",
+      alt: "KONKRIT 앱 홈 화면이 켜진 아이폰을 아래쪽에서 비스듬히 당겨 찍은 목업 — 공연 배너 카드 아래로 Home·Discovery·Item·Account 탭바가 놓인다.",
+      width: 3200,
+      height: 1800,
+    },
+    tags: ["Mobile App", "NFT", "UX Strategy"],
+  },
 ];
 
 export default function HomePage() {
