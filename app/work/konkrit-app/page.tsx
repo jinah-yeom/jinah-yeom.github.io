@@ -205,6 +205,12 @@ const OUTCOME_INTRO = [
   "이 프로젝트는 출시되지 못했습니다. 회사의 예산 문제로 런웨이가 끝나면서 개발이 중단되었고, 3.0 개편은 핸드오프와 반복 수정 단계에서 멈췄습니다. 결과 지표가 없는 이유입니다. 그래도 설계는 끝까지 갔고, 남은 것들은 분명합니다.",
 ];
 
+/* konkrit-app-lede-reflection.md 원문 */
+const REFLECTION = [
+  "이 프로젝트에서 계속 붙들었던 질문은 기술을 어디까지 숨길 것인가였습니다. 지갑, 토큰, 온체인 같은 개념은 서비스의 근간이지만 사용자가 알아야 할 이유는 없습니다. 지갑 생성을 닉네임 하나 정하는 일로 보이게 만들고, NFT 티켓 결제를 일반 티켓 구매의 리듬에 맞추면서, 좋은 인터페이스는 기술을 설명하는 게 아니라 기술을 잊게 하는 것이라는 확신이 생겼습니다.",
+  "프로젝트는 회사의 런웨이가 끝나면서 출시에 이르지 못했습니다. 결과 지표로 말할 수 없는 프로젝트가 된 셈인데, 그래서 더 분명해진 것도 있습니다. 요구사항 정의서와 스타일 가이드, 다국어 Variables까지 결정의 근거를 전부 기록으로 남겨두었기에, 프로젝트가 멈춘 뒤에도 이 설계는 언제든 이어받을 수 있는 상태로 남아 있습니다. 출시만이 일의 증명은 아니라는 것, 과정의 밀도 역시 증명이 된다는 것을 이 프로젝트에서 배웠습니다.",
+];
+
 /* 원고의 Outcome 은 굵은 소제목 + 문단이 세 번 반복되는 구조라 블록으로 옮긴다 */
 const OUTCOMES: SolutionBlockProps[] = [
   {
@@ -230,10 +236,11 @@ const OUTCOMES: SolutionBlockProps[] = [
 export default function KonkritAppPage() {
   return (
     <div className="flex flex-col gap-[var(--space-900)]">
-      {/* 1. Hero — lede 는 다음 단계에서 원고로 채운다 */}
+      {/* 1. Hero */}
       <ProjectHero
         eyebrow="PRODUCT UX"
         title="KONKRIT 3.0 UX 개편"
+        lede="블록체인을 드러내지 않는 티켓 앱을 목표로 KONKRIT 3.0의 가입부터 결제, 입장, 거래까지 다시 설계한 UX 개편."
         image={{
           label: "대표 이미지 — 앱 홈 화면 목업",
           ratio: "hero",
@@ -348,7 +355,8 @@ export default function KonkritAppPage() {
         ))}
       </ProseSection>
 
-      {/* 11. Reflection — 다음 단계에서 원고로 채운다 */}
+      {/* 11. Reflection */}
+      <ProseSection eyebrow="REFLECTION" paragraphs={REFLECTION} />
 
       {/* 12. 이전/다음 프로젝트 — PROJECTS 등록은 마지막 단계 */}
       <ProjectNav slug="konkrit-app" />
