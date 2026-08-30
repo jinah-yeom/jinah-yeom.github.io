@@ -79,7 +79,7 @@ const CAREER: CareerRow[] = [
       "NFT 커머스 플랫폼 'KONKRIT'의 디자인 시스템 1.0을 0에서 구축하고, 결제·지갑 연결 플로우 개편으로 신규 전환율을 개선했습니다.",
   },
   {
-    period: "2022.11 – 2023.06",
+    period: "2022.11 – 2023.05",
     company: "위시빈",
     role: "UX Designer",
     description:
