@@ -26,21 +26,20 @@ const WORKS: WorkCard[] = [
     thumbnail: {
       /* 상세 페이지 Hero 와 같은 이미지 — 목록과 상세가 같은 얼굴을 갖게 한다 */
       src: "/images/work/supplies-hero.png",
-      alt: "Keeper Admin 소모품구매 상품 목록 화면 — 조직별 탭과 폴더 칩 아래로 상품명·판매가·판매상태·카테고리가 열로 놓인 표.",
-      width: 1920,
-      height: 1080,
+      alt: "파란 소파 위 노트북에 열린 Keeper Admin 소모품구매 주문 현황 — 주문번호·주문상태·상품명·결제금액·배송방법이 열로 놓인 표.",
+      width: 3200,
+      height: 1800,
     },
     tags: ["B2B Admin", "Procurement"],
   },
-
   {
     title: "KEEPER APP 리스트뷰 UX 개선",
     href: "/work/keeper-listview",
     thumbnail: {
       src: "/images/work/keeper-listview-hero.png",
-      alt: "개선된 Keeper 앱 화면 세 개 — 업무 리스트, 날짜 선택 Bottom Sheet, 지점·동·층 필터 Bottom Sheet.",
-      width: 1920,
-      height: 1080,
+      alt: "어두운 실내에서 손에 든 아이폰에 켜진 Keeper 앱 업무 리스트 — 날짜 스트립과 필터 칩 아래로 숙박 청소 업무 카드가 이어진다.",
+      width: 3200,
+      height: 1800,
     },
     tags: ["B2B Mobile App", "Task List", "UX Redesign"],
   },
@@ -50,7 +49,7 @@ const WORKS: WorkCard[] = [
     thumbnail: {
       /* 상세 Hero 와 같은 파일 — 목록과 상세가 같은 얼굴을 갖게 한다 */
       src: "/images/work/konkrit-login.png",
-      alt: "노트북 목업 화면에 열린 KONKRIT 파트너센터 로그인 화면 — 로고와 '파트너센터' 아래로 이메일 ID·비밀번호 입력란과 로그인·회원가입 버튼이 놓인다.",
+      alt: "KONKRIT 파트너센터 로그인 화면 — 로고와 '파트너센터' 아래로 아이디·비밀번호 입력란과 로그인·회원가입 버튼이 놓인다.",
       width: 3200,
       height: 1800,
     },

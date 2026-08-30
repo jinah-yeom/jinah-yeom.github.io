@@ -322,10 +322,10 @@ export default function KonkritPartnerCenterPage() {
         title="NFT 서비스 운영 효율화를 위한 파트너센터 구축"
         lede="운영팀의 수기 관리를 셀프서비스 구조로 전환한 B2B 파트너센터의 IA 설계와 예외 케이스 정의, 개발 핸드오프 전 과정."
         image={{
-          label: "대표 이미지 — 파트너센터 로그인 화면 목업",
+          label: "대표 이미지 — 파트너센터 로그인 화면",
           ratio: "hero",
           src: "/images/work/konkrit-login.png",
-          alt: "노트북 목업 화면에 열린 KONKRIT 파트너센터 로그인 화면. 가운데 KONKRIT 로고와 '파트너센터' 글자 아래로 이메일 ID·비밀번호 입력란, 체크된 아이디 저장, 노란 로그인 버튼이 있고 구분선 아래에 회원가입 버튼과 아이디 찾기·비밀번호 찾기 링크가 놓인다.",
+          alt: "KONKRIT 파트너센터 로그인 화면. 가운데 KONKRIT 로고와 '파트너센터' 글자 아래로 abcdefg@modernlion.io 자리표시자가 들어간 아이디 입력란과 점으로 가려진 비밀번호 입력란이 있고, 체크되지 않은 아이디 저장 아래 노란 로그인 버튼이 놓인다. 구분선 아래에 회원가입 버튼과 아이디 찾기·비밀번호 찾기 링크가, 맨 아래에 이용약관·개인정보 처리방침과 (주)모던라이언 저작권 표기가 있다.",
           width: 3200,
           height: 1800,
           priority: true,
