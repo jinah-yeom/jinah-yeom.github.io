@@ -38,6 +38,22 @@ export default function PlaygroundLightbox({
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   /*
+   * 배경 스크롤 잠금. showModal() 은 뒤 페이지가 휠로 밀리는 것까지는 막지
+   * 않아서, 확대해 보는 동안 배경이 따라 움직인다. 모바일 메뉴·챗 패널과
+   * 같은 방식으로 막는다(lib/hooks/use-dialog.ts 의 lockScroll).
+   * 그 훅을 통째로 쓰지는 않는다 — Esc 와 포커스 트랩은 <dialog> 가 이미
+   * 하고 있어서, 얹으면 같은 일을 두 번 하게 된다.
+   */
+  useEffect(() => {
+    if (index === null) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [index]);
+
+  /*
    * 열고 닫는 일은 <dialog> 에 맡긴다 — showModal() 이 포커스 트랩과 Esc,
    * 열기 전 포커스로의 복귀까지 브라우저 쪽에서 해 준다.
    */
