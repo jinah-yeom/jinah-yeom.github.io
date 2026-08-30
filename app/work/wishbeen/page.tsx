@@ -214,7 +214,7 @@ export default function WishbeenPage() {
       {/* 5. Problem — 문제 2축을 박스로 조판, 이미지 없음 */}
       <ProseSection
         eyebrow="PROBLEM"
-        headline="직관적인 콘텐츠 위치 UI를 제공하면 사용자는 이탈하지 않을 것이다"
+        headline="직관적인 콘텐츠 위치 UI를 제공하면 사용자는 이탈하지 않을 것입니다"
         paragraphs={PROBLEM}
       >
         <ApproachList items={PROBLEM_AXES} />

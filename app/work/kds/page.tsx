@@ -295,14 +295,14 @@ export default function KdsPage() {
       {/* 05 Background */}
       <ProseSection
         eyebrow="BACKGROUND"
-        headline="제품의 디자인 언어가 MUI의 기본값과 오버라이드 사이에 있었다"
+        headline="제품의 디자인 언어가 MUI의 기본값과 오버라이드 사이에 있었습니다"
         paragraphs={BACKGROUND}
       />
 
       {/* 06 Problem */}
       <ProseSection
         eyebrow="PROBLEM"
-        headline="무엇을 바꾸려 해도 어디를 바꿔야 하는지 알 수 없었다"
+        headline="무엇을 바꾸려 해도 어디를 바꿔야 하는지 알 수 없었습니다"
         paragraphs={PROBLEM}
       >
         <div>
@@ -316,7 +316,7 @@ export default function KdsPage() {
       {/* 07 Approach */}
       <ProseSection
         eyebrow="APPROACH"
-        headline="컴포넌트보다 토큰 파이프라인을 먼저 만들었다"
+        headline="컴포넌트보다 토큰 파이프라인을 먼저 만들었습니다"
         paragraphs={APPROACH}
       />
 
@@ -501,7 +501,7 @@ export default function KdsPage() {
       {/* 10 Design Detail */}
       <ProseSection
         eyebrow="DESIGN DETAIL"
-        headline="컴포넌트가 앱의 사정을 알지 않게 했다"
+        headline="컴포넌트가 앱의 사정을 알지 않게 했습니다"
         paragraphs={[
           "재사용을 전제로 만든 컴포넌트도 쓰이는 동안 앱 로직을 조금씩 끌어안게 됩니다. 33종을 만들면서 세 가지 기준을 두고 예외를 만들지 않았습니다.",
         ]}
@@ -553,7 +553,7 @@ export default function KdsPage() {
       {/* 12 Outcome */}
       <ProseSection
         eyebrow="OUTCOME"
-        headline="디자이너와 개발자가 같은 언어로 말하게 됐다"
+        headline="디자이너와 개발자가 같은 언어로 말하게 됐습니다"
         paragraphs={[
           "MUI 의존을 걷어내며 전체 화면을 KDS로 옮기는 이관을 진행했습니다. 색상 하나를 바꾸려면 파일 수십 개를 뒤져야 했던 일이 토큰 값 하나를 고치는 일로 바뀌었고, Figma의 variant 이름과 코드의 prop 이름이 일치하면서 스펙을 전달할 때의 통역 비용이 사라졌습니다. 규칙은 문서 사이트에 있어 개발자가 묻지 않고 찾을 수 있게 됐고, 기획자는 디자인 시안을 기다리지 않고도 KDS 기반 프로토타입으로 화면을 검증할 수 있게 됐습니다.",
           "프로젝트를 마무리하면서는 토큰 파이프라인, Figma 파일 오너십, 레포 권한, 진행 중이던 작업을 정리한 핸드오버 문서를 작성해 인계했습니다. 만든 사람이 없어도 굴러가는 상태까지가 시스템을 만드는 일이라고 봤습니다.",

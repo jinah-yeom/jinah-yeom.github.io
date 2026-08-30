@@ -372,7 +372,7 @@ export default function KonkritPartnerCenterPage() {
       {/* 7. UX Strategy */}
       <ProseSection
         eyebrow="UX STRATEGY"
-        headline="명확한 정보 구조(IA)가 구축되어야 비로소 사용자 경험이 정교해진다"
+        headline="명확한 정보 구조(IA)가 구축되어야 비로소 사용자 경험이 정교해집니다"
         paragraphs={UX_STRATEGY}
         media={[
           {

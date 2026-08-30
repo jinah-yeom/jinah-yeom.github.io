@@ -86,7 +86,7 @@ const APPROACHES: ApproachItem[] = [
  */
 const SOLUTIONS: SolutionBlockProps[] = [
   {
-    headline: "구매의 시작점을 한 화면 안에서 끝냈다",
+    headline: "구매의 시작점을 한 화면 안에서 끝냈습니다",
     paragraphs: [
       "Keeper에서 소모품을 구매하기 위해 필수적인 AirSupply 계정 인증 과정을 한 화면 내에서 명확하게 안내하는 UX를 설계했습니다. 최소한의 입력과 흐름 단절 없이 연동이 완료되도록 단계 수를 줄였으며, 에러 케이스(계정 없음, 비밀번호 불일치 등)도 일관된 패턴으로 정의해 사용자 혼란을 최소화했습니다.",
     ],
@@ -119,7 +119,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
     ],
   },
   {
-    headline: "외부 상품을 Keeper의 탐색 방식으로 다시 담았다",
+    headline: "외부 상품을 Keeper의 탐색 방식으로 다시 담았습니다",
     paragraphs: [
       "소모품 부족 시 즉시 구매로 이어질 수 있도록, AirSupply 상품을 Keeper UI 패턴에 맞게 재구성했습니다. 필터·정렬은 Keeper Admin의 기존 탐색 기준과 일관되도록 매핑했고, 사용자에게 필요한 정보(상품명·규격·가격·재고)를 한눈에 비교할 수 있는 카드형 UI를 설계했습니다.",
     ],
@@ -152,7 +152,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
     ],
   },
   {
-    headline: "결제를 확인 몇 번의 일로 줄였다",
+    headline: "결제를 확인 몇 번의 일로 줄였습니다",
     paragraphs: [
       "기존 AirSupply 결제 구조를 Keeper 내부에 재정의하여 사용자가 최소한의 확인만으로 결제를 완료할 수 있도록 UX를 단축했습니다. 배송지·수량·결제 수단은 실제 운영에서 가장 자주 쓰이는 항목만 우선 노출하고, 나머지는 단계 후면에서 관리하는 방식으로 흐름을 최적화했습니다.",
     ],
@@ -185,7 +185,7 @@ const SOLUTIONS: SolutionBlockProps[] = [
     ],
   },
   {
-    headline: "구매 직후에 다음 행동이 보이게 했다",
+    headline: "구매 직후에 다음 행동이 보이게 했습니다",
     paragraphs: [
       "결제 완료 후 필요한 정보(주문번호·상품정보·배송지·예상 도착일)를 즉시 확인할 수 있도록 단일 화면으로 요약했습니다. 이후 단계의 업무 효율성을 위해 주문 상태 확인, 재구매, 목록 복귀 등 후속 액션도 명확하게 배치했습니다.",
     ],
@@ -267,7 +267,7 @@ export default function KeeperSuppliesPage() {
       {/* 5. Problem */}
       <ProseSection
         eyebrow="PROBLEM"
-        headline="구매가 밖에서 일어나는 한, 안의 문제는 풀리지 않았다"
+        headline="구매가 밖에서 일어나는 한, 안의 문제는 풀리지 않았습니다"
         paragraphs={PROBLEM}
       />
 
@@ -279,7 +279,7 @@ export default function KeeperSuppliesPage() {
       {/* 7. Flow Analysis */}
       <ProseSection
         eyebrow="FLOW ANALYSIS"
-        headline="구매 여정을 분해해 의사결정 구조부터 분석했다"
+        headline="구매 여정을 분해해 의사결정 구조부터 분석했습니다"
         paragraphs={[
           "설정한 가설을 검증하기 위해 고객의 소모품 구매 여정을 단계별로 분해하고, 의사결정 흐름을 플로우차트로 재정리했습니다. '필요한 순간에 즉시 해결할 수 있는가'를 중심으로 탐색, 선택, 결제 단계의 병목을 파악했고, 결제 권한 유무에 따른 분기까지 포함해 Airsupply 연동 시 어떤 흐름이 가장 효율적인지 분석했습니다. 이 결과를 기반으로 구매 플로우 정책과 예외·빈 상태 대응, 상품 탐색 UI 구조를 정의했으며, 이를 실제 기능으로 연결하기 위한 MVP 와이어프레임을 제작했습니다.",
         ]}
@@ -319,7 +319,7 @@ export default function KeeperSuppliesPage() {
       {/* 9. Interaction Detail */}
       <ProseSection
         eyebrow="INTERACTION DETAIL"
-        headline="어떤 경로로 들어와도 막다른 화면이 없게 했다"
+        headline="어떤 경로로 들어와도 막다른 화면이 없게 했습니다"
         paragraphs={[
           "상품 없음·계정 미연동·배송지 없음 등 다양한 예외 케이스를 UX 레벨에서 선제적으로 처리하는 정책을 정의했습니다. 네트워크·인증·권한·상품 각 영역의 케이스를 리스트업하고 케이스별 정책을 문서로 확정해, 어떤 경로로 진입해도 막다른 화면이 없게 했습니다.",
         ]}
