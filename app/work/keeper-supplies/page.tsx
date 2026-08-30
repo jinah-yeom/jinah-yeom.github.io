@@ -230,7 +230,7 @@ export default function KeeperSuppliesPage() {
         image={{
           label: "대표 이미지 — 소모품구매 주문 현황",
           ratio: "hero",
-          src: "/images/work/supplies-hero.png",
+          src: "/images/work/supplies-hero.webp",
           alt: "파란 소파 위에 놓인 노트북 화면에 열린 Keeper Admin 소모품구매 주문 현황. 상단 검정 바에 KEEPER 로고와 UTC·Asia/Seoul 서버 시각이 있고, 좌측 내비의 소모품구매 아래 상품목록·주문현황 중 주문현황이 켜져 있다. 본문은 '주문 현황 (42)' 제목과 2025-10-23 부터 2025-11-22 까지의 기간 필터, 상품명 또는 상품 주문번호 검색창, 그리고 상품 주문번호·주문상태·상품 이미지·상품명·옵션명·판매가·수량·결제금액·배송비·배송방법·택배사·송장번호·결제일시 열로 된 표다. 주문상태 열에는 CancelAccept·Ready·배송완료·구매확정이 섞여 있고 표 아래에 1·2·3 페이지네이션이 있다.",
           width: 3200,
           height: 1800,

@@ -157,7 +157,7 @@ export default function KeeperListviewPage() {
         image={{
           label: "대표 이미지 — 개선된 리스트뷰 화면",
           ratio: "hero",
-          src: "/images/work/keeper-listview-hero.png",
+          src: "/images/work/keeper-listview-hero.webp",
           alt: "어두운 실내에서 한 손으로 든 아이폰에 켜진 개선된 Keeper 앱 업무 리스트. 상단에 '1.티켓 잡기' 제목과 10일 월요일부터 15일 토요일까지의 날짜 스트립이 있고, 그 아래 전체·체크아웃됨·업무·지점·마감임박순 필터 칩이 놓인다. 목록에는 '이전업무 완료' 배지가 붙은 정규 숙박 청소-Deluxe room 카드가 이어지는데, 909동 9층 901호 H Avenue 인천검단신도시점과 A동 13층 1312호 르컬렉티브 강남에잇시그니티점이 각각 07/10 12:00 에서 07/10 15:00, 24,000원(60분 예상) / 잡기로 표시된다. 하단 탭바는 1.잡기·2.예약·3.수행·4.완료·마이페이지 다섯 칸이고 1.잡기가 켜져 있다.",
           width: 3200,
           height: 1800,
