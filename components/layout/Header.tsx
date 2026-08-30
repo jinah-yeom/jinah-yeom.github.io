@@ -16,6 +16,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "WORK", href: "/", matches: ["/", "/work"] },
   { label: "ABOUT", href: "/about", matches: ["/about"] },
   { label: "BLOG", href: "/blog", matches: ["/blog"] },
+  { label: "PLAYGROUND", href: "/playground", matches: ["/playground"] },
 ];
 
 /*
@@ -31,7 +32,7 @@ const HEADER_TYPE =
   "text-[length:var(--font-size-100)] leading-[var(--font-line-height-075)] [font-weight:var(--font-weight-500)]";
 
 /*
- * 세 항목을 같은 색·굵기로 둔다. 현재 위치는 화면에 표시하지 않고
+ * 네 항목을 같은 색·굵기로 둔다. 현재 위치는 화면에 표시하지 않고
  * aria-current 로만 남긴다 — 스크린리더는 알고 눈으로는 나란하다.
  * hover 는 카드와 같은 문법(투명도)을 쓴다. 색이 하나뿐이라 색 전환은
  * 걸 곳이 없다. 여기엔 내비만의 것(히트 영역, 색, hover)만 더한다.
