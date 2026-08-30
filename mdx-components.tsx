@@ -19,9 +19,13 @@ import {
  * 값은 상수와 겹치지 않는 것만 덧붙인다.
  */
 const components: MDXComponents = {
+  /*
+   * 섹션 제목. 위 보더로 긋던 구분을 여백만으로 대신하므로 mt 를 한 단계
+   * 올린다 — 40px 이면 h3(32px) 와 8px 차이라 대단원과 소단원이 같아 보인다.
+   */
   h2: (props) => (
     <h2
-      className={`mt-[var(--space-500)] border-t border-[var(--color-divider-alternative)] pt-[var(--space-300)] ${PROSE_HEADLINE}`}
+      className={`mt-[var(--space-700)] ${PROSE_HEADLINE}`}
       {...props}
     />
   ),

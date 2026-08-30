@@ -20,7 +20,11 @@ export default function PostList({
   }
 
   return (
-    <div className="flex flex-col">
+    /*
+     * 첫 항목의 위 패딩을 뺀다 — 위 divider 의 아래 여백(24px)에 20px 이
+     * 더해지면 그 자리만 44px 이 되어 About 의 같은 자리(24px)와 어긋난다.
+     */
+    <div className="flex flex-col [&>a:first-child]:pt-0">
       {posts.map((post) => (
         <Link
           key={post.slug}
